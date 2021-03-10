@@ -47,6 +47,7 @@ class Application:
     def open_home_page(self):
         wd = self.wd
         wd.get(self.base_url)
+        wd.maximize_window()
         if wd.find_elements_by_xpath('/html/body/div[3]/div/div[3]/div[1]/button[1]'):
             wd.find_element_by_xpath('/html/body/div[3]/div/div[3]/div[1]/button[1]').click()
             time.sleep(3)

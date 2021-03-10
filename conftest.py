@@ -1,14 +1,11 @@
-
 import pytest
 import json
 from fixture.application import Application
 import os.path
 
 
-
 fixture = None
 target = None
-
 
 
 @pytest.fixture
@@ -36,3 +33,16 @@ def stop(request):
 def pytest_addoption(parser):
     parser.addoption("--browser", action="store", default="firefox")
     parser.addoption("--target", action="store", default="target.json")
+
+
+@pytest.fixture(params=["chrome", "ie", "firefox"])
+def parametrize_browser(request):
+    global fixture
+    global target
+    browser = request.param
+    if target is None:
+        config_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), request.config.getoption("--target"))
+        with open(config_file) as f:
+            target = json.load(f)
+    fixture = Application(browser=browser, base_url=target['baseUrl'])
+    return fixture

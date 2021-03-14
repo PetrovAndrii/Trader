@@ -19,12 +19,12 @@ class RegistrationHelper:
 
     def registration_fields(self, group_registration):
         wd = self.app.wd
-        wd.find_element_by_id('nameId').click()
-        wd.find_element_by_id('nameId').clear()
-        wd.find_element_by_id('nameId').send_keys(group_registration.full_name)
-        wd.find_element_by_id('emailId').click()
-        wd.find_element_by_id('emailId').clear()
-        wd.find_element_by_id('emailId').send_keys(group_registration.email)
+        wd.find_element_by_css_selector('.regFullNameField').click()
+        wd.find_element_by_css_selector('.regFullNameField').clear()
+        wd.find_element_by_css_selector('.regFullNameField').send_keys(group_registration.full_name)
+        wd.find_element_by_css_selector('.regEmailField').click()
+        wd.find_element_by_css_selector('.regEmailField').clear()
+        wd.find_element_by_css_selector('.regEmailField').send_keys(group_registration.email)
         wd.find_element_by_css_selector('.regPassField').click()
         wd.find_element_by_css_selector('.regPassField').clear()
         wd.find_element_by_css_selector('.regPassField').send_keys(group_registration.password)
@@ -37,9 +37,9 @@ class RegistrationHelper:
 
     def agree_terms_conditions(self):
         wd = self.app.wd
-        element = wd.find_element_by_id('EULACheckboxLogin')
+        element = wd.find_element_by_css_selector('.EULACheckbox')
         wd.execute_script("return arguments[0].scrollIntoView(true);", element)
-        wd.find_element_by_id('EULACheckboxLogin').click()
+        wd.find_element_by_css_selector('.EULACheckbox').click()
 
     def button_join(self):
         wd = self.app.wd
@@ -94,7 +94,7 @@ class RegistrationHelper:
         wd = self.app.wd
         if wd.find_elements_by_css_selector('.offer-heading'):
             self.app.open_home_page()
-            time.sleep(5)
+            time.sleep(1)
             self.app.session.log_out()
         else:
             pass
@@ -107,3 +107,11 @@ class RegistrationHelper:
             return text
         else:
             pass
+
+    def login_button(self):
+        wd = self.app.wd
+        wd.find_element_by_css_selector('.landing-header__login').click()
+
+    def join_for_free_at_login_form(self):
+        wd = self.app.wd
+        wd.find_element_by_class_name('joinForFreeLogin').click()

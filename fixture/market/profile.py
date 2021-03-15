@@ -1,7 +1,7 @@
 from selenium.common.exceptions import NoSuchElementException
 import time
 from random import randint
-
+import os
 
 
 class ProfileHelper:
@@ -13,7 +13,8 @@ class ProfileHelper:
     def my_profile(self):
         wd = self.app.wd
         wd.find_element_by_css_selector('.landing-header__account-img').click()
-        wd.find_element_by_xpath('//*[@id="LandingPageContainer"]/div[1]/div/div/div/div[3]/div[3]/div/ul/li[1]/a').click()
+        wd.find_element_by_xpath('//*[@id="LandingPageContainer"]'
+                                 '/div[1]/div/div/div/div[3]/div[3]/div/ul/li[1]/a').click()
         try:
             elem = wd.find_element_by_xpath('//*[@class="form"]/label[4]/p')
             return True
@@ -52,7 +53,7 @@ class ProfileHelper:
 
     def upload_new_photo(self, path_foto):
         wd = self.app.wd
-        wd.find_element_by_xpath("//input[@type='file']").send_keys(path_foto)
+        wd.find_element_by_xpath("//input[@type='file']").send_keys(os.getcwd() + path_foto)
 
     def save_photo(self):
         wd = self.app.wd

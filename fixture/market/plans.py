@@ -49,7 +49,7 @@ class PlansHelper:
         print('')
         print('Email: ', email)
         self.app.registration.registration_fields(Group(full_name='Test Test', email=email, password='P@ssw0rd',
-                                                   confirm_pass='P@ssw0rd', phone='+380930000000'))
+                                                        confirm_pass='P@ssw0rd', phone='+380930000000'))
         self.app.registration.agree_terms_conditions()
         self.app.registration.button_join()
 

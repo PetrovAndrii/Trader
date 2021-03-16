@@ -83,14 +83,13 @@ def test_open_multiple(app):
     app.FAQ.id_multiple()
 
 
-# not work url in site
-# def test_blog_post_in_connect(app):
-#     app.open_home_page()
-#     app.FAQ.open_FAQ()
-#     app.FAQ.id_connect()
-#     url_test = app.FAQ.follow_help_url()
-#     url_site = 'https://smarttrader.com/blog/connect-trading-account/'
-#     assert url_site == url_test
+def test_blog_post_in_connect(app):
+    app.open_home_page()
+    app.FAQ.open_faq()
+    app.FAQ.id_connect()
+    url_test = app.FAQ.follow_help_url()
+    url_site = 'https://blog.smarttrader.com/how-to-integrate-your-forex-broker-account-to-easily-execute-trades/'
+    assert url_site == url_test
 
 
 def test_open_change_plans(app):

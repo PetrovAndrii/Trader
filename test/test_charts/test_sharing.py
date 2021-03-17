@@ -6,7 +6,7 @@ def test_share_charts(app):
     app.sharing.share_ideas_button()
     app.sharing.share_charts_button()
     app.sharing.make_snapshot_chart()
-    current_datetime = app.sharing.get_current_datetime()
+    current_datetime = app.sharing.get_current_date_time()
     app.sharing.write_idea_name(idea_name=current_datetime)
     app.sharing.write_description(description_text='test for sharing charts as idea')
     app.sharing.publish_idea()
@@ -19,7 +19,7 @@ def test_share_workspace(app):
     app.sharing.share_ideas_button()
     app.sharing.share_workspace_button()
     app.sharing.make_snapshot_workspace()
-    current_datetime = app.sharing.get_current_datetime()
+    current_datetime = app.sharing.get_current_date_time()
     app.sharing.write_idea_name(idea_name=current_datetime)
     app.sharing.write_description(description_text='test for sharing charts as idea')
     app.sharing.publish_idea()
@@ -27,15 +27,56 @@ def test_share_workspace(app):
     assert current_datetime == shared_check
 
 
-def test_import_workspase_as_idea(app):
+def test_import_workspace_as_idea(app):
     app.open_charts_page()
     app.sharing.share_ideas_button()
     app.sharing.browse_ideas()
-    app.sharing.import_random_workspace_button()
+    name1 = app.sharing.import_random_workspace_button()
+    name2 = app.sharing.return_imported_name()
+    assert name1 == name2
 
 
 def test_import_chart_as_idea(app):
     app.open_charts_page()
     app.sharing.share_ideas_button()
     app.sharing.browse_ideas()
-    app.sharing.import_random_chart_button()
+    name1 = app.sharing.import_random_chart_button()
+    name2 = app.sharing.return_imported_name()
+    assert name1 == name2
+
+
+def test_share_scripts(app):
+    app.open_charts_page()
+    app.sharing.open_scripting_tab()
+    app.sharing.open_user_smart_script()
+    app.sharing.smart_script_share_button()
+    app.sharing.make_snapshot_scripts()
+    current_datetime = app.sharing.get_current_date_time()
+    app.sharing.write_idea_name(idea_name=current_datetime)
+    app.sharing.write_description(description_text='test for sharing charts as idea')
+    app.sharing.publish_idea()
+    shared_check = app.sharing.check_shared_ideas()
+    assert current_datetime == shared_check
+
+
+# import scripts
+def test_import_scripts(app):
+    app.open_charts_page()
+    app.sharing.share_ideas_button()
+    app.sharing.browse_scripts()
+    name1 = app.sharing.import_random_scripts_button()
+    name2 = app.sharing.return_imported_script_name()
+    assert name1 == name2
+
+
+# share idea to social network
+
+
+# remove sharing ideas
+def test_remove_sharing_ideas(app):
+    app.open_charts_page()
+    app.sharing.open_manage_shared_ideas_scripts()
+    old_list = app.sharing.get_shared_ideas_scripts_list()
+    app.sharing.remove_random_sharing_ideas()
+    new_list = app.sharing.get_shared_ideas_scripts_list()
+    assert len(old_list) - 1 == len(new_list)

@@ -70,6 +70,5 @@ class Application:
         time.sleep(3)
         self.registration.cookies_agree()
 
-
     def destroy(self):
         self.wd.quit()

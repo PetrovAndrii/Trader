@@ -2,6 +2,7 @@ import time
 from datetime import datetime
 from random import randint
 
+
 class SharingHelper:
 
     def __init__(self, app):
@@ -24,7 +25,12 @@ class SharingHelper:
         wd.find_element_by_xpath('//*[@title="Browse Ideas"]').click()
         time.sleep(3)
 
-    def make_snapshot_chart(self):
+    def browse_scripts(self):
+        wd = self.app.wd
+        wd.find_element_by_xpath('//*[@title="Browse Scripts"]').click()
+        time.sleep(3)
+
+    def snapshot(self):
         wd = self.app.wd
         wd.find_element_by_xpath('//button[@class="btnSnapshot btn btn-primary"]').click()
         time.sleep(5)
@@ -34,6 +40,9 @@ class SharingHelper:
         else:
             result_load_snapshot = wd.find_element_by_xpath('//*[@class="image-loader"]/div/div[5]')
             return result_load_snapshot.text
+
+    def make_snapshot_chart(self):
+        self.snapshot()
 
     def make_snapshot_workspace(self):
         wd = self.app.wd
@@ -45,6 +54,9 @@ class SharingHelper:
         else:
             result_load_snapshot = wd.find_element_by_xpath('//*[@class="image-loader"]/div/div[5]')
             return result_load_snapshot.text
+
+    def make_snapshot_scripts(self):
+        self.snapshot()
 
     def write_idea_name(self, idea_name):
         wd = self.app.wd
@@ -62,7 +74,7 @@ class SharingHelper:
         wd = self.app.wd
         wd.find_element_by_id('shareBtn').click()
 
-    def get_current_datetime(self):
+    def get_current_date_time(self):
         date_time = datetime.now()
         return date_time.strftime('%Y-%m-%d %H.%M.%S')
 
@@ -79,12 +91,72 @@ class SharingHelper:
 
     def import_random_workspace_button(self):
         wd = self.app.wd
-        links = wd.find_elements_by_xpath('//*[@title="Import workspace into Charts"]')
+        links = wd.find_elements_by_xpath('//div[@class="wspsViewST thumbnail"]')
         l = links[randint(0, len(links) - 1)]
         l.click()
+        name = l.find_element_by_xpath('//*[@class="ideas_title"]')
+        name1 = str(name.text)
+        wd.find_element_by_xpath('//*[@class="ideas_footer_import"]').click()
+        return name1.upper()
 
     def import_random_chart_button(self):
         wd = self.app.wd
-        links = wd.find_elements_by_xpath('//*[@title="Import chart into Charts"]')
+        links = wd.find_elements_by_xpath('//div[@class="chartsViewST thumbnail"]')
         l = links[randint(0, len(links) - 1)]
         l.click()
+        name = l.find_element_by_xpath('//*[@class="ideas_title"]')
+        name1 = str(name.text)
+        wd.find_element_by_xpath('//*[@class="ideas_footer_import"]').click()
+        return name1.upper()
+
+    def return_imported_name(self):
+        wd = self.app.wd
+        time.sleep(5)
+        name = wd.find_element_by_xpath('//*[@class="workspace__open-btn"]/span[2]')
+        return name.text
+
+    def open_scripting_tab(self):
+        wd = self.app.wd
+        wd.find_element_by_class_name('scriptingTab').click()
+
+    def open_user_smart_script(self):
+        wd = self.app.wd
+        wd.find_element_by_class_name('openBtn').click()
+
+    def smart_script_share_button(self):
+        wd = self.app.wd
+        links = wd.find_elements_by_css_selector('.shareScriptBtn')
+        l = links[randint(0, len(links) - 1)]
+        l.click()
+
+    def import_random_scripts_button(self):
+        wd = self.app.wd
+        links = wd.find_elements_by_xpath('//div[@class="scriptViewST thumbnail"]')
+        l = links[randint(0, len(links) - 1)]
+        l.click()
+        name = l.find_element_by_xpath('//*[@class="ideas_title"]')
+        name1 = name.text
+        wd.find_element_by_xpath('//*[@class="ideas_footer_import"]').click()
+        return name1
+
+    def return_imported_script_name(self):
+        wd = self.app.wd
+        time.sleep(3)
+        name = wd.find_element_by_xpath('//*[@id="runEADataTable"]/tbody/tr[last()]/td[1]/div/span[1]')
+        return name.text
+
+    def remove_random_sharing_ideas(self):
+        wd = self.app.wd
+        if wd.find_elements_by_xpath('//*[@title="Delete workspace"]'):
+            links = wd.find_elements_by_xpath('//*[@title="Delete workspace"]')
+            l = links[randint(0, len(links) - 1)]
+            l.click()
+        else:
+            return print('HAVE NOT IDEAS FOR DELETE')
+
+    def get_shared_ideas_scripts_list(self):
+        wd = self.app.wd
+        count = []
+        for element in wd.find_elements_by_xpath('//*[@title="Delete workspace"]'):
+            count.append(element)
+        return count

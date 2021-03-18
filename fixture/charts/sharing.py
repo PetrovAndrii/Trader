@@ -92,9 +92,9 @@ class SharingHelper:
     def import_random_workspace_button(self):
         wd = self.app.wd
         links = wd.find_elements_by_xpath('//div[@class="wspsViewST thumbnail"]')
-        l = links[randint(0, len(links) - 1)]
-        l.click()
-        name = l.find_element_by_xpath('//*[@class="ideas_title"]')
+        link = links[randint(0, len(links) - 1)]
+        link.click()
+        name = link.find_element_by_xpath('//*[@class="ideas_title"]')
         name1 = str(name.text)
         wd.find_element_by_xpath('//*[@class="ideas_footer_import"]').click()
         return name1.upper()
@@ -102,9 +102,9 @@ class SharingHelper:
     def import_random_chart_button(self):
         wd = self.app.wd
         links = wd.find_elements_by_xpath('//div[@class="chartsViewST thumbnail"]')
-        l = links[randint(0, len(links) - 1)]
-        l.click()
-        name = l.find_element_by_xpath('//*[@class="ideas_title"]')
+        link = links[randint(0, len(links) - 1)]
+        link.click()
+        name = link.find_element_by_xpath('//*[@class="ideas_title"]')
         name1 = str(name.text)
         wd.find_element_by_xpath('//*[@class="ideas_footer_import"]').click()
         return name1.upper()
@@ -126,15 +126,15 @@ class SharingHelper:
     def smart_script_share_button(self):
         wd = self.app.wd
         links = wd.find_elements_by_css_selector('.shareScriptBtn')
-        l = links[randint(0, len(links) - 1)]
-        l.click()
+        link = links[randint(0, len(links) - 1)]
+        link.click()
 
     def import_random_scripts_button(self):
         wd = self.app.wd
         links = wd.find_elements_by_xpath('//div[@class="scriptViewST thumbnail"]')
-        l = links[randint(0, len(links) - 1)]
-        l.click()
-        name = l.find_element_by_xpath('//*[@class="ideas_title"]')
+        link = links[randint(0, len(links) - 1)]
+        link.click()
+        name = link.find_element_by_xpath('//*[@class="ideas_title"]')
         name1 = name.text
         wd.find_element_by_xpath('//*[@class="ideas_footer_import"]').click()
         return name1
@@ -149,8 +149,8 @@ class SharingHelper:
         wd = self.app.wd
         if wd.find_elements_by_xpath('//*[@title="Delete workspace"]'):
             links = wd.find_elements_by_xpath('//*[@title="Delete workspace"]')
-            l = links[randint(0, len(links) - 1)]
-            l.click()
+            link = links[randint(0, len(links) - 1)]
+            link.click()
         else:
             return print('HAVE NOT IDEAS FOR DELETE')
 
@@ -160,3 +160,35 @@ class SharingHelper:
         for element in wd.find_elements_by_xpath('//*[@title="Delete workspace"]'):
             count.append(element)
         return count
+
+    def random_view_on_social_hub(self):
+        wd = self.app.wd
+        if wd.find_elements_by_xpath('//*[@class="viewOnHub pull-right"]'):
+            links = wd.find_elements_by_xpath('//*[@title="Delete workspace"]')
+            link = links[randint(0, len(links) - 1)]
+            link.click()
+        else:
+            return print('HAVE NOT IDEAS FOR VIEW')
+
+    def button_share_into_social_on_footer(self):
+        wd = self.app.wd
+        element = wd.find_element_by_xpath('//*[@class="detail-idea-footer"]')
+        # scroll to element
+        wd.execute_script("return arguments[0].scrollIntoView(true);", element)
+        wd.find_element_by_xpath('//*[@class="detail-idea-footer"]/div[2]').click()
+
+    def button_share_into_social_on_ideas(self):
+        wd = self.app.wd
+        wd.find_element_by_xpath('//*[@class="ideas_share"]').click()
+
+    def open_workspace_list(self):
+        wd = self.app.wd
+        wd.find_element_by_xpath('//*[@class="workspace__open-btn"]').click()
+
+    def setting_active_workspaces(self):
+        wd = self.app.wd
+        wd.find_element_by_xpath('//*[@id="activeWsp"]/a/span[3]').click()
+
+    def share_workspace_from_settings(self):
+        wd = self.app.wd
+        wd.find_element_by_css_selector('.item--share').click()

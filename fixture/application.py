@@ -10,6 +10,7 @@ from fixture.market.features import FeaturesHelper
 from fixture.market.marketing_pages import MarketingPagesHelper
 from fixture.market.plans import PlansHelper
 from fixture.charts.sharing import SharingHelper
+from fixture.charts.add_workspace_chart import WorkspaceChartHelper
 import time
 
 
@@ -36,6 +37,7 @@ class Application:
         self.marketing_pages = MarketingPagesHelper(self)
         self.plans = PlansHelper(self)
         self.sharing = SharingHelper(self)
+        self.add_workspace_chart = WorkspaceChartHelper(self)
         self.base_url = base_url
 
     # check valid session in browser or not

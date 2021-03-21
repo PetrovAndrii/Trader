@@ -6,17 +6,17 @@ import os
 
 class ProfileHelper:
 
-
     def __init__(self, app):
         self.app = app
 
     def my_profile(self):
         wd = self.app.wd
         wd.find_element_by_css_selector('.landing-header__account-img').click()
-        wd.find_element_by_xpath('//*[@id="LandingPageContainer"]'
-                                 '/div[1]/div/div/div/div[3]/div[3]/div/ul/li[1]/a').click()
+        time.sleep(2)
+        wd.find_element_by_xpath('//*[@class="landing-header__account-details"]'
+                                 '/ul/li[1]/a').click()
         try:
-            elem = wd.find_element_by_xpath('//*[@class="form"]/label[4]/p')
+            wd.find_element_by_xpath('//*[@class="form"]/label[4]/p')
             return True
         except NoSuchElementException:
             print('')

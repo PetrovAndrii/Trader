@@ -34,6 +34,7 @@ class PlansHelper:
     def check_cost(self):
         wd = self.app.wd
         cost = wd.find_element_by_xpath('//*[@id="registration"]/div[1]/div/h3/strong')
+
         return cost.text
 
     def price_top_rigth(self):

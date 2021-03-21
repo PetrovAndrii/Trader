@@ -107,6 +107,7 @@ def test_import_scripts(app):
 def test_share_to_social_footer_fb(app):
     app.open_charts_page()
     app.sharing.open_manage_shared_ideas_scripts()
+    app.sharing.random_view_on_social_hub()
     app.sharing.button_share_into_social_on_footer()
 
 

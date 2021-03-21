@@ -159,6 +159,7 @@ class TutorialHelper:
     def click_swiper_2(self):
         wd = self.app.wd
         wd.find_element_by_xpath('//*[@id="LandingPageContainer"]/section/section[2]/div/section[2]/div/div[3]').click()
+        time.sleep(2)
 
     def chapter2_video5(self):
         wd = self.app.wd
@@ -347,6 +348,7 @@ class TutorialHelper:
     def click_swiper_4(self):
         wd = self.app.wd
         wd.find_element_by_xpath('//*[@id="LandingPageContainer"]/section/section[2]/div/section[4]/div/div[3]').click()
+        time.sleep(2)
 
     def chapter4_video5(self):
         wd = self.app.wd

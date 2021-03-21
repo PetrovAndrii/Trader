@@ -52,21 +52,17 @@ class Application:
         wd = self.wd
         wd.get(self.base_url)
         wd.maximize_window()
+        time.sleep(2)
         if wd.find_elements_by_xpath('/html/body/div[3]/div/div[3]/div[1]/button[1]'):
             wd.find_element_by_xpath('/html/body/div[3]/div/div[3]/div[1]/button[1]').click()
-            time.sleep(3)
         else:
             pass
+        wd.application_cache
 
     def open_charts_page(self):
         wd = self.wd
         wd.get(self.base_url)
-        wd.maximize_window()
-        if wd.find_elements_by_xpath('/html/body/div[3]/div/div[3]/div[1]/button[1]'):
-            wd.find_element_by_xpath('/html/body/div[3]/div/div[3]/div[1]/button[1]').click()
-            time.sleep(2)
-        else:
-            pass
+        self.open_home_page()
         self.session.log_in(mail_login="test@yopmail.com", pass_login="P@ssw0rd")
         wd.find_element_by_xpath('//*[@class="landing-header__navigation"]/a[1]').click()
         time.sleep(3)

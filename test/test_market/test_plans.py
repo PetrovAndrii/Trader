@@ -1,7 +1,7 @@
 
 
 def test_tab_360pro_button_not_login(app):
-    app.open_home_page()
+    app.session.log_out()
     app.plans.open_plans_360pro()
     app.plans.click_access_button()
     cost1 = app.plans.check_cost()
@@ -11,8 +11,8 @@ def test_tab_360pro_button_not_login(app):
     cost3 = app.plans.checkout_total_price()
     assert '$' + cost1 == "$" + cost2 + '/' == cost3 + '/'
 
+
 def test_tab_360pro_button_login(app):
-    app.open_home_page()
     app.session.log_in(mail_login="test@yopmail.com", pass_login="P@ssw0rd")
     app.plans.open_plans_360pro()
     app.plans.click_access_button()

@@ -1,5 +1,6 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
+import time
 
 
 class SessionHelper:
@@ -22,16 +23,17 @@ class SessionHelper:
         else:
             pass
 
-
     def log_out(self):
         wd = self.app.wd
         self.app.open_home_page()
         if wd.find_elements_by_css_selector('.landing-header__account-img'):
             wd.find_element_by_css_selector('.landing-header__account-img').click()
-            wd.find_element_by_xpath('//*[@id="LandingPageContainer"]'
-                                     '/div[1]/div/div/div/div[3]/div[3]/div/ul/li[4]/a').click()
+            time.sleep(2)
+            wd.find_element_by_xpath('//*[@class="landing-header__account-details"]'
+                                     '/ul/li[4]/a').click()
         else:
             self.log_in(mail_login="smart0trader2@gmail.com", pass_login="P@ssw0rd")
             wd.find_element_by_css_selector('.landing-header__account-img').click()
-            wd.find_element_by_xpath('//*[@id="LandingPageContainer"]'
-                                     '/div[1]/div/div/div/div[3]/div[3]/div/ul/li[4]/a').click()
+            time.sleep(2)
+            wd.find_element_by_xpath('//*[@class="landing-header__account-details"]'
+                                     '/ul/li[4]/a').click()

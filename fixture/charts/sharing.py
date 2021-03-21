@@ -11,6 +11,7 @@ class SharingHelper:
     def share_ideas_button(self):
         wd = self.app.wd
         wd.find_element_by_xpath('//div[@title="Share Ideas"]').click()
+        time.sleep(1)
 
     def share_charts_button(self):
         wd = self.app.wd
@@ -24,11 +25,25 @@ class SharingHelper:
         wd = self.app.wd
         wd.find_element_by_xpath('//*[@title="Browse Ideas"]').click()
         time.sleep(3)
+        element = wd.find_element_by_xpath('//*[@class="paralaxScroll"]')
+        if element.is_displayed():
+            wd.refresh()
+            time.sleep(3)
+        else:
+            pass
 
     def browse_scripts(self):
         wd = self.app.wd
         wd.find_element_by_xpath('//*[@title="Browse Scripts"]').click()
         time.sleep(3)
+        element = wd.find_element_by_xpath('//*[@class="symbolPanel container"]')
+        if element.is_displayed():
+            wd.execute_script("location.reload(true);")
+            # current_url = wd.current_url
+            # wd.get(current_url)
+            # time.sleep(3)
+        else:
+            pass
 
     def snapshot(self):
         wd = self.app.wd
@@ -85,7 +100,9 @@ class SharingHelper:
 
     def check_shared_ideas(self):
         wd = self.app.wd
+        time.sleep(3)
         self.open_manage_shared_ideas_scripts()
+        time.sleep(3)
         name = wd.find_element_by_xpath('//*[@id="bodyContentHolder"]/div[1]/div/div[1]')
         return name.text
 
@@ -96,17 +113,25 @@ class SharingHelper:
         link.click()
         name = link.find_element_by_xpath('//*[@class="ideas_title"]')
         name1 = str(name.text)
-        wd.find_element_by_xpath('//*[@class="ideas_footer_import"]').click()
+        self.import_button_from_opened_ideas()
         return name1.upper()
+
+    def import_button_from_opened_ideas(self):
+        wd = self.app.wd
+        # scroll to element
+        element = wd.find_element_by_xpath('//*[@class="ideas_footer_import"]')
+        wd.execute_script("return arguments[0].scrollIntoView(true);", element)
+        wd.find_element_by_xpath('//*[@class="ideas_footer_import"]').click()
 
     def import_random_chart_button(self):
         wd = self.app.wd
+        time.sleep(3)
         links = wd.find_elements_by_xpath('//div[@class="chartsViewST thumbnail"]')
         link = links[randint(0, len(links) - 1)]
         link.click()
         name = link.find_element_by_xpath('//*[@class="ideas_title"]')
         name1 = str(name.text)
-        wd.find_element_by_xpath('//*[@class="ideas_footer_import"]').click()
+        self.import_button_from_opened_ideas()
         return name1.upper()
 
     def return_imported_name(self):
@@ -131,19 +156,28 @@ class SharingHelper:
 
     def import_random_scripts_button(self):
         wd = self.app.wd
-        links = wd.find_elements_by_xpath('//div[@class="scriptViewST thumbnail"]')
-        link = links[randint(0, len(links) - 1)]
-        link.click()
-        name = link.find_element_by_xpath('//*[@class="ideas_title"]')
-        name1 = name.text
-        wd.find_element_by_xpath('//*[@class="ideas_footer_import"]').click()
-        return name1
+        element = wd.find_element_by_class_name('noSearchResults')
+        if element.is_displayed():
+            print('No Search Results')
+        else:
+            time.sleep(3)
+            links = wd.find_elements_by_xpath('//div[@class="scriptViewST thumbnail"]')
+            link = links[randint(0, len(links) - 1)]
+            link.click()
+            name = link.find_element_by_xpath('//*[@class="ideas_title"]')
+            name1 = name.text
+            wd.find_element_by_xpath('//*[@class="ideas_footer_import"]').click()
+            return name1
 
     def return_imported_script_name(self):
         wd = self.app.wd
         time.sleep(3)
-        name = wd.find_element_by_xpath('//*[@id="runEADataTable"]/tbody/tr[last()]/td[1]/div/span[1]')
-        return name.text
+        if wd.find_elements_by_class_name('noSearchResults'):
+            print('No Search Results')
+        else:
+            self.open_user_smart_script()
+            name = wd.find_element_by_xpath('//*[@id="runEADataTable"]/tbody/tr[last()]/td[1]/div/span[1]')
+            return name.text
 
     def remove_random_sharing_ideas(self):
         wd = self.app.wd
@@ -157,6 +191,7 @@ class SharingHelper:
     def get_shared_ideas_scripts_list(self):
         wd = self.app.wd
         count = []
+        time.sleep(5)
         for element in wd.find_elements_by_xpath('//*[@title="Delete workspace"]'):
             count.append(element)
         return count
@@ -164,7 +199,7 @@ class SharingHelper:
     def random_view_on_social_hub(self):
         wd = self.app.wd
         if wd.find_elements_by_xpath('//*[@class="viewOnHub pull-right"]'):
-            links = wd.find_elements_by_xpath('//*[@title="Delete workspace"]')
+            links = wd.find_elements_by_xpath('//*[@class="viewOnHub pull-right"]')
             link = links[randint(0, len(links) - 1)]
             link.click()
         else:

@@ -92,12 +92,7 @@ class RegistrationHelper:
 
     def check_success_registration(self):
         wd = self.app.wd
-        if wd.find_elements_by_css_selector('.offer-heading'):
-            self.app.open_home_page()
-            time.sleep(1)
-            self.app.session.log_out()
-        else:
-            pass
+        wd.find_element_by_css_selector('.offer-heading')
 
     def exist_account(self):
         wd = self.app.wd

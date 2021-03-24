@@ -32,7 +32,7 @@ class SessionHelper:
             wd.find_element_by_xpath('//*[@class="landing-header__account-details"]'
                                      '/ul/li[4]/a').click()
         else:
-            self.log_in(mail_login="smart0trader2@gmail.com", pass_login="P@ssw0rd")
+            self.log_in(mail_login="test@yopmail.com", pass_login="P@ssw0rd")
             wd.find_element_by_css_selector('.landing-header__account-img').click()
             time.sleep(2)
             wd.find_element_by_xpath('//*[@class="landing-header__account-details"]'

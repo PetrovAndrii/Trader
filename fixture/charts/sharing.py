@@ -1,5 +1,4 @@
 import time
-from datetime import datetime
 from random import randint
 
 
@@ -88,10 +87,6 @@ class SharingHelper:
     def publish_idea(self):
         wd = self.app.wd
         wd.find_element_by_id('shareBtn').click()
-
-    def get_current_date_time(self):
-        date_time = datetime.now()
-        return date_time.strftime('%Y-%m-%d %H.%M.%S')
 
     def open_manage_shared_ideas_scripts(self):
         wd = self.app.wd

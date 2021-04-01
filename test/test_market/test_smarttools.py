@@ -1,6 +1,5 @@
 
 
-
 def test_button_get_start(app):
     app.open_home_page()
     url = app.wd.current_url

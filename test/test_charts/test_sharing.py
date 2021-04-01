@@ -1,4 +1,3 @@
-import time
 
 
 # share charts
@@ -7,7 +6,7 @@ def test_share_charts(app):
     app.sharing.share_ideas_button()
     app.sharing.share_charts_button()
     app.sharing.make_snapshot_chart()
-    current_datetime = app.sharing.get_current_date_time()
+    current_datetime = app.common.get_current_date_time()
     app.sharing.write_idea_name(idea_name=current_datetime)
     app.sharing.write_description(description_text='test for sharing charts as idea')
     app.sharing.publish_idea()
@@ -21,7 +20,7 @@ def test_share_workspace(app):
     app.sharing.share_ideas_button()
     app.sharing.share_workspace_button()
     app.sharing.make_snapshot_workspace()
-    current_datetime = app.sharing.get_current_date_time()
+    current_datetime = app.common.get_current_date_time()
     app.sharing.write_idea_name(idea_name=current_datetime)
     app.sharing.write_description(description_text='test for sharing charts as idea')
     app.sharing.publish_idea()
@@ -35,7 +34,7 @@ def test_share_workspace(app):
 #     app.sharing.open_workspace_list()
 #     app.sharing.setting_active_workspaces()
 #     app.sharing.make_snapshot_workspace()
-#     current_datetime = app.sharing.get_current_date_time()
+#     current_datetime = app.common.get_current_date_time()
 #     app.sharing.write_idea_name(idea_name=current_datetime)
 #     app.sharing.write_description(description_text='test for sharing charts as idea')
 #     app.sharing.publish_idea()
@@ -51,7 +50,7 @@ def test_share_workspace(app):
 #     app.add_workspace_chart.workspaces_option()
 #     app.add_workspace_chart.share_private_workspace()
 #     app.sharing.make_snapshot_workspace()
-#     current_datetime = app.sharing.get_current_date_time()
+#     current_datetime = app.common.get_current_date_time()
 #     app.sharing.write_idea_name(idea_name=current_datetime)
 #     app.sharing.write_description(description_text='test for sharing charts as idea')
 #     app.sharing.publish_idea()
@@ -85,7 +84,7 @@ def test_share_scripts(app):
     app.sharing.open_user_smart_script()
     app.sharing.smart_script_share_button()
     app.sharing.make_snapshot_scripts()
-    current_datetime = app.sharing.get_current_date_time()
+    current_datetime = app.common.get_current_date_time()
     app.sharing.write_idea_name(idea_name=current_datetime)
     app.sharing.write_description(description_text='test for sharing charts as idea')
     app.sharing.publish_idea()

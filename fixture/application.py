@@ -10,7 +10,8 @@ from fixture.market.features import FeaturesHelper
 from fixture.market.marketing_pages import MarketingPagesHelper
 from fixture.market.plans import PlansHelper
 from fixture.charts.sharing import SharingHelper
-from fixture.charts.add_workspace_chart import WorkspaceChartHelper
+from fixture.charts.workspace_chart import WorkspaceChartHelper
+from fixture.common import CommonHelper
 import time
 
 
@@ -37,7 +38,8 @@ class Application:
         self.marketing_pages = MarketingPagesHelper(self)
         self.plans = PlansHelper(self)
         self.sharing = SharingHelper(self)
-        self.add_workspace_chart = WorkspaceChartHelper(self)
+        self.workspace_chart = WorkspaceChartHelper(self)
+        self.common = CommonHelper(self)
         self.base_url = base_url
 
     # check valid session in browser or not
@@ -57,15 +59,15 @@ class Application:
             wd.find_element_by_xpath('/html/body/div[3]/div/div[3]/div[1]/button[1]').click()
         else:
             pass
-        wd.application_cache
 
     def open_charts_page(self):
         wd = self.wd
         wd.get(self.base_url)
         self.open_home_page()
         self.session.log_in(mail_login="test@yopmail.com", pass_login="P@ssw0rd")
-        wd.find_element_by_xpath('//*[@class="landing-header__navigation"]/a[1]').click()
         time.sleep(3)
+        wd.find_element_by_xpath('//*[@class="landing-header__navigation"]/a[1]').click()
+        time.sleep(5)
         self.registration.cookies_agree()
 
     def destroy(self):

@@ -1,7 +1,5 @@
 
 
-
-
 def test_button_open_tools(app):
     app.open_home_page()
     url = app.wd.current_url
@@ -100,6 +98,7 @@ def test_link_trading_rooms(app):
     new_url = app.wd.current_url
     assert url == new_url
 
+
 def test_link_trading_ideas(app):
     app.open_home_page()
     app.features.open_features_page()
@@ -108,6 +107,7 @@ def test_link_trading_ideas(app):
     new_url = app.wd.current_url
     assert url == new_url
 
+
 def test_link_marketplace(app):
     app.open_home_page()
     app.features.open_features_page()
@@ -115,6 +115,7 @@ def test_link_marketplace(app):
     url = 'https://smarttrader.com/marketplace/products/all/'
     new_url = app.wd.current_url
     assert url == new_url
+
 
 def test_link_support(app):
     app.open_home_page()

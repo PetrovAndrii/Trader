@@ -1,5 +1,5 @@
-#chapter - chap
-#video - v
+# chapter - chap
+# video - v
 
 
 def test_chap1_v1(app):
@@ -162,7 +162,7 @@ def test_chap4_v1(app):
     assert name_1 + ' | SmartTrader' == name_2
 
 
-#"How Do I Use a Trendline Alert? | SmartTrader" but in page with video "How Do I Use a Trendline Alert | SmartTrader"
+# "How Do I Use a Trendline Alert? | SmartTrader" but in page with video "How Do I Use a Trendline Alert | SmartTrader"
 def test_chap4_v2(app):
     app.open_home_page()
     app.tutorial.open_tutorial()

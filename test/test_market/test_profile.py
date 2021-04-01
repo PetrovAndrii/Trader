@@ -2,7 +2,6 @@ import string
 import random
 
 
-
 def random_pass(prefix, maxlen):
     symbols = string.ascii_letters + string.digits
     return prefix + "".join([random.choice(symbols) for i in range(random.randrange(maxlen))])

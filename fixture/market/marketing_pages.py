@@ -12,7 +12,7 @@ class MarketingPagesHelper:
         wd.execute_script("window.scrollTo(0, document.body.scrollHeight);")    # scroll page down
         wd.find_element_by_xpath('//*[@class="footer"]/div/div[2]/div/div[1]/ul/li[5]/a').click()
 
-    def link_become_an_affiliate(self):
+    def link_view_more_features(self):
         wd = self.app.wd
         current_url = wd.current_url
         new_window_url = wd.find_element_by_xpath('//*[@class="item"]/a').get_attribute("href")

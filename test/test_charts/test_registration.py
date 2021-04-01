@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from model.registration_model import Group
 import string
 import random

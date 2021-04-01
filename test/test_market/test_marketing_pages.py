@@ -8,12 +8,12 @@
 
 
 # partnership pages
-def test_partnership_affiliate_link(app):
+def test_partnership_more_features_link(app):
     app.open_home_page()
+    url = app.wd.current_url
     app.marketing_pages.open_partnership_pages()
-    new_url = app.marketing_pages.button_become_an_affiliate()
-    url = 'https://partner.smarttrader.com/signup/'
-    assert url == new_url
+    new_url = app.marketing_pages.link_view_more_features()
+    assert url + 'features/' == new_url
 
 
 def test_partnership_affiliate_button(app):
@@ -200,6 +200,7 @@ def test_license_agreement_text(app):
     app.marketing_pages.open_license_agreement()
     app.marketing_pages.check_license_agreement_page()
 
+
 def test_eula_terms_use_link(app):
     app.open_home_page()
     url = app.wd.current_url
@@ -207,12 +208,14 @@ def test_eula_terms_use_link(app):
     new_url = app.marketing_pages.eula_terms_of_use_link()
     assert url + 'terms/' == new_url
 
+
 def test_eula_privacy_policy_link(app):
     app.open_home_page()
     url = app.wd.current_url
     app.marketing_pages.open_license_agreement()
     new_url = app.marketing_pages.eula_privacy_policy_link()
     assert url + 'privacy-policy/' == new_url
+
 
 def test_eula_privacy_policy_link2(app):
     app.open_home_page()

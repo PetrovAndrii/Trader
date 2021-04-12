@@ -46,3 +46,18 @@ def parametrize_browser(request):
             target = json.load(f)
     fixture = Application(browser=browser, base_url=target['baseUrl'])
     return fixture
+
+
+# fixture for open a new browser for each test
+@pytest.fixture()
+def browser(request):
+    global fixture
+    global target
+    browser = request.config.getoption("--browser")
+    if target is None:
+        config_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), request.config.getoption("--target"))
+        with open(config_file) as f:
+            target = json.load(f)
+    fixture = Application(browser=browser, base_url=target['baseUrl'])
+    request.addfinalizer(fixture.destroy)
+    return fixture

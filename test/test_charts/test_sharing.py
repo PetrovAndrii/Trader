@@ -45,10 +45,10 @@ def test_share_workspace(app):
 # bug not work
 # def test_share_private_workspace(app):
 #     app.open_charts_page()
-#     app.add_workspace_chart.button_add_workspace_chart()
-#     app.add_workspace_chart.manage_workspaces()
-#     app.add_workspace_chart.workspaces_option()
-#     app.add_workspace_chart.share_private_workspace()
+#     app.workspace_chart.button_add_workspace_chart()
+#     app.workspace_chart.manage_workspaces()
+#     app.workspace_chart.manage_workspaces_option()
+#     app.workspace_chart.share_private_workspace()
 #     app.sharing.make_snapshot_workspace()
 #     current_datetime = app.common.get_current_date_time()
 #     app.sharing.write_idea_name(idea_name=current_datetime)

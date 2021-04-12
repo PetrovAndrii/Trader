@@ -20,7 +20,7 @@ def test_registration_get_started_button(app):
     app.registration.agree_terms_conditions()
     app.registration.button_join()
     app.registration.check_success_registration()
-    app.session.log_out()
+    app.session.log_out_from_homepage()
 
 
 def test_registration_at_login_form(app):
@@ -35,7 +35,7 @@ def test_registration_at_login_form(app):
     app.registration.agree_terms_conditions()
     app.registration.button_join()
     app.registration.check_success_registration()
-    app.session.log_out()
+    app.session.log_out_from_homepage()
 
 
 def test_registration_error_mail(app):
@@ -83,7 +83,7 @@ def test_registration_null_phone(app):
     app.registration.agree_terms_conditions()
     app.registration.button_join()
     app.registration.check_success_registration()
-    app.session.log_out()
+    app.session.log_out_from_homepage()
 
 
 def test_registration_error_agree(app):

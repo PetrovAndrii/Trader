@@ -15,7 +15,7 @@ class MarketingPagesHelper:
     def link_view_more_features(self):
         wd = self.app.wd
         current_url = wd.current_url
-        new_window_url = wd.find_element_by_xpath('//*[@class="item"]/a').get_attribute("href")
+        new_window_url = wd.find_element_by_xpath('//*[@class="partnerFeatures"]/div/div[2]/a').get_attribute("href")
         wd.get(new_window_url)
         url = wd.current_url
         wd.get(current_url)

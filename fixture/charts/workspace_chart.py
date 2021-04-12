@@ -99,3 +99,66 @@ class WorkspaceChartHelper:
         if wd.find_element_by_css_selector('.single-chart'):
             count = len(wd.find_elements_by_css_selector('.single-chart'))
         return count
+
+    def open_random_private_workspaces(self):
+        wd = self.app.wd
+        time.sleep(3)
+        if wd.find_elements_by_xpath('//span[@class="openPrivate"]'):
+            links = wd.find_elements_by_xpath('//span[@class="openPrivate"]')
+            link = links[randint(0, len(links) - 1)]
+            name = link.text
+            link.click()
+            return name
+        else:
+            if wd.find_element_by_class_name('noWspFoundMsg'):
+                error = wd.find_element_by_class_name('noWspFoundMsg')
+                return error.text
+
+    def return_imported_name(self):
+        wd = self.app.wd
+        time.sleep(5)
+        name = wd.find_element_by_xpath('//*[@class="workspace__open-btn"]/span[2]')
+        return name.text
+
+    def click_random_checkbox_in_manage_workspaces(self):
+        wd = self.app.wd
+        if wd.find_elements_by_xpath('//*[@class="fake-checkbox cbxSelectPvtWsp"]'):
+            links = wd.find_elements_by_xpath('//*[@class="fake-checkbox cbxSelectPvtWsp"]')
+            link = links[randint(0, len(links) - 1)]
+            link.click()
+        else:
+            if wd.find_element_by_class_name('noWspFoundMsg'):
+                error = wd.find_element_by_class_name('noWspFoundMsg')
+                return error.text
+
+    def click_random_checkbox_in_premium_manage_workspaces(self):
+        wd = self.app.wd
+        if wd.find_elements_by_xpath('//*[@class="fake-checkbox cbxSelectPrmWsp"]'):
+            links = wd.find_elements_by_xpath('//*[@class="fake-checkbox cbxSelectPrmWsp"]')
+            link = links[randint(0, len(links) - 1)]
+            link.click()
+        else:
+            if wd.find_element_by_class_name('noWspFoundMsg'):
+                error = wd.find_element_by_class_name('noWspFoundMsg')
+                return error.text
+
+    def manage_workspaces_click_import_button(self):
+        wd = self.app.wd
+        wd.find_element_by_id('btn-wsp-import-all').click()
+
+    def manage_workspaces_click_delete_button(self):
+        wd = self.app.wd
+        wd.find_element_by_id('btn-wsp-delete-all').click()
+
+    def open_tab_premium_workspaces(self):
+        wd = self.app.wd
+        wd.find_element_by_id('premiumWSP').click()
+        time.sleep(5)
+
+    def open_random_premium_workspaces(self):
+        wd = self.app.wd
+        links = wd.find_elements_by_xpath('//span[@class="openPremium"]')
+        link = links[randint(0, len(links) - 1)]
+        name = link.text
+        link.click()
+        return name

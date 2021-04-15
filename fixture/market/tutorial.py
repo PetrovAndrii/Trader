@@ -1,5 +1,6 @@
 import time
 import re
+from selenium.common.exceptions import InvalidSelectorException
 
 
 class TutorialHelper:

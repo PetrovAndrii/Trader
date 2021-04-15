@@ -17,9 +17,7 @@ class PlansHelper:
     def open_plans_all(self):
         wd = self.app.wd
         wd.find_element_by_xpath('//*[@class="landing-header__navigation"]/div[1]/span').click()
-        time.sleep(5)
         wd.find_element_by_xpath('//*[@class="landing-header__navigation"]/div[1]/ul/li[1]').click()
-        time.sleep(5)
 
     def open_plans_360pro(self):
         wd = self.app.wd

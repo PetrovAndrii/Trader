@@ -12,8 +12,9 @@ from fixture.market.plans import PlansHelper
 from fixture.charts.sharing import SharingHelper
 from fixture.charts.workspace_chart import WorkspaceChartHelper
 from fixture.common import CommonHelper
-from selenium.webdriver.common.alert import Alert
 from fixture.charts.authorization import AuthorizationHelper
+from fixture.charts.indicators import IndicatorsHelper
+from selenium.webdriver.common.alert import Alert
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
@@ -47,6 +48,7 @@ class Application:
         self.workspace_chart = WorkspaceChartHelper(self)
         self.common = CommonHelper(self)
         self.authorization = AuthorizationHelper(self)
+        self.indicators = IndicatorsHelper(self)
         self.base_url = base_url
 
     # check valid session in browser or not
@@ -65,8 +67,8 @@ class Application:
             Alert(wd).accept()
         except:
             pass
-        if wd.find_elements_by_xpath('/html/body/div[3]/div/div[3]/div[1]/button[1]'):
-            wd.find_element_by_xpath('/html/body/div[3]/div/div[3]/div[1]/button[1]').click()
+        if wd.find_elements_by_css_selector('button.pushcrew-chrome-style-notification-btn.pushcrew-btn-close'):
+            wd.find_element_by_css_selector('button.pushcrew-chrome-style-notification-btn.pushcrew-btn-close').click()
             wd.maximize_window()
         else:
             pass
@@ -87,6 +89,13 @@ class Application:
             return True
         except TimeoutException:
             return False
+
+    def wait_element_not_located_id(self, locator, timeout=20):
+        try:
+            ui.WebDriverWait(self.wd, timeout).until_not(EC.visibility_of_element_located((By.ID, locator)))
+            return True
+        except TimeoutException as ex:
+            return print(ex)
 
     def wait_element_located_xpath(self, locator, timeout=20):
         try:
@@ -109,28 +118,28 @@ class Application:
         except TimeoutException as ex:
             return print(ex)
 
-    def wait_element_located_partial_name(self, locator, timeout=20):
+    def wait_element_located_name(self, locator, timeout=20):
         try:
             ui.WebDriverWait(self.wd, timeout).until(EC.visibility_of_element_located((By.NAME, locator)))
             return True
         except TimeoutException as ex:
             return print(ex)
 
-    def wait_element_located_partial_tag_name(self, locator, timeout=20):
+    def wait_element_located_tag_name(self, locator, timeout=20):
         try:
             ui.WebDriverWait(self.wd, timeout).until(EC.visibility_of_element_located((By.TAG_NAME, locator)))
             return True
         except TimeoutException as ex:
             return print(ex)
 
-    def wait_element_located_partial_class_name(self, locator, timeout=20):
+    def wait_element_located_class_name(self, locator, timeout=20):
         try:
             ui.WebDriverWait(self.wd, timeout).until(EC.visibility_of_element_located((By.CLASS_NAME, locator)))
             return True
         except TimeoutException as ex:
             return print(ex)
 
-    def wait_element_located_partial_css_selector(self, locator, timeout=20):
+    def wait_element_located_css_selector(self, locator, timeout=20):
         try:
             ui.WebDriverWait(self.wd, timeout).until(EC.visibility_of_element_located((By.CSS_SELECTOR, locator)))
             return True

@@ -1,5 +1,7 @@
 import time
 from random import randint
+from selenium.webdriver.common.alert import Alert
+from selenium.common.exceptions import UnexpectedAlertPresentException, NoAlertPresentException
 
 
 class SharingHelper:
@@ -15,14 +17,28 @@ class SharingHelper:
     def share_charts_button(self):
         wd = self.app.wd
         wd.find_element_by_id('shareChartBtn').click()
+        if wd.find_elements_by_css_selector('.bootbox-body'):
+            element = wd.find_element_by_css_selector('.bootbox-body')
+            print(element.text)
+        else:
+            pass
 
     def share_workspace_button(self):
         wd = self.app.wd
         wd.find_element_by_id('shareWspBtn').click()
+        if wd.find_elements_by_css_selector('.bootbox-body'):
+            element = wd.find_element_by_css_selector('.bootbox-body')
+            print(element.text)
+        else:
+            pass
 
     def browse_ideas(self):
         wd = self.app.wd
         wd.find_element_by_xpath('//*[@title="Browse Ideas"]').click()
+        try:
+            Alert(wd).accept()
+        except (UnexpectedAlertPresentException, NoAlertPresentException):
+            pass
         time.sleep(3)
         element = wd.find_element_by_xpath('//*[@class="paralaxScroll"]')
         if element.is_displayed():
@@ -34,6 +50,10 @@ class SharingHelper:
     def browse_scripts(self):
         wd = self.app.wd
         wd.find_element_by_xpath('//*[@title="Browse Scripts"]').click()
+        try:
+            Alert(wd).accept()
+        except (UnexpectedAlertPresentException, NoAlertPresentException):
+            pass
         time.sleep(3)
         element = wd.find_element_by_xpath('//*[@class="symbolPanel container"]')
         if element.is_displayed():
@@ -193,10 +213,12 @@ class SharingHelper:
 
     def random_view_on_social_hub(self):
         wd = self.app.wd
+        time.sleep(5)
         if wd.find_elements_by_xpath('//*[@class="viewOnHub pull-right"]'):
             links = wd.find_elements_by_xpath('//*[@class="viewOnHub pull-right"]')
             link = links[randint(0, len(links) - 1)]
             link.click()
+            time.sleep(5)
         else:
             return print('HAVE NOT IDEAS FOR VIEW')
 

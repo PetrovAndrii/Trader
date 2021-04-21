@@ -15,7 +15,14 @@ class RegistrationHelper:
 
     def registration_button(self):
         wd = self.app.wd
-        wd.find_element_by_class_name('landing-header__button').click()
+        if wd.find_elements_by_css_selector('.landing-header__account-img'):
+            wd.find_element_by_css_selector('.landing-header__account-img').click()
+            time.sleep(2)
+            wd.find_element_by_xpath('//*[@class="landing-header__account-details"]'
+                                     '/ul/li[4]/a').click()
+            wd.find_element_by_class_name('landing-header__button').click()
+        else:
+            wd.find_element_by_class_name('landing-header__button').click()
 
     def registration_fields(self, group_registration):
         wd = self.app.wd
@@ -105,7 +112,14 @@ class RegistrationHelper:
 
     def login_button(self):
         wd = self.app.wd
-        wd.find_element_by_css_selector('.landing-header__login').click()
+        if wd.find_elements_by_css_selector('.landing-header__account-img'):
+            wd.find_element_by_css_selector('.landing-header__account-img').click()
+            time.sleep(2)
+            wd.find_element_by_xpath('//*[@class="landing-header__account-details"]'
+                                     '/ul/li[4]/a').click()
+            wd.find_element_by_css_selector('.landing-header__login').click()
+        else:
+            wd.find_element_by_css_selector('.landing-header__login').click()
 
     def join_for_free_at_login_form(self):
         wd = self.app.wd

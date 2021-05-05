@@ -1,6 +1,5 @@
-from random import randint, random
+from random import randint
 import time
-from selenium.webdriver.support.ui import Select
 
 
 class IndicatorsHelper:
@@ -14,10 +13,13 @@ class IndicatorsHelper:
 
     def add_random_general_indicator(self):
         wd = self.app.wd
-        links = wd.find_elements_by_css_selector('.scxIndicators_button_simple.scxIndicators_button_add')
-        link = links[randint(0, len(links) - 1)]
-        wd.execute_script("return arguments[0].scrollIntoView(true);", link)
-        link.click()
+        if wd.find_elements_by_css_selector('.scxIndicators_button_simple.scxIndicators_button_add'):
+            links = wd.find_elements_by_css_selector('.scxIndicators_button_simple.scxIndicators_button_add')
+            link = links[randint(0, len(links) - 1)]
+            wd.execute_script("return arguments[0].scrollIntoView(true);", link)
+            link.click()
+        else:
+            print('HAVE NOT INDICATORS ON "MY INDICATORS" TAB')
 
     def get_indicators_list(self):
         wd = self.app.wd
@@ -84,3 +86,40 @@ class IndicatorsHelper:
         name = wd.find_element_by_xpath('//*[@id="indicators_container"]/div[last()]/div/div[2]')
         return name.text
 
+    def get_my_indicators_list(self):
+        wd = self.app.wd
+        count = []
+        for element in wd.find_elements_by_css_selector('.scxIndicators_groupedItemHeader'):
+            count.append(element)
+        return len(count)
+
+    def delete_random_indicator_from_my_indicator_tab(self):
+        wd = self.app.wd
+        if wd.find_elements_by_css_selector('i.ucpicon-delete'):
+            links = wd.find_elements_by_css_selector('i.ucpicon-delete')
+            link = links[randint(0, len(links) - 1)]
+            wd.execute_script("return arguments[0].scrollIntoView(true);", link)
+            link.click()
+        else:
+            print('HAVE NOT INDICATORS ON "MY INDICATORS" TAB')
+
+    def click_edit_random_indicator_from_my_indicator_tab(self):
+        wd = self.app.wd
+        if wd.find_elements_by_css_selector('i.ucpicon-edit'):
+            links = wd.find_elements_by_css_selector('i.ucpicon-edit')
+            link = links[randint(0, len(links) - 1)]
+            wd.execute_script("return arguments[0].scrollIntoView(true);", link)
+            link.click()
+        else:
+            print('HAVE NOT INDICATORS ON "MY INDICATORS" TAB')
+
+    def change_indicator_name(self, indicator_name):
+        wd = self.app.wd
+        self.app.wait_element_located_id('scxIndicatorDialog_container_social')
+        wd.find_element_by_css_selector('.form-control.scxIndicators_input_name').click()
+        wd.find_element_by_css_selector('.form-control.scxIndicators_input_name').clear()
+        wd.find_element_by_css_selector('.form-control.scxIndicators_input_name').send_keys(indicator_name)
+
+    def search_name(self, text):
+        wd = self.app.wd
+        wd.find_element_by_xpath("//*[.='" + text + "']")

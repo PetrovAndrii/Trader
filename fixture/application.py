@@ -63,10 +63,13 @@ class Application:
         wd = self.wd
         wd.get(self.base_url)
         time.sleep(2)
-        wd.maximize_window()
         try:
             Alert(wd).accept()
         except:
+            pass
+        if not wd.maximize_window():
+            wd.maximize_window()
+        else:
             pass
         if wd.find_elements_by_css_selector('button.pushcrew-chrome-style-notification-btn.pushcrew-btn-close'):
             wd.find_element_by_css_selector('button.pushcrew-chrome-style-notification-btn.pushcrew-btn-close').click()

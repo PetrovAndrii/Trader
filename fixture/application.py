@@ -27,10 +27,15 @@ class Application:
     def __init__(self, browser, base_url):
         if browser == "firefox":
             self.wd = webdriver.Firefox()
+            self.wd.maximize_window()
         elif browser == "chrome":
-            self.wd = webdriver.Chrome()
+            chrome_options = webdriver.ChromeOptions()
+            chrome_options.add_argument("--start-maximized")
+            chrome_options.add_argument("--disable-notifications")
+            self.wd = webdriver.Chrome(chrome_options=chrome_options)
         elif browser == "ie":
             self.wd = webdriver.Ie()
+            self.wd.maximize_window()
         else:
             raise ValueError("Unrecognized browser %s" % browser)
         self.wd.implicitly_wait(3)
@@ -66,10 +71,6 @@ class Application:
         try:
             Alert(wd).accept()
         except:
-            pass
-        if not wd.maximize_window():
-            wd.maximize_window()
-        else:
             pass
         if wd.find_elements_by_css_selector('button.pushcrew-chrome-style-notification-btn.pushcrew-btn-close'):
             wd.find_element_by_css_selector('button.pushcrew-chrome-style-notification-btn.pushcrew-btn-close').click()

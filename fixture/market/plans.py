@@ -71,9 +71,9 @@ class PlansHelper:
     def get_row_list(self):
         wd = self.app.wd
         count = []
-        if wd.find_elements_by_xpath('//*[contains(@style, "none")]'):
-            count = len(wd.find_elements_by_xpath('//*[@class="table__row-wrap"][contains(@style, "none")]'))
-        return count
+        for element in wd.find_elements_by_xpath('//*[@class="table__row-wrap"][contains(@style, "none")]'):
+            count.append(element)
+        return len(count)
 
     def put_only_differences(self):
         wd = self.app.wd

@@ -28,20 +28,20 @@ def test_share_workspace(app):
     assert current_datetime == shared_check
 
 
-# bug not work
-# def test_share_active_workspace(app):
-#     app.open_charts_page()
-#     app.sharing.open_workspace_list()
-#     app.sharing.setting_active_workspaces()
-#     app.sharing.make_snapshot_workspace()
-#     current_datetime = app.common.get_current_date_time()
-#     app.sharing.write_idea_name(idea_name=current_datetime)
-#     app.sharing.write_description(description_text='test for sharing charts as idea')
-#     app.sharing.publish_idea()
-#     shared_check = app.sharing.check_shared_ideas()
-#     assert current_datetime == shared_check
-#
-#
+def test_share_active_workspace(app):
+    app.open_charts_page()
+    app.sharing.open_workspace_list()
+    app.sharing.open_setting_active_workspaces()
+    app.sharing.click_share_button_on_ws_settings()
+    app.sharing.make_snapshot_workspace()
+    current_datetime = app.common.get_current_date_time()
+    app.sharing.write_idea_name(idea_name=current_datetime)
+    app.sharing.write_description(description_text='test for sharing charts as idea')
+    app.sharing.publish_idea()
+    shared_check = app.sharing.check_shared_ideas()
+    assert current_datetime == shared_check
+
+
 # bug not work
 # def test_share_private_workspace(app):
 #     app.open_charts_page()

@@ -34,7 +34,7 @@ def test_change_photo(app):
     app.session.log_in_from_homepage(mail_login="test@yopmail.com", pass_login="P@ssw0rd")
     app.profile.my_profile()
     app.profile.user_image()
-    app.profile.upload_new_photo(path_foto="\Change_Profile_Image.png")
+    app.profile.upload_new_photo(path_foto="\\Change_Profile_Image.png")
     app.profile.save_photo()
 
 

@@ -165,9 +165,10 @@ class SharingHelper:
 
     def smart_script_share_button(self):
         wd = self.app.wd
-        links = wd.find_elements_by_css_selector('.shareScriptBtn')
-        link = links[randint(0, len(links) - 1)]
-        link.click()
+        wd.find_element_by_css_selector('.shareScriptBtn').click()
+#       links = wd.find_elements_by_css_selector('.shareScriptBtn')
+#       link = links[randint(0, len(links) - 1)]
+#       link.click()
 
     def import_random_scripts_button(self):
         wd = self.app.wd
@@ -237,9 +238,15 @@ class SharingHelper:
         wd = self.app.wd
         wd.find_element_by_xpath('//*[@class="workspace__open-btn"]').click()
 
-    def setting_active_workspaces(self):
+    def open_setting_active_workspaces(self):
         wd = self.app.wd
-        wd.find_element_by_xpath('//*[@id="activeWsp"]/a/span[3]').click()
+        wd.find_element_by_id('activeWsp').click()
+        wd.find_element_by_xpath('//*[@id="activeWsp"]/a/div[2]/span[1]').click()
+
+    def click_share_button_on_ws_settings(self):
+        wd = self.app.wd
+        self.app.wait_element_located_xpath('//*[@id="activeWsp"]/ul/li[3]')
+        wd.find_element_by_xpath('//*[@id="activeWsp"]/ul/li[3]').click()
 
     def share_workspace_from_settings(self):
         wd = self.app.wd

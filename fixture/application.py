@@ -16,7 +16,7 @@ from fixture.charts.authorization import AuthorizationHelper
 from fixture.charts.indicators import IndicatorsHelper
 from selenium.webdriver.common.alert import Alert
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support import expected_conditions as ec
 from selenium.common.exceptions import TimeoutException
 import selenium.webdriver.support.ui as ui
 import time
@@ -89,63 +89,63 @@ class Application:
 # wait methods
     def wait_element_located_id(self, locator, timeout=20):
         try:
-            ui.WebDriverWait(self.wd, timeout).until(EC.visibility_of_element_located((By.ID, locator)))
+            ui.WebDriverWait(self.wd, timeout).until(ec.visibility_of_element_located((By.ID, locator)))
             return True
         except TimeoutException:
             return False
 
     def wait_element_not_located_id(self, locator, timeout=20):
         try:
-            ui.WebDriverWait(self.wd, timeout).until_not(EC.visibility_of_element_located((By.ID, locator)))
+            ui.WebDriverWait(self.wd, timeout).until_not(ec.visibility_of_element_located((By.ID, locator)))
             return True
         except TimeoutException as ex:
             return print(ex)
 
     def wait_element_located_xpath(self, locator, timeout=20):
         try:
-            ui.WebDriverWait(self.wd, timeout).until(EC.visibility_of_element_located((By.XPATH, locator)))
+            ui.WebDriverWait(self.wd, timeout).until(ec.visibility_of_element_located((By.XPATH, locator)))
             return True
         except TimeoutException as ex:
             return print(ex)
 
     def wait_element_located_link_text(self, locator, timeout=20):
         try:
-            ui.WebDriverWait(self.wd, timeout).until(EC.visibility_of_element_located((By.LINK_TEXT, locator)))
+            ui.WebDriverWait(self.wd, timeout).until(ec.visibility_of_element_located((By.LINK_TEXT, locator)))
             return True
         except TimeoutException as ex:
             return print(ex)
 
     def wait_element_located_partial_link_text(self, locator, timeout=20):
         try:
-            ui.WebDriverWait(self.wd, timeout).until(EC.visibility_of_element_located((By.PARTIAL_LINK_TEXT, locator)))
+            ui.WebDriverWait(self.wd, timeout).until(ec.visibility_of_element_located((By.PARTIAL_LINK_TEXT, locator)))
             return True
         except TimeoutException as ex:
             return print(ex)
 
     def wait_element_located_name(self, locator, timeout=20):
         try:
-            ui.WebDriverWait(self.wd, timeout).until(EC.visibility_of_element_located((By.NAME, locator)))
+            ui.WebDriverWait(self.wd, timeout).until(ec.visibility_of_element_located((By.NAME, locator)))
             return True
         except TimeoutException as ex:
             return print(ex)
 
     def wait_element_located_tag_name(self, locator, timeout=20):
         try:
-            ui.WebDriverWait(self.wd, timeout).until(EC.visibility_of_element_located((By.TAG_NAME, locator)))
+            ui.WebDriverWait(self.wd, timeout).until(ec.visibility_of_element_located((By.TAG_NAME, locator)))
             return True
         except TimeoutException as ex:
             return print(ex)
 
     def wait_element_located_class_name(self, locator, timeout=20):
         try:
-            ui.WebDriverWait(self.wd, timeout).until(EC.visibility_of_element_located((By.CLASS_NAME, locator)))
+            ui.WebDriverWait(self.wd, timeout).until(ec.visibility_of_element_located((By.CLASS_NAME, locator)))
             return True
         except TimeoutException as ex:
             return print(ex)
 
     def wait_element_located_css_selector(self, locator, timeout=20):
         try:
-            ui.WebDriverWait(self.wd, timeout).until(EC.visibility_of_element_located((By.CSS_SELECTOR, locator)))
+            ui.WebDriverWait(self.wd, timeout).until(ec.visibility_of_element_located((By.CSS_SELECTOR, locator)))
             return True
         except TimeoutException as ex:
             return print(ex)

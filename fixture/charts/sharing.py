@@ -123,8 +123,10 @@ class SharingHelper:
 
     def import_random_workspace_button(self):
         wd = self.app.wd
+        time.sleep(3)
         links = wd.find_elements_by_xpath('//div[@class="wspsViewST thumbnail"]')
         link = links[randint(0, len(links) - 1)]
+        wd.execute_script("return arguments[0].scrollIntoView(true);", link)
         link.click()
         name = link.find_element_by_xpath('//*[@class="ideas_title"]')
         name1 = str(name.text)
@@ -151,7 +153,7 @@ class SharingHelper:
 
     def return_imported_name(self):
         wd = self.app.wd
-        time.sleep(5)
+        time.sleep(7)
         name = wd.find_element_by_xpath('//*[@class="workspace__open-btn"]/span[2]')
         return name.text
 

@@ -12,7 +12,7 @@ def test_registration_get_started_button(app):
     app.open_home_page()
     app.registration.registration_button()
     app.registration.cookies_agree()
-    email = random_symbol("smart", 7) + random_symbol("trader", 7) + "@yopmail.com"
+    email = random_symbol("test", 7) + random_symbol("smart", 7) + random_symbol("trader", 7) + "@yopmail.com"
     print('')
     print('Email: ', email)
     app.registration.registration_fields(Group(full_name='Test Test', email=email, password='P@ssw0rd',

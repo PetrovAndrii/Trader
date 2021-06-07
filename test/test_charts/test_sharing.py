@@ -58,6 +58,21 @@ def test_share_active_workspace(app):
 #     assert current_datetime == shared_check
 
 
+# share scripts - CHECK THAT THE WORKSPACE IS NOT WITH PREMIUM CONTENT!
+def test_share_scripts(app):
+    app.open_charts_page()
+    app.sharing.open_scripting_tab()
+    app.sharing.open_user_smart_script()
+    app.sharing.smart_script_share_button()
+    app.sharing.make_snapshot_scripts()
+    current_datetime = app.common.get_current_date_time()
+    app.sharing.write_idea_name(idea_name=current_datetime)
+    app.sharing.write_description(description_text='test for sharing charts as idea')
+    app.sharing.publish_idea()
+    shared_check = app.sharing.check_shared_ideas()
+    assert current_datetime == shared_check
+
+
 # import as idea
 def test_import_workspace_as_idea(app):
     app.open_charts_page()
@@ -75,21 +90,6 @@ def test_import_chart_as_idea(app):
     name1 = app.sharing.import_random_chart_button()
     name2 = app.sharing.return_imported_name()
     assert name1 == name2
-
-
-# share scripts
-def test_share_scripts(app):
-    app.open_charts_page()
-    app.sharing.open_scripting_tab()
-    app.sharing.open_user_smart_script()
-    app.sharing.smart_script_share_button()
-    app.sharing.make_snapshot_scripts()
-    current_datetime = app.common.get_current_date_time()
-    app.sharing.write_idea_name(idea_name=current_datetime)
-    app.sharing.write_description(description_text='test for sharing charts as idea')
-    app.sharing.publish_idea()
-    shared_check = app.sharing.check_shared_ideas()
-    assert current_datetime == shared_check
 
 
 # import scripts

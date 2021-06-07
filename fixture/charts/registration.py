@@ -123,4 +123,6 @@ class RegistrationHelper:
 
     def join_for_free_at_login_form(self):
         wd = self.app.wd
-        wd.find_element_by_class_name('joinForFreeLogin').click()
+        wd.refresh()
+        wd.find_element_by_xpath('//*[@id="LoginPage"]/div/div[1]/a').click()
+        self.app.wait_element_located_css_selector('.regFullNameField')

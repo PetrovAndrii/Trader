@@ -17,9 +17,10 @@ class SharingHelper:
     def share_charts_button(self):
         wd = self.app.wd
         wd.find_element_by_id('shareChartBtn').click()
+        time.sleep(2)
         if wd.find_elements_by_css_selector('.bootbox-body'):
             element = wd.find_element_by_css_selector('.bootbox-body')
-            print(element.text)
+            return print(element.text)
         else:
             pass
 
@@ -28,7 +29,7 @@ class SharingHelper:
         wd.find_element_by_id('shareWspBtn').click()
         if wd.find_elements_by_css_selector('.bootbox-body'):
             element = wd.find_element_by_css_selector('.bootbox-body')
-            print(element.text)
+            return print(element.text)
         else:
             pass
 
@@ -179,8 +180,12 @@ class SharingHelper:
             print('No Search Results')
         else:
             time.sleep(3)
+            wd.find_element_by_xpath("//div[@scx-user-login='smarttrader']").click()
+            wd.refresh()
+            time.sleep(3)
             links = wd.find_elements_by_xpath('//div[@class="scriptViewST thumbnail"]')
             link = links[randint(0, len(links) - 1)]
+            wd.execute_script("arguments[0].scrollIntoView(true);", link)
             link.click()
             name = link.find_element_by_xpath('//*[@class="ideas_title"]')
             name1 = name.text
@@ -193,8 +198,9 @@ class SharingHelper:
         if wd.find_elements_by_class_name('noSearchResults'):
             print('No Search Results')
         else:
-            self.open_user_smart_script()
-            name = wd.find_element_by_xpath('//*[@id="runEADataTable"]/tbody/tr[last()]/td[1]/div/span[1]')
+            # self.open_user_smart_script()
+            time.sleep(2)
+            name = wd.find_element_by_xpath('//*[@id="runEADataTable"]/tbody/tr[last()-6]/td[1]/div/span[1]')
             return name.text
 
     def remove_random_sharing_ideas(self):

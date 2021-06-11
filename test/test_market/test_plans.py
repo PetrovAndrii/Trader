@@ -27,4 +27,4 @@ def test_button_only_differencec(app):
     old_list = app.plans.get_row_list()
     app.plans.put_only_differences()
     new_list = app.plans.get_row_list()
-    assert old_list + 20 == new_list
+    assert old_list + 18 == new_list

@@ -10,7 +10,8 @@ class FAQHelper:
         wd = self.app.wd
         wd.find_element_by_css_selector("span.trading-icon-more").click()
         time.sleep(1)
-        wd.find_element_by_xpath('//*[@class="landing-header__navigation"]/div[2]/ul/li[8]').click()
+        element = wd.find_element_by_css_selector('.landing-header__more.landing-header__more--open')
+        element.find_element_by_link_text('FAQ').click()
 
     def get_faq_list(self):
         wd = self.app.wd

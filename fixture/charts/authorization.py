@@ -1,4 +1,3 @@
-import time
 
 
 class AuthorizationHelper:
@@ -18,5 +17,3 @@ class AuthorizationHelper:
         wd = self.app.wd
         wd.find_element_by_id('profile-btn_').click()
         wd.find_element_by_xpath("//*[contains(text(), 'Sign Out')]")
-
-

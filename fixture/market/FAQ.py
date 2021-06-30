@@ -99,7 +99,7 @@ class FAQHelper:
     def learn_more_url(self):
         wd = self.app.wd
         current_url = wd.current_url
-        new_window_url = wd.find_element_by_link_text("Learn More").get_attribute("href")
+        new_window_url = wd.find_element_by_xpath('//*[@id="brokers"]/div[2]/p[1]/a').get_attribute("href")
         wd.get(new_window_url)
         url = wd.current_url
         wd.get(current_url)

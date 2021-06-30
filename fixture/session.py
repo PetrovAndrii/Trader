@@ -13,6 +13,7 @@ class SessionHelper:
             wd.find_element_by_css_selector('.landing-header__login').click()
             self.fill_login_form(mail_login, pass_login)
             wd.find_element_by_name('authenticate').click()
+            time.sleep(3)
             wd.find_element_by_css_selector('.landing-header__account-img')
         else:
             pass

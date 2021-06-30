@@ -8,9 +8,10 @@ class SmartToolsHelper:
 
     def open_smart_tools(self):
         wd = self.app.wd
-        wd.find_element_by_css_selector("span.trading-icon-more").click()
+        wd.find_element_by_css_selector("div.landing-header__nav-link-wrap").click()
         time.sleep(1)
-        wd.find_element_by_xpath('//*[@class="landing-header__navigation"]/div[2]/ul/li[4]').click()
+        element = wd.find_element_by_css_selector('.landing-header__more-dropdown')
+        element.find_element_by_link_text('Smart Tools').click()
 
     def button_get_started(self):
         wd = self.app.wd
@@ -20,7 +21,7 @@ class SmartToolsHelper:
 
     def name_tools(self):
         wd = self.app.wd
-        tools = wd.find_element_by_xpath('//*[@id="__layout"]/div/div[2]/div/div[2]/div[1]/div[1]/div[2]/h1')
+        tools = wd.find_element_by_xpath('//h1[@class="product-head"]')
         return tools.text
 
     def st_in_marketplace(self):

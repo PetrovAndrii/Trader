@@ -154,7 +154,7 @@ class SharingHelper:
 
     def return_imported_name(self):
         wd = self.app.wd
-        time.sleep(7)
+        time.sleep(10)
         name = wd.find_element_by_xpath('//*[@class="workspace__open-btn"]/span[2]')
         return name.text
 

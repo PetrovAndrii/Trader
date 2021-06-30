@@ -8,14 +8,15 @@ class SmartHubHelper:
 
     def open_smart_hub(self):
         wd = self.app.wd
-        wd.find_element_by_xpath('//*[@class="landing-header__navigation"]/a[4]').click()
-        time.sleep(5)
+        wd.find_element_by_css_selector("div.landing-header__nav-link-wrap").click()
+        time.sleep(1)
+        element = wd.find_element_by_css_selector('.landing-header__more-dropdown')
+        element.find_element_by_link_text('Smart Hub').click()
 
     def click_tutorials(self):
         wd = self.app.wd
         wd.find_element_by_xpath('//*[@id="LandingPageContainer"]'
                                  '/section/section[2]/div/div/div/div[1]/div[4]/a/button').click()
-        time.sleep(5)
 
     def click_blog(self):
         wd = self.app.wd

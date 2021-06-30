@@ -8,7 +8,10 @@ class FeaturesHelper:
 
     def open_features_page(self):
         wd = self.app.wd
-        wd.find_element_by_xpath('//*[@class="landing-header__navigation"]/a[3]').click()
+        wd.find_element_by_css_selector("div.landing-header__nav-link-wrap").click()
+        time.sleep(1)
+        element = wd.find_element_by_css_selector('.landing-header__more-dropdown')
+        element.find_element_by_link_text('Features').click()
 
     def button_explore_smart_tools(self):
         wd = self.app.wd

@@ -74,3 +74,21 @@ def test_delete_indicator_from_my_indicators(app):
     app.indicators.delete_random_indicator_from_my_indicator_tab()
     new_list = app.indicators.get_my_indicators_list()
     assert old_list - 1 == new_list
+
+
+# need to check
+def test_delete_indicator_from_workspace(app):
+    app.open_charts_page()
+    old_list = app.indicators.get_indicators_list()
+    app.indicators.delete_random_indicator_from_workspace()
+    new_list = app.indicators.get_indicators_list()
+    assert old_list - 1 == new_list
+
+
+def test_delete_indicator_from_workspace_context_menu(app):
+    app.open_charts_page()
+    old_list = app.indicators.get_indicators_list()
+    app.indicators.open_indicator_context_menu()
+    app.indicators.click_delete_indicator_from_context_menu()
+    new_list = app.indicators.get_indicators_list()
+    assert old_list - 1 == new_list

@@ -1,24 +1,24 @@
 
-
-def test_tab_360pro_button_not_login(app):
-    app.session.log_out_from_homepage()
-    app.plans.open_plans_360pro()
-    app.plans.click_access_button()
-    cost1 = app.plans.check_cost()
-    assert '199.95/' == cost1
-    app.plans.fill_fields()
-    cost2 = app.plans.checkout_plan_cost()
-    cost3 = app.plans.checkout_total_price()
-    assert '$' + cost1 == "$" + cost2 + '/' == cost3 + '/'
-
-
-def test_tab_360pro_button_login(app):
-    app.session.log_in_from_homepage(mail_login="test@yopmail.com", pass_login="P@ssw0rd")
-    app.plans.open_plans_360pro()
-    app.plans.click_access_button()
-    cost1 = app.plans.checkout_plan_cost()
-    cost2 = app.plans.checkout_total_price()
-    assert "$" + cost1 == cost2
+# old functions
+# def test_tab_360pro_button_not_login(app):
+#     app.session.log_out_from_homepage()
+#     app.plans.open_plans_360pro()
+#     app.plans.click_access_button()
+#     cost1 = app.plans.check_cost()
+#     assert '199.95/' == cost1
+#     app.plans.fill_fields()
+#     cost2 = app.plans.checkout_plan_cost()
+#     cost3 = app.plans.checkout_total_price()
+#     assert '$' + cost1 == "$" + cost2 + '/' == cost3 + '/'
+#
+#
+# def test_tab_360pro_button_login(app):
+#     app.session.log_in_from_homepage(mail_login="test@yopmail.com", pass_login="P@ssw0rd")
+#     app.plans.open_plans_360pro()
+#     app.plans.click_access_button()
+#     cost1 = app.plans.checkout_plan_cost()
+#     cost2 = app.plans.checkout_total_price()
+#     assert "$" + cost1 == cost2
 
 
 def test_button_only_differencec(app):

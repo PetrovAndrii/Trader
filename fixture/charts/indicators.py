@@ -123,3 +123,27 @@ class IndicatorsHelper:
     def search_name(self, text):
         wd = self.app.wd
         wd.find_element_by_xpath("//*[.='" + text + "']")
+
+    def delete_random_indicator_from_workspace(self):
+        wd = self.app.wd
+        if wd.find_elements_by_css_selector('.scxPanelTitleIcon.ucpicon-close'):
+            links = wd.find_elements_by_css_selector('.scxPanelTitleIcon.ucpicon-close')
+            link = links[randint(0, len(links) - 1)]
+            link.click()
+        else:
+            return print('NO INDICATOR AT WORKPLACE')
+
+    def open_indicator_context_menu(self):
+        wd = self.app.wd
+        if wd.find_elements_by_css_selector('.scxPanelTitleIcon.scxPanelTitle__dropdown-btn.ucpicon-menu-kabob'):
+            links = wd.find_elements_by_css_selector('.scxPanelTitleIcon.scxPanelTitle__dropdown-btn'
+                                                     '.ucpicon-menu-kabob')
+            link = links[randint(0, len(links) - 1)]
+            link.click()
+        else:
+            return print('NO INDICATOR AT WORKPLACE')
+
+    def click_delete_indicator_from_context_menu(self):
+        wd = self.app.wd
+        self.app.wait_element_located_xpath("//li[@data-id='delete']")
+        wd.find_element_by_xpath("//li[@data-id='delete']").click()

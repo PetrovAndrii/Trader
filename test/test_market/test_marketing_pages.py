@@ -87,22 +87,6 @@ def test_community_guidelines_link2(app):
     assert url + 'community-guidelines/' == new_url
 
 
-def test_terms_use_link2(app):
-    app.open_home_page()
-    url = app.wd.current_url
-    app.marketing_pages.open_terms_pages()
-    new_url = app.marketing_pages.terms_use_link2()
-    assert url + 'terms/' == new_url
-
-
-def test_community_guidelines_link3(app):
-    app.open_home_page()
-    url = app.wd.current_url
-    app.marketing_pages.open_terms_pages()
-    new_url = app.marketing_pages.community_guidelines_link3()
-    assert url + 'community-guidelines/' == new_url
-
-
 def test_privacy_policy_link3(app):
     app.open_home_page()
     url = app.wd.current_url

@@ -57,7 +57,6 @@ class MarketingPagesHelper:
         wd.find_element_by_xpath('//*[@id="LandingPageContainer"]/div[2]/div/div/div/div/strong[6]')
         wd.find_element_by_xpath("//*[contains(text(), 'Cancellations and Refunds')]")
         wd.find_element_by_xpath('//*[@id="LandingPageContainer"]/div[2]/div/div/div/div/strong[7]')
-        wd.find_element_by_xpath("//*[contains(text(), 'SmartTrader’s Refer-a-Friend Program Terms & Conditions')]")
         wd.find_element_by_xpath("//*[contains(text(), 'Trademarks')]")
         wd.find_element_by_xpath("//*[contains(text(), 'Prohibited Uses')]")
         wd.find_element_by_xpath('//*[@id="LandingPageContainer"]/div[2]/div/div/div/div/strong[11]')
@@ -139,31 +138,11 @@ class MarketingPagesHelper:
         wd.get(current_url)
         return url
 
-    def terms_use_link2(self):
-        wd = self.app.wd
-        current_url = wd.current_url
-        new_window_url = wd.find_element_by_xpath('//*[@id="LandingPageContainer"]'
-                                                  '/div[2]/div/div/div/div/p[27]/a[1]').get_attribute("href")
-        wd.get(new_window_url)
-        url = wd.current_url
-        wd.get(current_url)
-        return url
-
-    def community_guidelines_link3(self):
-        wd = self.app.wd
-        current_url = wd.current_url
-        new_window_url = wd.find_element_by_xpath('//*[@id="LandingPageContainer"]'
-                                                  '/div[2]/div/div/div/div/p[27]/a[2]').get_attribute("href")
-        wd.get(new_window_url)
-        url = wd.current_url
-        wd.get(current_url)
-        return url
-
     def privacy_policy_link3(self):
         wd = self.app.wd
         current_url = wd.current_url
         new_window_url = wd.find_element_by_xpath('//*[@id="LandingPageContainer"]'
-                                                  '/div[2]/div/div/div/div/p[53]/a[1]').get_attribute("href")
+                                                  '/div[2]/div/div/div/div/p[52]/a[1]').get_attribute("href")
         wd.get(new_window_url)
         url = wd.current_url
         wd.get(current_url)
@@ -173,7 +152,7 @@ class MarketingPagesHelper:
         wd = self.app.wd
         current_url = wd.current_url
         new_window_url = wd.find_element_by_xpath('//*[@id="LandingPageContainer"]'
-                                                  '/div[2]/div/div/div/div/p[53]/a[2]').get_attribute("href")
+                                                  '/div[2]/div/div/div/div/p[52]/a[2]').get_attribute("href")
         wd.get(new_window_url)
         url = wd.current_url
         wd.get(current_url)
@@ -183,7 +162,7 @@ class MarketingPagesHelper:
         wd = self.app.wd
         current_url = wd.current_url
         new_window_url = wd.find_element_by_xpath('//*[@id="LandingPageContainer"]'
-                                                  '/div[2]/div/div/div/div/p[57]/a').get_attribute("href")
+                                                  '/div[2]/div/div/div/div/p[56]/a').get_attribute("href")
         wd.get(new_window_url)
         url = wd.current_url
         wd.get(current_url)

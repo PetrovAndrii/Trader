@@ -25,7 +25,7 @@ class ProfileHelper:
 
     def button_change_passw0rd(self):
         wd = self.app.wd
-        wd.find_element_by_css_selector('.change-password').click()
+        wd.find_element_by_xpath('//*[@class="form"]/div/button').click()
 
     def current_password(self, curr_pass):
         wd = self.app.wd
@@ -49,7 +49,7 @@ class ProfileHelper:
 
     def user_image(self):
         wd = self.app.wd
-        wd.find_element_by_css_selector('.user-image-overlay').click()
+        wd.find_element_by_css_selector('.button-blue-simple').click()
 
     def upload_new_photo(self, path_foto):
         wd = self.app.wd
@@ -63,10 +63,10 @@ class ProfileHelper:
         wd = self.app.wd
         number = 10
         phone = ''.join(["%s" % randint(0, 9) for num in range(0, number)])
-        wd.find_element_by_xpath('//*[@class="form"]/label[4]/input').click()
-        wd.find_element_by_xpath('//*[@class="form"]/label[4]/input').clear()
-        wd.find_element_by_xpath('//*[@class="form"]/label[4]/input').send_keys(phone)
+        wd.find_element_by_xpath('//*[@class="form"]/label[3]/input').click()
+        wd.find_element_by_xpath('//*[@class="form"]/label[3]/input').clear()
+        wd.find_element_by_xpath('//*[@class="form"]/label[3]/input').send_keys(phone)
 
     def save_new_phone(self):
         wd = self.app.wd
-        wd.find_element_by_css_selector('.primary-button').click()
+        wd.find_element_by_css_selector('.upgrade-button.small.save-button').click()

@@ -14,6 +14,7 @@ from fixture.charts.workspace_chart import WorkspaceChartHelper
 from fixture.common import CommonHelper
 from fixture.charts.authorization import AuthorizationHelper
 from fixture.charts.indicators import IndicatorsHelper
+from fixture.charts.login_form import LoginFormHelper
 from selenium.webdriver.common.alert import Alert
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as ec
@@ -54,6 +55,7 @@ class Application:
         self.common = CommonHelper(self)
         self.authorization = AuthorizationHelper(self)
         self.indicators = IndicatorsHelper(self)
+        self.login_form = LoginFormHelper(self)
         self.base_url = base_url
 
     # check valid session in browser or not

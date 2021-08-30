@@ -76,7 +76,6 @@ def test_delete_indicator_from_my_indicators(app):
     assert old_list - 1 == new_list
 
 
-# need to check
 def test_delete_indicator_from_workspace(app):
     app.open_charts_page()
     old_list = app.indicators.get_indicators_list()

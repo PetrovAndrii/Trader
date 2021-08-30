@@ -23,6 +23,8 @@ def test_change_pass(app):
     print('')
     print(password)
     # return password back because we don't want change for next run test
+    app.session.log_in_from_homepage(mail_login="test@yopmail.com", pass_login=password)
+    app.profile.my_profile()
     app.profile.button_change_passw0rd()
     app.profile.current_password(curr_pass=password)
     app.profile.change_pass(new_pass='P@ssw0rd')

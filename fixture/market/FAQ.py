@@ -54,8 +54,9 @@ class FAQHelper:
     def check_link_at_create(self):
         wd = self.app.wd
         wd.find_element_by_xpath('//*[@id="create"]/div[2]/p/a').click()
-        if wd.find_elements_by_name('authenticate'):
-            return
+        time.sleep(3)
+        if wd.find_element_by_css_selector('.checkout-container.jc_c'):
+            pass
         else:
             wd.find_element_by_css_selector('.landing-header__account-img')
 

@@ -200,7 +200,7 @@ class SharingHelper:
         else:
             # self.open_user_smart_script()
             time.sleep(2)
-            name = wd.find_element_by_xpath('//*[@id="runEADataTable"]/tbody/tr[last()-6]/td[1]/div/span[1]')
+            name = wd.find_element_by_xpath('//*[@id="runEADataTable"]/tbody/tr[last()-10]/td[1]/div/span[1]')
             return name.text
 
     def remove_random_sharing_ideas(self):

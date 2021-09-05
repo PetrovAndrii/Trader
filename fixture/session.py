@@ -71,10 +71,17 @@ class SessionHelper:
             pass
 
     def fill_login_form(self, mail_login, pass_login):
+        self.fill_email(mail_login)
+        self.fill_password(pass_login)
+
+    def fill_email(self, mail_login):
         wd = self.app.wd
         wd.find_element_by_xpath('//input[@placeholder="Email"]').click()
         wd.find_element_by_xpath('//input[@placeholder="Email"]').clear()
         wd.find_element_by_xpath('//input[@placeholder="Email"]').send_keys(mail_login)
+
+    def fill_password(self, pass_login):
+        wd = self.app.wd
         wd.find_element_by_xpath('//input[@placeholder="Password"]').click()
         wd.find_element_by_xpath('//input[@placeholder="Password"]').clear()
         wd.find_element_by_xpath('//input[@placeholder="Password"]').send_keys(pass_login)

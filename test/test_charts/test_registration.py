@@ -27,7 +27,7 @@ def test_registration_at_login_form(app):
     app.open_home_page()
     app.registration.login_button()
     app.registration.check_error_in_page()
-    app.registration.join_for_free_at_login_form()
+    app.registration.link_create_an_account_at_login_form()
     email = random_symbol("smart", 7) + random_symbol("trader", 7) + "@yopmail.com"
     print('')
     print('Email: ', email)

@@ -55,7 +55,7 @@ class RegistrationHelper:
         if not wd.find_elements_by_css_selector('.error'):
             pass
         else:
-            print('HAVE SOME ERROR ON PAGE')
+            assert print('HAVE SOME ERROR ON PAGE')
 
     def check_confirmation_registration(self):
         wd = self.app.wd
@@ -73,7 +73,7 @@ class RegistrationHelper:
         else:
             wd.find_element_by_css_selector('.landing-header__login').click()
 
-    def join_for_free_at_login_form(self):
+    def link_create_an_account_at_login_form(self):
         wd = self.app.wd
         wd.refresh()
         wd.find_element_by_xpath('//*[@class="auth-switch"]/p/a').click()
@@ -85,7 +85,14 @@ class RegistrationHelper:
             pass
         else:
             assert print('HAVE SOME ERROR ON PAGE')
-#            return print('HAVE SOME ERROR ON PAGE')
+
+    def show_password_is_inactive(self):
+        wd = self.app.wd
+        if wd.find_element_by_css_selector('.show-password.ucpicon-eye'):
+            pass
+        else:
+            assert print('SHOW PASSWORD ACTIVE')
+
 
     # def error_name(self):
     #     wd = self.app.wd

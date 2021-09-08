@@ -6,12 +6,12 @@ def test_no_active_errors_on_the_login_page(app):
     app.login_form.show_password_is_inactive()
 
 
-def test_do_active_show_password(app):
+def test_show_password_do_active(app):
     app.login_form.open_login_page()
     app.login_form.click_do_active_show_password()
 
 
-def test_do_inactive_show_password(app):
+def test_show_password_do_inactive(app):
     app.login_form.open_login_page()
     app.login_form.click_do_active_show_password()
     app.login_form.click_do_inactive_show_password()
@@ -43,6 +43,15 @@ def test_error_if_only_password_empty(app):
     app.login_form.check_no_error_in_email_field()
     password_error = app.login_form.check_error_if_password_empty()
     assert password_error == 'This field is required!'
+
+
+def test_error_if_account_not_registered(app):
+    app.login_form.open_login_page()
+    app.login_form.fill_email(mail_login="@yopmail.com")
+    app.login_form.fill_password(pass_login="P@ssw0rd")
+    app.login_form.click_log_in_button()
+    error_text = app.login_form.check_error_wrong_email_or_password()
+    assert error_text == 'Wrong Email or Password'
 
 
 def test_click_link_create_an_account_at_login_form(app):

@@ -86,6 +86,11 @@ class LoginFormHelper:
         text_field = field_name.text
         assert text_field == 'Password'
 
+    def check_error_wrong_email_or_password(self):
+        wd = self.app.wd
+        error_text = wd.find_element_by_xpath('//*[@class="form-block"]/form/p')
+        return error_text.text
+
     def click_reset_password_button(self):
         wd = self.app.wd
         wd.find_element_by_css_selector('.form-button').click()

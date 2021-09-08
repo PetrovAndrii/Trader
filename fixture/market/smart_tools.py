@@ -36,9 +36,9 @@ class SmartToolsHelper:
 
     def tools_copy(self):
         wd = self.app.wd
-        name = wd.find_elements_by_xpath('//*[@id="__layout"]/div/div[2]/div/div[1]/div/span[2]')
+        name = wd.find_elements_by_xpath('//*[@class="nuxt-link-exact-active nuxt-link-active"]/span')
         if name:
-            name1 = wd.find_element_by_xpath('//*[@id="__layout"]/div/div[2]/div/div[1]/div/span[2]')
+            name1 = wd.find_element_by_xpath('//*[@class="nuxt-link-exact-active nuxt-link-active"]/span')
             return name1.text
         else:
             return print('error')

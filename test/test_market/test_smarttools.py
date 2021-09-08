@@ -11,8 +11,8 @@ def test_button_get_start(app):
 def test_smart_tools_marketplace(app):
     app.open_home_page()
     app.smart_tools.open_smart_tools()
-    page = app.smart_tools.st_in_marketplace()
-    assert 'Tools' == page
+    product_name = app.smart_tools.st_in_marketplace()
+    assert 'Tools' == product_name
 
 
 def test_smart_fib(app):

@@ -15,6 +15,7 @@ class RegistrationHelper:
 
     def registration_button(self):
         wd = self.app.wd
+        self.app.open_home_page()
         if wd.find_elements_by_css_selector('.landing-header__account-img'):
             wd.find_element_by_css_selector('.landing-header__account-img').click()
             time.sleep(2)
@@ -93,47 +94,15 @@ class RegistrationHelper:
         else:
             assert print('SHOW PASSWORD ACTIVE')
 
+    def checkbox_not_selected(self):
+        wd = self.app.wd
+        if wd.find_element_by_xpath('//*[@class="form-block"]/form/label/input').is_selected():
+            assert print('CHECKBOX SELECTED')
+        else:
+            pass
 
-    # def error_name(self):
-    #     wd = self.app.wd
-    #     error = wd.find_elements_by_css_selector('.form-control regFullNameField errorInput')
-    #     if error:
-    #         print('Fullname empty')
-    #     else:
-    #         pass
-    #
-    # def error_email(self):
-    #     wd = self.app.wd
-    #     error = wd.find_element_by_id('emailError')
-    #     if error.is_displayed():
-    #         print(' ')
-    #         print('EMAIL ADDRESS:', error.text)
-    #     else:
-    #         pass
-    #
-    # def error_agree(self):
-    #     wd = self.app.wd
-    #     error = wd.find_element_by_id('EULALoginError')
-    #     if error.is_displayed():
-    #         print(' ')
-    #         print('You must agree with terms and conditions')
-    #     else:
-    #         pass
-    #
-    # def error_pass(self):
-    #     wd = self.app.wd
-    #     error = wd.find_element_by_id('passwordError')
-    #     if error.is_displayed():
-    #         print(' ')
-    #         print('PASSWORD:', error.text)
-    #     else:
-    #         pass
-    #
-    # def exist_account(self):
-    #     wd = self.app.wd
-    #     error = wd.find_element_by_id('userExistError')
-    #     if error.is_displayed():
-    #         text = error.text
-    #         return text
-    #     else:
-    #         pass
+    def click_do_active_show_password(self):
+        self.app.login_form.click_do_active_show_password()
+
+    def click_do_inactive_show_password(self):
+        self.app.login_form.click_do_inactive_show_password()

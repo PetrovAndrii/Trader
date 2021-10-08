@@ -106,3 +106,13 @@ class RegistrationHelper:
 
     def click_do_inactive_show_password(self):
         self.app.login_form.click_do_inactive_show_password()
+
+    def name_field_error(self):
+        wd = self.app.wd
+        error = wd.find_element_by_xpath('//*[@class="form-inputs"]/div[1]/span/div/p')
+        return error.text
+
+    def email_field_error(self):
+        wd = self.app.wd
+        error = wd.find_element_by_xpath('//*[@class="form-inputs"]/div[2]/span/div/p')
+        return error.text

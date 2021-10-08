@@ -11,31 +11,37 @@ class SessionHelper:
         self.app.open_home_page()
         if wd.find_elements_by_css_selector('.landing-header__login'):
             wd.find_element_by_css_selector('.landing-header__login').click()
-            time.sleep(2)
-            self.fill_login_form(mail_login, pass_login)
-            self.click_log_in_button()
-            time.sleep(3)
-            wd.find_element_by_css_selector('.landing-header__account-img')
+            self.do_log_in(mail_login, pass_login)
         else:
             pass
+
+    def do_log_in(self, mail_login, pass_login):
+        wd = self.app.wd
+        self.fill_login_form(mail_login, pass_login)
+        self.click_log_in_button()
+        wd.find_element_by_css_selector('.landing-header__account-img')
 
     def click_log_in_button(self):
         wd = self.app.wd
-        button_log_in = '.form-button'
-        wd.find_element_by_css_selector(button_log_in).click()
+        wd.find_element_by_css_selector('.form-button').click()
 
-    def log_in_from_marketplace(self, mail_login, pass_login):
+    def log_in_from_footer_on_marketplace(self, mail_login, pass_login):
+        self.open_marketplace_page()
+        self.login_button_on_footer()
+        self.do_log_in(mail_login, pass_login)
+
+    def log_in_from_wish_list_on_marketplace(self,  mail_login, pass_login):
         wd = self.app.wd
-        self.app.open_home_page()
-        element = wd.find_element_by_css_selector('.landing-header__navigation')
-        element.find_element_by_link_text('Marketplace').click()
-        if wd.find_elements_by_css_selector('.landing-header__login'):
-            wd.find_element_by_css_selector('.landing-header__login').click()
-            self.fill_login_form(mail_login, pass_login)
-            self.click_log_in_button()
-            wd.find_element_by_css_selector('.landing-header__account-img')
-        else:
-            pass
+        self.open_marketplace_page()
+        wd.find_element_by_css_selector('.wish-list-link.flex').click()
+        self.do_log_in(mail_login, pass_login)
+
+    def log_in_from_shopping_cart_on_marketplace(self,  mail_login, pass_login):
+        wd = self.app.wd
+        self.open_marketplace_page()
+        wd.find_element_by_css_selector('.relative.flex').click()
+        wd.find_element_by_xpath('//*[@class="auth-switch"]/p/a').click()
+        self.do_log_in(mail_login, pass_login)
 
     def log_in_from_charts_page(self, mail_login, pass_login):
         wd = self.app.wd
@@ -96,7 +102,33 @@ class SessionHelper:
                                      '/ul/li[3]/a').click()
         else:
             self.log_in_from_homepage(mail_login="test@yopmail.com", pass_login="P@ssw0rd")
+            self.app.wait_element_not_class_name('form-inputs')
             wd.find_element_by_css_selector('.landing-header__account-img').click()
-            time.sleep(2)
             wd.find_element_by_xpath('//*[@class="landing-header__account-details"]'
                                      '/ul/li[3]/a').click()
+
+    def open_google(self):
+        wd = self.app.wd
+        wd.get('https://google.com')
+
+    def check_log_in_profile(self):
+        wd = self.app.wd
+        wd.find_elements_by_css_selector('.landing-header__account-img')
+
+    def check_authorization_on_chart(self):
+        wd = self.app.wd
+        wd.find_element_by_id('profile-btn_').click()
+        wd.find_element_by_xpath("//*[contains(text(), 'Sign Out')]")
+
+    def open_marketplace_page(self):
+        wd = self.app.wd
+        self.app.open_home_page()
+        element = wd.find_element_by_css_selector('.landing-header__navigation')
+        element.find_element_by_link_text('Marketplace').click()
+
+    def login_button_on_footer(self):
+        wd = self.app.wd
+        element = wd.find_element_by_css_selector('.footer-account__item.footer-account__login')
+        wd.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+        wd.execute_script("return arguments[0].scrollIntoView(true);", element)
+        element.click()

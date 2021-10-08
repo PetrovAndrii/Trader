@@ -12,7 +12,6 @@ from fixture.market.plans import PlansHelper
 from fixture.charts.sharing import SharingHelper
 from fixture.charts.workspace_chart import WorkspaceChartHelper
 from fixture.common import CommonHelper
-from fixture.charts.authorization import AuthorizationHelper
 from fixture.charts.indicators import IndicatorsHelper
 from fixture.charts.login_form import LoginFormHelper
 from selenium.webdriver.common.alert import Alert
@@ -53,7 +52,6 @@ class Application:
         self.sharing = SharingHelper(self)
         self.workspace_chart = WorkspaceChartHelper(self)
         self.common = CommonHelper(self)
-        self.authorization = AuthorizationHelper(self)
         self.indicators = IndicatorsHelper(self)
         self.login_form = LoginFormHelper(self)
         self.base_url = base_url
@@ -141,6 +139,13 @@ class Application:
     def wait_element_located_class_name(self, locator, timeout=20):
         try:
             ui.WebDriverWait(self.wd, timeout).until(ec.visibility_of_element_located((By.CLASS_NAME, locator)))
+            return True
+        except TimeoutException as ex:
+            return print(ex)
+
+    def wait_element_not_class_name(self, locator, timeout=20):
+        try:
+            ui.WebDriverWait(self.wd, timeout).until_not(ec.visibility_of_element_located((By.CLASS_NAME, locator)))
             return True
         except TimeoutException as ex:
             return print(ex)

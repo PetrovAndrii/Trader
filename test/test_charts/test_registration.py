@@ -62,3 +62,28 @@ def test_registration_null_phone(app):
     app.registration.button_create_my_account()
     app.registration.check_confirmation_registration()
     app.session.log_out_from_homepage()
+
+
+def test_error_if_only_full_name_empty(app):
+    app.registration.registration_button()
+    app.registration.check_error_in_page()
+    email = random_symbol("smart", 7) + random_symbol("trader", 7) + "@yopmail.com"
+    print('')
+    print('Email: ', email)
+    app.registration.registration_fields(Group(full_name='', email=email, password='P@ssw0rd',
+                                               phone=' '))
+    app.registration.agree_terms_conditions_license()
+    app.registration.button_create_my_account()
+    full_name_error = app.registration.name_field_error()
+    assert full_name_error == 'This field is required!'
+
+
+def test_error_if_only_email_empty(app):
+    app.registration.registration_button()
+    app.registration.check_error_in_page()
+    app.registration.registration_fields(Group(full_name='Test Test', email='', password='P@ssw0rd',
+                                               phone=' '))
+    app.registration.agree_terms_conditions_license()
+    app.registration.button_create_my_account()
+    email_error = app.registration.email_field_error()
+    assert email_error == 'This field is required!'

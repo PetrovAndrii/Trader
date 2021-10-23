@@ -1,6 +1,5 @@
 import string
 import random
-from model.registration_model import Group
 
 
 def random_symbol(prefix, maxlen):
@@ -41,8 +40,7 @@ def test_registration_at_login_form(app):
     email = random_symbol("smart", 7) + random_symbol("trader", 7) + "@yopmail.com"
     print('')
     print('Email: ', email)
-    app.registration.registration_fields(full_name='Test Test', email=email, password='P@ssw0rd',
-                                               phone='+380930000000')
+    app.registration.registration_fields(full_name='Test Test', email=email, password='P@ssw0rd', phone='+380930000000')
     app.registration.agree_terms_conditions_license()
     app.registration.click_button_create_my_account()
     app.registration.check_confirmation_registration()
@@ -163,12 +161,96 @@ def test_check_login_button(app):
     app.registration.link_login_at_registration_form()
 
 
-def test_check_character_count_error(app):
+def test_check_character_count_in_the_password_field(app):
     app.registration.registration_button()
     app.registration.check_error_in_page()
+    # positive cases: 8 and 30
+    app.registration.fill_password(password='12345678')
+    app.registration.character_count_no_error()
+    app.registration.fill_password(password='1234567890test0987654321test30')
+    app.registration.character_count_no_error()
     # less than 8 characters
     app.registration.fill_password(password='1')
     app.registration.active_character_count_error()
     # more than 30 characters
-    app.registration.fill_password(password='1234567890qwertyuioppasdfghjklzx')
+    app.registration.fill_password(password='1234567890test23test1234233P@ssw0rd')
     app.registration.active_character_count_error()
+
+
+def test_check_special_character_in_the_password_field(app):
+    app.registration.registration_button()
+    app.registration.check_error_in_page()
+    # positive cases
+    app.registration.fill_password(password='@#$-:\№')
+    app.registration.special_character_no_error()
+    # negative cases
+    app.registration.fill_password(password='!')
+    app.registration.active_special_character_error()
+    app.registration.fill_password(password='%')
+    app.registration.active_special_character_error()
+    app.registration.fill_password(password='^')
+    app.registration.active_special_character_error()
+    app.registration.fill_password(password='&')
+    app.registration.active_special_character_error()
+    app.registration.fill_password(password='*')
+    app.registration.active_special_character_error()
+    app.registration.fill_password(password='(')
+    app.registration.active_special_character_error()
+    app.registration.fill_password(password=')')
+    app.registration.active_special_character_error()
+    app.registration.fill_password(password='_')
+    app.registration.active_special_character_error()
+    app.registration.fill_password(password='+')
+    app.registration.active_special_character_error()
+    app.registration.fill_password(password='=')
+    app.registration.active_special_character_error()
+    app.registration.fill_password(password='/')
+    app.registration.active_special_character_error()
+    app.registration.fill_password(password='[')
+    app.registration.active_special_character_error()
+    app.registration.fill_password(password=']')
+    app.registration.active_special_character_error()
+    app.registration.fill_password(password='{')
+    app.registration.active_special_character_error()
+    app.registration.fill_password(password='}')
+    app.registration.active_special_character_error()
+    app.registration.fill_password(password=';')
+    app.registration.active_special_character_error()
+    app.registration.fill_password(password='|')
+    app.registration.active_special_character_error()
+    app.registration.fill_password(password='?')
+    app.registration.active_special_character_error()
+    app.registration.fill_password(password=',')
+    app.registration.active_special_character_error()
+    app.registration.fill_password(password='.')
+    app.registration.active_special_character_error()
+    app.registration.fill_password(password='<')
+    app.registration.active_special_character_error()
+    app.registration.fill_password(password='>')
+    app.registration.active_special_character_error()
+    app.registration.fill_password(password='"')
+    app.registration.active_special_character_error()
+    app.registration.fill_password(password="'")
+    app.registration.active_special_character_error()
+
+
+def test_check_number_in_the_password_field(app):
+    app.registration.registration_button()
+    app.registration.check_error_in_page()
+    # positive cases
+    app.registration.fill_password(password='test')
+    app.registration.active_number_error()
+    # negative cases
+    app.registration.fill_password(password='1')
+    app.registration.number_no_error()
+
+
+def test_check_capital_letter_in_the_password_field(app):
+    app.registration.registration_button()
+    app.registration.check_error_in_page()
+    # positive cases
+    app.registration.fill_password(password='a')
+    app.registration.active_capital_letter_error()
+    # negative cases
+    app.registration.fill_password(password='A')
+    app.registration.capital_letter_no_error()

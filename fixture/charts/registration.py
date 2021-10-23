@@ -50,7 +50,9 @@ class RegistrationHelper:
     def fill_password(self, password):
         wd = self.app.wd
         wd.find_element_by_xpath('//input[@placeholder="Password"]').click()
-        wd.find_element_by_xpath('//input[@placeholder="Password"]').clear()
+        element = wd.find_element_by_xpath('//input[@placeholder="Password"]')
+        wd.execute_script("arguments[0].value=''", element)
+        # wd.find_element_by_xpath('//input[@placeholder="Password"]').clear()
         wd.find_element_by_xpath('//input[@placeholder="Password"]').send_keys(password)
 
     def fill_phone(self, phone):

@@ -15,31 +15,31 @@ class SmartHubHelper:
 
     def click_tutorials(self):
         wd = self.app.wd
-        wd.find_element_by_xpath('//*[@id="LandingPageContainer"]'
-                                 '/section/section[2]/div/div/div/div[1]/div[4]/a/button').click()
+        wd.find_element_by_xpath('//*[@id="__layout"]'
+                                 '/div/section/section[2]/div/div/div/div[1]/div[4]/a/button').click()
 
     def click_blog(self):
         wd = self.app.wd
-        wd.find_element_by_xpath('//*[@id="LandingPageContainer"]'
-                                 '/section/section[2]/div/div/div/div[2]/div[4]/a/button').click()
+        wd.find_element_by_xpath('//*[@id="__layout"]'
+                                 '/div/section/section[2]/div/div/div/div[2]/div[4]/a/button').click()
 
     def click_knowledge_base(self):
         wd = self.app.wd
-        wd.find_element_by_xpath('//*[@id="LandingPageContainer"]'
-                                 '/section/section[2]/div/div/div/div[3]/div[4]/a/button').click()
+        wd.find_element_by_xpath('//*[@id="__layout"]'
+                                 '/div/section/section[2]/div/div/div/div[3]/div[4]/a/button').click()
 
     def click_ideas_community(self):
         wd = self.app.wd
-        wd.find_element_by_xpath('//*[@id="LandingPageContainer"]'
-                                 '/section/section[2]/div/div/div/div[4]/div[4]/a/button').click()
+        wd.find_element_by_xpath('//*[@id="__layout"]'
+                                 '/div/section/section[2]/div/div/div/div[4]/div[4]/a/button').click()
 
     def click_trading_rooms(self):
         wd = self.app.wd
-        wd.find_element_by_xpath('//*[@id="LandingPageContainer"]'
-                                 '/section/section[2]/div/div/div/div[5]/div[4]/a/button').click()
+        wd.find_element_by_xpath('//*[@id="__layout"]'
+                                 '/div/section/section[2]/div/div/div/div[5]/div[4]/a/button').click()
 
     def click_marketplace(self):
         wd = self.app.wd
-        wd.find_element_by_xpath('//*[@id="LandingPageContainer"]'
-                                 '/section/section[2]/div/div/div/div[6]/div[4]/a/button').click()
+        wd.find_element_by_xpath('//*[@id="__layout"]'
+                                 '/div/section/section[2]/div/div/div/div[6]/div[4]/a/button').click()
         time.sleep(1)

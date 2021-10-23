@@ -27,8 +27,8 @@ class SmartToolsHelper:
     def st_in_marketplace(self):
         wd = self.app.wd
         current_url = wd.current_url
-        new_window_url = wd.find_element_by_xpath('//*[@id="LandingPageContainer"]'
-                                                  '/section/section[1]/div/a').get_attribute("href")
+        new_window_url = wd.find_element_by_xpath('//*[@id="__layout"]'
+                                                  '/div/section/section[1]/div/a').get_attribute("href")
         wd.get(new_window_url)
         page = self.tools_copy()
         wd.get(current_url)

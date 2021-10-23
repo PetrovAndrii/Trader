@@ -57,7 +57,7 @@ class SessionHelper:
     def log_in_from_modal_window_on_charts(self, mail_login, pass_login):
         wd = self.app.wd
         self.open_charts()
-        wd.find_element_by_css_selector('.ucpicon-share-b').click()
+        wd.find_element_by_css_selector('.ucpicon-alert-b').click()
         if wd.find_elements_by_css_selector('.simple-modal__btn.button.'
                                             'button--text-right.button--link.button--primary'):
             wd.find_element_by_css_selector('.simple-modal__btn.button.'
@@ -104,8 +104,10 @@ class SessionHelper:
             self.log_in_from_homepage(mail_login="test@yopmail.com", pass_login="P@ssw0rd")
             self.app.wait_element_not_class_name('form-inputs')
             wd.find_element_by_css_selector('.landing-header__account-img').click()
-            wd.find_element_by_xpath('//*[@class="landing-header__account-details"]'
-                                     '/ul/li[3]/a').click()
+            time.sleep(2)
+            element = wd.find_element_by_xpath('//*[@class="landing-header__account-details"]/ul/li[3]/a')
+            wd.execute_script("return arguments[0].scrollIntoView(true);", element)
+            element.click()
 
     def open_google(self):
         wd = self.app.wd

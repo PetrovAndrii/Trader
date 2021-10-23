@@ -1,5 +1,6 @@
 
 
+# used before
 class Group:
 
     def __init__(self, full_name, email, password, phone):

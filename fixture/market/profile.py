@@ -11,12 +11,13 @@ class ProfileHelper:
 
     def my_profile(self):
         wd = self.app.wd
+        time.sleep(2)
         wd.find_element_by_css_selector('.landing-header__account-img').click()
         time.sleep(2)
         wd.find_element_by_xpath('//*[@class="landing-header__account-details"]'
                                  '/ul/li[1]/a').click()
         try:
-            wd.find_element_by_xpath('//*[@class="form"]/label[4]/p')
+            wd.find_element_by_xpath('//*[@class="form"]/div/button')
             return True
         except NoSuchElementException:
             print('')

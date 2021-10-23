@@ -2,13 +2,13 @@ from selenium import webdriver
 from fixture.session import SessionHelper
 from fixture.charts.registration import RegistrationHelper
 from fixture.market.profile import ProfileHelper
-from fixture.market.FAQ import FAQHelper
+from fixture.old_fixture.FAQ import FAQHelper
 from fixture.market.tutorial import TutorialHelper
 from fixture.market.smart_tools import SmartToolsHelper
 from fixture.market.smart_hub import SmartHubHelper
 from fixture.market.features import FeaturesHelper
 from fixture.market.marketing_pages import MarketingPagesHelper
-from fixture.market.plans import PlansHelper
+from fixture.old_fixture.plans import PlansHelper
 from fixture.charts.sharing import SharingHelper
 from fixture.charts.workspace_chart import WorkspaceChartHelper
 from fixture.common import CommonHelper

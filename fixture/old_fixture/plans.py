@@ -50,7 +50,7 @@ class PlansHelper:
         self.app.registration.registration_fields(Group(full_name='Test Test', email=email, password='P@ssw0rd',
                                                         confirm_pass='P@ssw0rd', phone='+380930000000'))
         self.app.registration.agree_terms_conditions_license()
-        self.app.registration.button_create_my_account()
+        self.app.registration.click_button_create_my_account()
 
     def checkout_plan_cost(self):
         wd = self.app.wd

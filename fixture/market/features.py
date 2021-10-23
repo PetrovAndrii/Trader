@@ -15,7 +15,7 @@ class FeaturesHelper:
 
     def button_explore_smart_tools(self):
         wd = self.app.wd
-        wd.find_element_by_xpath('//*[@id="LandingPageContainer"]/section/section[2]/div/div[1]/a/button').click()
+        wd.find_element_by_xpath('//*[@class="tw-hidden w-64 mt-12 lg:block"]/button').click()
 
     def button_get_started(self):
         wd = self.app.wd

@@ -33,6 +33,11 @@ class WorkspaceChartHelper:
         wd = self.app.wd
         wd.find_element_by_id('addNewChartToWSP').click()
         time.sleep(2)
+        if wd.find_elements_by_xpath('//*[@class="SmartNotification fadeInUp animated"]'):
+            message = wd.find_element_by_xpath('//*[@class="notificationText"]/div[2]/p')
+            return print(message.text)
+        else:
+            pass
 
     def enter_workspace_name(self, workspace_name):
         wd = self.app.wd
@@ -40,21 +45,11 @@ class WorkspaceChartHelper:
         wd.find_element_by_id('newWspName').clear()
         wd.find_element_by_id('newWspName').send_keys(workspace_name)
 
-    def choose_random_forex_symbol_workspace(self):
+    def choose_random_forex_symbol(self):
         wd = self.app.wd
         wd.find_element_by_id('newChartModalSymbolSearch').click()
-        wd.find_element_by_css_selector('.scxInstrumentSearchContainer.containerWorkspace ul li:nth-child(2)').click()
-        links = wd.find_elements_by_css_selector('div[data-scxexchange="FOREX"]')
-        link = links[randint(0, len(links) - 1)]
-        time.sleep(2)
-        wd.execute_script("arguments[0].scrollIntoView(true);", link)
-        time.sleep(2)
-        wd.execute_script("arguments[0].click();", link)
-
-    def choose_random_forex_symbol_chart(self):
-        wd = self.app.wd
-        wd.find_element_by_id('newChartModalSymbolSearch').click()
-        links = wd.find_elements_by_css_selector('div[data-scxexchange="FOREX"]')
+        # wd.find_element_by_css_selector('.scxInstrumentSearchContainer.containerWorkspace ul li:nth-child(2)').click()
+        links = wd.find_elements_by_css_selector('li[data-instrument-exchange="FOREX"]')
         link = links[randint(0, len(links) - 1)]
         time.sleep(2)
         wd.execute_script("arguments[0].scrollIntoView(true);", link)
@@ -70,10 +65,13 @@ class WorkspaceChartHelper:
 
     def open_workspace_list(self):
         wd = self.app.wd
+        self.discard_changes_when_leaveWS()
         wd.find_element_by_xpath('//*[@class="workspace__open-btn"]').click()
+        self.discard_changes_when_leaveWS()
 
     def get_workspace_list(self):
         wd = self.app.wd
+        time.sleep(3)
         self.open_workspace_list()
         count = []
         time.sleep(3)
@@ -145,6 +143,7 @@ class WorkspaceChartHelper:
     def manage_workspaces_click_import_button(self):
         wd = self.app.wd
         wd.find_element_by_id('btn-wsp-import-all').click()
+        time.sleep(3)
 
     def manage_workspaces_click_delete_button(self):
         wd = self.app.wd
@@ -162,3 +161,17 @@ class WorkspaceChartHelper:
         name = link.text
         link.click()
         return name
+
+    def save_changes_when_leaveWS(self):
+        wd = self.app.wd
+        if wd.find_elements_by_xpath('//*[@class="modal scxDialog in"]/div/div/div[3]/button[2]'):
+            wd.find_element_by_xpath('//*[@class="modal scxDialog in"]/div/div/div[3]/button[2]').click()
+        else:
+            pass
+
+    def discard_changes_when_leaveWS(self):
+        wd = self.app.wd
+        if wd.find_elements_by_xpath('//*[@class="modal scxDialog in"]/div/div/div[3]/button[1]'):
+            wd.find_element_by_xpath('//*[@class="modal scxDialog in"]/div/div/div[3]/button[1]').click()
+        else:
+            pass

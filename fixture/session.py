@@ -71,6 +71,7 @@ class SessionHelper:
         wd = self.app.wd
         self.app.open_home_page()
         wd.find_element_by_xpath('//*[@class="landing-header__navigation"]/a[1]').click()
+        time.sleep(2)
         if wd.find_elements_by_css_selector('.banner_cookie_agreeBtn'):
             wd.find_element_by_css_selector('.banner_cookie_agreeBtn').click()
         else:

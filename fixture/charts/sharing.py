@@ -11,12 +11,12 @@ class SharingHelper:
 
     def share_ideas_button(self):
         wd = self.app.wd
-        wd.find_element_by_xpath('//div[@title="Share Ideas"]').click()
+        wd.find_element_by_css_selector('.scxToolbarButton-dropdownElement__icon.ucpicon-share').click()
         time.sleep(1)
 
     def share_charts_button(self):
         wd = self.app.wd
-        wd.find_element_by_id('shareChartBtn').click()
+        wd.find_element_by_css_selector('div[data-scxvalue="share-chart"]').click()
         time.sleep(2)
         if wd.find_elements_by_css_selector('.bootbox-body'):
             element = wd.find_element_by_css_selector('.bootbox-body')
@@ -26,7 +26,7 @@ class SharingHelper:
 
     def share_workspace_button(self):
         wd = self.app.wd
-        wd.find_element_by_id('shareWspBtn').click()
+        wd.find_element_by_css_selector('div[data-scxvalue="share-wsp"]').click()
         if wd.find_elements_by_css_selector('.bootbox-body'):
             element = wd.find_element_by_css_selector('.bootbox-body')
             return print(element.text)
@@ -35,7 +35,9 @@ class SharingHelper:
 
     def browse_ideas(self):
         wd = self.app.wd
-        wd.find_element_by_xpath('//*[@title="Browse Ideas"]').click()
+        new_window_url = wd.find_element_by_xpath('//*[@title="Browse Ideas"]').get_attribute("href")
+        wd.get(new_window_url)
+        # wd.find_element_by_xpath('//*[@title="Browse Ideas"]').click()
         try:
             Alert(wd).accept()
         except (UnexpectedAlertPresentException, NoAlertPresentException):
@@ -50,7 +52,9 @@ class SharingHelper:
 
     def browse_scripts(self):
         wd = self.app.wd
-        wd.find_element_by_xpath('//*[@title="Browse Scripts"]').click()
+        new_window_url = wd.find_element_by_xpath('//*[@title="Browse Scripts"]').get_attribute("href")
+        wd.get(new_window_url)
+        # wd.find_element_by_xpath('//*[@title="Browse Scripts"]').click()
         try:
             Alert(wd).accept()
         except (UnexpectedAlertPresentException, NoAlertPresentException):
@@ -112,14 +116,15 @@ class SharingHelper:
     def open_manage_shared_ideas_scripts(self):
         wd = self.app.wd
         self.share_ideas_button()
-        wd.find_element_by_xpath('//*[@title="Manage Shared Ideas & Scripts"]').click()
+        wd.find_element_by_css_selector('div[data-scxvalue="manage-shared"]').click()
 
-    def check_shared_ideas(self):
+    def check_shared_ideas(self, name_shared_ideas):
         wd = self.app.wd
         time.sleep(3)
         self.open_manage_shared_ideas_scripts()
         time.sleep(3)
-        name = wd.find_element_by_xpath('//*[@id="bodyContentHolder"]/div[1]/div/div[1]')
+        name = wd.find_element_by_xpath('//*[contains(text(), "' + name_shared_ideas + '")]')
+        # name = wd.find_element_by_xpath('//*[@id="bodyContentHolder"]/div[1]/div/div[1]')
         return name.text
 
     def import_random_workspace_button(self):
@@ -179,9 +184,9 @@ class SharingHelper:
         if element.is_displayed():
             print('No Search Results')
         else:
-            time.sleep(3)
-            wd.find_element_by_xpath("//div[@scx-user-login='smarttrader']").click()
-            wd.refresh()
+            # time.sleep(3)
+            # wd.find_element_by_xpath("//div[@scx-user-login='smarttrader']").click()
+            # wd.refresh()
             time.sleep(3)
             links = wd.find_elements_by_xpath('//div[@class="scriptViewST thumbnail"]')
             link = links[randint(0, len(links) - 1)]

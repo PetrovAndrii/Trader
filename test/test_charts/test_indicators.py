@@ -17,7 +17,7 @@ def test_add_premium_indicators_on_chart(app):
     app.indicators.click_premium_indicators()
     app.indicators.add_random_general_indicator()
     new_list = app.indicators.get_indicators_list()
-    assert old_list + 1 == new_list
+    assert old_list < new_list
 
 
 def test_add_new_indicator_button_in_my_indicators(app):
@@ -31,7 +31,7 @@ def test_add_new_indicator_button_in_my_indicators(app):
     app.indicators.fill_custom_indicator_name(current_datetime)
     app.indicators.fill_custom_indicator_description(name)
     app.indicators.button_save_as_custom_indicator()
-    name_check = app.indicators.check_added_name()
+    name_check = app.indicators.check_added_name(added_name=current_datetime)
     assert current_datetime == name_check
 
 

@@ -1,4 +1,3 @@
-import time
 
 
 def test_open_new_workspace(app):

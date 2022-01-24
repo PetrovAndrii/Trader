@@ -19,7 +19,11 @@ class SessionHelper:
         wd = self.app.wd
         self.fill_login_form(mail_login, pass_login)
         self.click_log_in_button()
-        wd.find_element_by_css_selector('.landing-header__account-img')
+        time.sleep(2)
+        if wd.find_elements_by_css_selector('.landing-header__account-img'):
+            pass
+        else:
+            self.check_logout_button_on_footer()
 
     def click_log_in_button(self):
         wd = self.app.wd
@@ -34,13 +38,15 @@ class SessionHelper:
         wd = self.app.wd
         self.open_marketplace_page()
         wd.find_element_by_css_selector('.wish-list-link.flex').click()
-        self.do_log_in(mail_login, pass_login)
+        self.fill_login_form(mail_login, pass_login)
+        self.click_log_in_button()
 
     def log_in_from_shopping_cart_on_marketplace(self,  mail_login, pass_login):
         wd = self.app.wd
         self.open_marketplace_page()
         wd.find_element_by_css_selector('.relative.flex').click()
         wd.find_element_by_xpath('//*[@class="auth-switch"]/p/a').click()
+        time.sleep(2)
         self.do_log_in(mail_login, pass_login)
 
     def log_in_from_charts_page(self, mail_login, pass_login):
@@ -64,6 +70,7 @@ class SessionHelper:
                                             'button--text-right.button--link.button--primary').click()
             self.fill_login_form(mail_login, pass_login)
             self.click_log_in_button()
+            time.sleep(2)
         else:
             pass
 
@@ -135,3 +142,11 @@ class SessionHelper:
         wd.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         wd.execute_script("return arguments[0].scrollIntoView(true);", element)
         element.click()
+
+    def check_logout_button_on_footer(self):
+        wd = self.app.wd
+        element = wd.find_element_by_css_selector('.footer-account__item.footer-account__login')
+        wd.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+        wd.execute_script("return arguments[0].scrollIntoView(true);", element)
+        button_name = element.text
+        assert button_name == "Logout"

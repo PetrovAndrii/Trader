@@ -126,6 +126,7 @@ def test_error_if_incorrect_email(app):
     app.registration.registration_button()
     app.registration.check_error_in_page()
     app.registration.click_button_create_my_account()
+    app.registration.scroll_up()
     app.registration.fill_email(email='te..st@yopmail.com')
     email_error1 = app.registration.email_field_error()
     assert email_error1 == 'Please enter valid email address'

@@ -142,7 +142,7 @@ class MarketingPagesHelper:
         wd = self.app.wd
         current_url = wd.current_url
         new_window_url = wd.find_element_by_xpath('//*[@id="__layout"]'
-                                                  '/div/div[2]/div/div/div/div/p[52]/a[1]').get_attribute("href")
+                                                  '/div/div[2]/div/div/div/div/p[53]/a[1]').get_attribute("href")
         wd.get(new_window_url)
         url = wd.current_url
         wd.get(current_url)
@@ -152,7 +152,7 @@ class MarketingPagesHelper:
         wd = self.app.wd
         current_url = wd.current_url
         new_window_url = wd.find_element_by_xpath('//*[@id="__layout"]'
-                                                  '/div/div[2]/div/div/div/div/p[52]/a[2]').get_attribute("href")
+                                                  '/div/div[2]/div/div/div/div/p[53]/a[2]').get_attribute("href")
         wd.get(new_window_url)
         url = wd.current_url
         wd.get(current_url)
@@ -162,7 +162,7 @@ class MarketingPagesHelper:
         wd = self.app.wd
         current_url = wd.current_url
         new_window_url = wd.find_element_by_xpath('//*[@id="__layout"]'
-                                                  '/div/div[2]/div/div/div/div/p[56]/a').get_attribute("href")
+                                                  '/div/div[2]/div/div/div/div/p[57]/a').get_attribute("href")
         wd.get(new_window_url)
         url = wd.current_url
         wd.get(current_url)

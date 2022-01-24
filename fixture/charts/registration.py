@@ -1,6 +1,8 @@
 import ast
 import time
 
+from selenium.webdriver.common.keys import Keys
+
 
 class RegistrationHelper:
 
@@ -131,7 +133,7 @@ class RegistrationHelper:
     def email_field_error(self):
         wd = self.app.wd
         error = wd.find_element_by_xpath('//*[@class="form-inputs"]/div[2]/span/div/p')
-        wd.execute_script("return arguments[0].scrollIntoView(true);", error)
+        # wd.execute_script("return arguments[0].scrollIntoView(true);", error)
         return error.text
 
     def password_field_empty(self):
@@ -204,3 +206,8 @@ class RegistrationHelper:
     def capital_letter_no_error(self):
         wd = self.app.wd
         wd.find_element_by_css_selector('div.validation-rules > p:nth-child(4) > i.ucpicon-content-menu-checkbox')
+
+    def scroll_up(self):
+        wd = self.app.wd
+        wd.find_element_by_tag_name('body').send_keys(Keys.HOME)
+        time.sleep(2)

@@ -120,6 +120,7 @@ class WorkspaceChartHelper:
 
     def click_random_checkbox_in_manage_workspaces(self):
         wd = self.app.wd
+        time.sleep(2)
         if wd.find_elements_by_xpath('//*[@class="fake-checkbox cbxSelectPvtWsp"]'):
             links = wd.find_elements_by_xpath('//*[@class="fake-checkbox cbxSelectPvtWsp"]')
             link = links[randint(0, len(links) - 1)]

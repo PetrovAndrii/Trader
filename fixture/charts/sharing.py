@@ -43,12 +43,6 @@ class SharingHelper:
         except (UnexpectedAlertPresentException, NoAlertPresentException):
             pass
         time.sleep(3)
-        element = wd.find_element_by_xpath('//*[@class="paralaxScroll"]')
-        if element.is_displayed():
-            wd.refresh()
-            time.sleep(3)
-        else:
-            pass
 
     def browse_scripts(self):
         wd = self.app.wd
@@ -60,14 +54,6 @@ class SharingHelper:
         except (UnexpectedAlertPresentException, NoAlertPresentException):
             pass
         time.sleep(3)
-        element = wd.find_element_by_xpath('//*[@class="symbolPanel container"]')
-        if element.is_displayed():
-            wd.execute_script("location.reload(true);")
-            # current_url = wd.current_url
-            # wd.get(current_url)
-            # time.sleep(3)
-        else:
-            pass
 
     def snapshot(self):
         wd = self.app.wd
@@ -124,7 +110,6 @@ class SharingHelper:
         self.open_manage_shared_ideas_scripts()
         time.sleep(3)
         name = wd.find_element_by_xpath('//*[contains(text(), "' + name_shared_ideas + '")]')
-        # name = wd.find_element_by_xpath('//*[@id="bodyContentHolder"]/div[1]/div/div[1]')
         return name.text
 
     def import_random_workspace_button(self):
@@ -171,12 +156,14 @@ class SharingHelper:
         wd = self.app.wd
         wd.find_element_by_class_name('openBtn').click()
 
+    def open_my_smart_scripts_tab(self):
+        wd = self.app.wd
+        wd.find_element_by_css_selector('ul.ModalTabs > li:nth-child(3)').click()
+
     def smart_script_share_button(self):
         wd = self.app.wd
-        wd.find_element_by_css_selector('.shareScriptBtn').click()
-#       links = wd.find_elements_by_css_selector('.shareScriptBtn')
-#       link = links[randint(0, len(links) - 1)]
-#       link.click()
+        wd.find_element_by_css_selector('.SSListItem__option').click()
+        wd.find_element_by_xpath('//*[@class="SSListItem__option-dropdown"]/li[2]').click()
 
     def import_random_scripts_button(self):
         wd = self.app.wd
@@ -184,9 +171,6 @@ class SharingHelper:
         if element.is_displayed():
             print('No Search Results')
         else:
-            # time.sleep(3)
-            # wd.find_element_by_xpath("//div[@scx-user-login='smarttrader']").click()
-            # wd.refresh()
             time.sleep(3)
             links = wd.find_elements_by_xpath('//div[@class="scriptViewST thumbnail"]')
             link = links[randint(0, len(links) - 1)]
@@ -203,10 +187,22 @@ class SharingHelper:
         if wd.find_elements_by_class_name('noSearchResults'):
             print('No Search Results')
         else:
-            # self.open_user_smart_script()
-            time.sleep(2)
-            name = wd.find_element_by_xpath('//*[@id="runEADataTable"]/tbody/tr[last()-10]/td[1]/div/span[1]')
+            time.sleep(3)
+            self.open_my_smart_scripts_tab()
+            # to get a new script, sort by new ones and take the second script from the list
+            #  (the first one as a favorite for sharing)
+            self.click_sort_button()
+            self.sort_by_newest()
+            name = wd.find_element_by_xpath('//*[@class="SmartScriptModal__list-inner-container"]/div[2]/div/div[1]')
             return name.text
+
+    def click_sort_button(self):
+        wd = self.app.wd
+        wd.find_element_by_css_selector('div.SortButton').click()
+
+    def sort_by_newest(self):
+        wd = self.app.wd
+        wd.find_element_by_css_selector('ul.SortButton__list > li:nth-child(2)')
 
     def remove_random_sharing_ideas(self):
         wd = self.app.wd
@@ -232,6 +228,10 @@ class SharingHelper:
             links = wd.find_elements_by_xpath('//*[@class="viewOnHub pull-right"]')
             link = links[randint(0, len(links) - 1)]
             link.click()
+            try:
+                Alert(wd).accept()
+            except (UnexpectedAlertPresentException, NoAlertPresentException):
+                pass
             time.sleep(5)
         else:
             return print('HAVE NOT IDEAS FOR VIEW')

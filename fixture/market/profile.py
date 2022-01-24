@@ -30,23 +30,23 @@ class ProfileHelper:
 
     def current_password(self, curr_pass):
         wd = self.app.wd
-        wd.find_element_by_xpath('//*[@class="password-form"]/label[1]/input').click()
-        wd.find_element_by_xpath('//*[@class="password-form"]/label[1]/input').clear()
-        wd.find_element_by_xpath('//*[@class="password-form"]/label[1]/input').send_keys(curr_pass)
+        wd.find_element_by_xpath('//input[@placeholder="Current Password"]').click()
+        wd.find_element_by_xpath('//input[@placeholder="Current Password"]').clear()
+        wd.find_element_by_xpath('//input[@placeholder="Current Password"]').send_keys(curr_pass)
 
     def change_pass(self, new_pass):
         wd = self.app.wd
-        wd.find_element_by_xpath('//*[@class="password-form"]/label[2]/input').click()
-        wd.find_element_by_xpath('//*[@class="password-form"]/label[2]/input').clear()
-        wd.find_element_by_xpath('//*[@class="password-form"]/label[2]/input').send_keys(new_pass)
-        wd.find_element_by_xpath('//*[@class="password-form"]/label[3]/input').click()
-        wd.find_element_by_xpath('//*[@class="password-form"]/label[3]/input').clear()
-        wd.find_element_by_xpath('//*[@class="password-form"]/label[3]/input').send_keys(new_pass)
+        wd.find_element_by_xpath('//input[@placeholder="New Password"]').click()
+        wd.find_element_by_xpath('//input[@placeholder="New Password"]').clear()
+        wd.find_element_by_xpath('//input[@placeholder="New Password"]').send_keys(new_pass)
+        wd.find_element_by_xpath('//input[@placeholder="Confirm Password"]').click()
+        wd.find_element_by_xpath('//input[@placeholder="Confirm Password"]').clear()
+        wd.find_element_by_xpath('//input[@placeholder="Confirm Password"]').send_keys(new_pass)
 
     def save_new_pass(self):
         wd = self.app.wd
         wd.find_element_by_css_selector('.modal-button-primary').click()
-        time.sleep(5)
+        self.app.wait_element_located_css_selector('.form-button')
 
     def user_image(self):
         wd = self.app.wd
@@ -64,9 +64,9 @@ class ProfileHelper:
         wd = self.app.wd
         number = 10
         phone = ''.join(["%s" % randint(0, 9) for num in range(0, number)])
-        wd.find_element_by_xpath('//*[@class="form"]/label[3]/input').click()
-        wd.find_element_by_xpath('//*[@class="form"]/label[3]/input').clear()
-        wd.find_element_by_xpath('//*[@class="form"]/label[3]/input').send_keys(phone)
+        wd.find_element_by_xpath('//*[@class="user-profile-content flex jc_c"]/form/span[3]/div/input').click()
+        wd.find_element_by_xpath('//*[@class="user-profile-content flex jc_c"]/form/span[3]/div/input').clear()
+        wd.find_element_by_xpath('//*[@class="user-profile-content flex jc_c"]/form/span[3]/div/input').send_keys(phone)
 
     def save_new_phone(self):
         wd = self.app.wd

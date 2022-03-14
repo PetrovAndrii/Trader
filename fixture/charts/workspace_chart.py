@@ -14,6 +14,7 @@ class WorkspaceChartHelper:
     def manage_workspaces(self):
         wd = self.app.wd
         wd.find_element_by_xpath('//*[@title="Manage Workspaces"]').click()
+        time.sleep(3)
 
     def manage_workspaces_option(self):
         wd = self.app.wd

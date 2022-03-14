@@ -51,7 +51,7 @@ def test_error_if_account_not_registered(app):
     app.login_form.fill_password(pass_login="P@ssw0rd")
     app.login_form.click_log_in_button()
     error_text = app.login_form.check_error_wrong_email_or_password()
-    assert error_text == 'Wrong Email or Password'
+    assert error_text == 'Invalid email or password'
 
 
 def test_click_link_create_an_account_at_login_form(app):

@@ -63,6 +63,7 @@ def test_share_scripts(app):
     app.sharing.open_scripting_tab()
     app.sharing.open_user_smart_script()
     app.sharing.open_my_smart_scripts_tab()
+    app.sharing.sort_by_oldest()
     app.sharing.smart_script_share_button()
     app.sharing.make_snapshot_scripts()
     current_datetime = app.common.get_current_date_time()

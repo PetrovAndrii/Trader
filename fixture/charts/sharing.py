@@ -162,8 +162,8 @@ class SharingHelper:
 
     def smart_script_share_button(self):
         wd = self.app.wd
-        wd.find_element_by_css_selector('.SSListItem__option').click()
-        wd.find_element_by_xpath('//*[@class="SSListItem__option-dropdown"]/li[2]').click()
+        wd.find_element_by_css_selector('.DropdownActions').click()
+        wd.find_element_by_xpath('//*[@class="DropdownActions__options"]/li[2]').click()
 
     def import_random_scripts_button(self):
         wd = self.app.wd
@@ -187,13 +187,14 @@ class SharingHelper:
         if wd.find_elements_by_class_name('noSearchResults'):
             print('No Search Results')
         else:
-            time.sleep(3)
+            self.app.wait_element_located_class_name('SSListItem')
             self.open_my_smart_scripts_tab()
             # to get a new script, sort by new ones and take the second script from the list
             #  (the first one as a favorite for sharing)
             self.click_sort_button()
             self.sort_by_newest()
-            name = wd.find_element_by_xpath('//*[@class="SmartScriptModal__list-inner-container"]/div[2]/div/div[1]')
+            time.sleep(3)
+            name = wd.find_element_by_xpath('//*[@class="SmartScriptModal__list-inner-container"]/div[1]/div/div[1]')
             return name.text
 
     def click_sort_button(self):
@@ -202,7 +203,12 @@ class SharingHelper:
 
     def sort_by_newest(self):
         wd = self.app.wd
-        wd.find_element_by_css_selector('ul.SortButton__list > li:nth-child(2)')
+        wd.find_element_by_css_selector('ul.SortButton__list > li:nth-child(2)').click()
+
+    def sort_by_oldest(self):
+        wd = self.app.wd
+        self.click_sort_button()
+        wd.find_element_by_css_selector('ul.SortButton__list > li:nth-child(1)').click()
 
     def remove_random_sharing_ideas(self):
         wd = self.app.wd

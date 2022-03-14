@@ -40,6 +40,7 @@ class SessionHelper:
         wd.find_element_by_css_selector('.wish-list-link.flex').click()
         self.fill_login_form(mail_login, pass_login)
         self.click_log_in_button()
+        self.check_logout_button_on_footer()
 
     def log_in_from_shopping_cart_on_marketplace(self,  mail_login, pass_login):
         wd = self.app.wd
@@ -145,6 +146,7 @@ class SessionHelper:
 
     def check_logout_button_on_footer(self):
         wd = self.app.wd
+        time.sleep(3)
         element = wd.find_element_by_css_selector('.footer-account__item.footer-account__login')
         wd.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         wd.execute_script("return arguments[0].scrollIntoView(true);", element)

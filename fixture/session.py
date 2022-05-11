@@ -65,10 +65,8 @@ class SessionHelper:
         wd = self.app.wd
         self.open_charts()
         wd.find_element_by_css_selector('.ucpicon-alert-b').click()
-        if wd.find_elements_by_css_selector('.simple-modal__btn.button.'
-                                            'button--text-right.button--link.button--primary'):
-            wd.find_element_by_css_selector('.simple-modal__btn.button.'
-                                            'button--text-right.button--link.button--primary').click()
+        if wd.find_elements_by_css_selector('.upgrade-button'):
+            wd.find_element_by_css_selector('.upgrade-button').click()
             self.fill_login_form(mail_login, pass_login)
             self.click_log_in_button()
             time.sleep(2)

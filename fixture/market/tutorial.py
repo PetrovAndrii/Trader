@@ -13,6 +13,7 @@ class TutorialHelper:
         wd.execute_script("window.scrollTo(0, document.body.scrollHeight);")    # scroll page down
         element = wd.find_element_by_css_selector('.firstNavColumn.secondPart')
         element.find_element_by_link_text('Tutorials').click()
+        time.sleep(1)
 
     def check_fideo_form(self):
         wd = self.app.wd

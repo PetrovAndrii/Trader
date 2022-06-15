@@ -21,7 +21,8 @@ class RegistrationHelper:
         self.app.open_home_page()
         if wd.find_elements_by_css_selector('.landing-header__account-img'):
             wd.find_element_by_css_selector('.landing-header__account-img').click()
-            time.sleep(2)
+            self.app.wait_element_located_xpath('//*[@class="landing-header__account-details"]/ul/li[3]/a', timeout=2)
+#           time.sleep(2)
             wd.find_element_by_xpath('//*[@class="landing-header__account-details"]'
                                      '/ul/li[3]/a').click()
             wd.find_element_by_class_name('landing-header__button').click()
@@ -74,11 +75,12 @@ class RegistrationHelper:
         element = wd.find_element_by_xpath('//button[@type="submit"]')
         wd.execute_script("return arguments[0].scrollIntoView(true);", element)
         element.click()
-        time.sleep(5)
+#       time.sleep(5)
 
     def check_confirmation_registration(self):
         wd = self.app.wd
         time.sleep(2)
+        self.app.wait_element_located_css_selector('.offer-content')
         wd.find_element_by_css_selector('.offer-content')
 
     def login_button(self):

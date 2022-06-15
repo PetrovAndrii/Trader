@@ -95,7 +95,7 @@ def test_import_chart_as_idea(app):
 
 # IMPORTANT! IT IS NECESSARY TO CHECK that you don't have any imported scripts (if you have - delete)
 # import scripts
-def test_import_scripts(app):
+def test_import_script(app):
     app.open_charts_page()
     app.sharing.share_ideas_button()
     app.sharing.browse_scripts()

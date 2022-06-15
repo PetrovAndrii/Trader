@@ -114,7 +114,8 @@ class SharingHelper:
 
     def import_random_workspace_button(self):
         wd = self.app.wd
-        time.sleep(3)
+        self.app.wait_element_located_xpath('//div[@class="wspsViewST thumbnail"]')
+#        time.sleep(3)
         links = wd.find_elements_by_xpath('//div[@class="wspsViewST thumbnail"]')
         link = links[randint(0, len(links) - 1)]
         wd.execute_script("return arguments[0].scrollIntoView(true);", link)
@@ -144,13 +145,17 @@ class SharingHelper:
 
     def return_imported_name(self):
         wd = self.app.wd
-        time.sleep(10)
+        time.sleep(15)
         name = wd.find_element_by_xpath('//*[@class="workspace__open-btn"]/span[2]')
         return name.text
 
     def open_scripting_tab(self):
         wd = self.app.wd
-        wd.find_element_by_class_name('scriptingTab').click()
+        if not wd.find_elements_by_class_name('tradingPanelOpened'):
+            self.app.common.open_trading_panel()
+            wd.find_element_by_class_name('scriptingTab').click()
+        else:
+            wd.find_element_by_class_name('scriptingTab').click()
 
     def open_user_smart_script(self):
         wd = self.app.wd

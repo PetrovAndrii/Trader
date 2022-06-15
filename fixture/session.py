@@ -84,6 +84,7 @@ class SessionHelper:
             pass
 
     def fill_login_form(self, mail_login, pass_login):
+        self.app.wait_element_located_css_selector('.form-button')
         self.fill_email(mail_login)
         self.fill_password(pass_login)
 

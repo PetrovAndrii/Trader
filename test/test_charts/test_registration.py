@@ -22,6 +22,7 @@ def test_show_password_do_inactive(app):
 def test_registration_get_started_button(app):
     app.registration.registration_button()
     app.registration.check_error_in_page()
+    app.session.key()
     email = random_symbol("test", 7) + random_symbol("smart", 7) + random_symbol("trader", 7) + "@yopmail.com"
     print('')
     print('Email: ', email)
@@ -37,6 +38,7 @@ def test_registration_at_login_form(app):
     app.registration.login_button()
     app.registration.check_error_in_page()
     app.registration.link_create_an_account_at_login_form()
+    app.session.key()
     email = random_symbol("smart", 7) + random_symbol("trader", 7) + "@yopmail.com"
     print('')
     print('Email: ', email)
@@ -50,6 +52,7 @@ def test_registration_at_login_form(app):
 def test_registration_without_phone(app):
     app.registration.registration_button()
     app.registration.check_error_in_page()
+    app.session.key()
     email = random_symbol("smart", 7) + random_symbol("trader", 7) + "@yopmail.com"
     print('')
     print('Email: ', email)

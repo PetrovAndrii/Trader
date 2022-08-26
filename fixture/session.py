@@ -1,5 +1,7 @@
 import time
 
+from constants.hidden import HiddenConstants
+
 
 class SessionHelper:
 
@@ -17,6 +19,7 @@ class SessionHelper:
 
     def do_log_in(self, mail_login, pass_login):
         wd = self.app.wd
+        self.key()
         self.fill_login_form(mail_login, pass_login)
         self.click_log_in_button()
         time.sleep(2)
@@ -38,6 +41,8 @@ class SessionHelper:
         wd = self.app.wd
         self.open_marketplace_page()
         wd.find_element_by_css_selector('.wish-list-link.flex').click()
+        wd.get(self.app.base_url + "login" + HiddenConstants.CAPTCHA_KEY_TEXT)
+        time.sleep(2)
         self.fill_login_form(mail_login, pass_login)
         self.click_log_in_button()
         self.check_logout_button_on_footer()
@@ -56,6 +61,7 @@ class SessionHelper:
         wd.find_element_by_id('profile-btn_').click()
         if wd.find_elements_by_xpath("//*[contains(text(), 'Sign In')]"):
             wd.find_element_by_xpath("//*[contains(text(), 'Sign In')]").click()
+            self.key()
             self.fill_login_form(mail_login, pass_login)
             self.click_log_in_button()
         else:
@@ -145,9 +151,15 @@ class SessionHelper:
 
     def check_logout_button_on_footer(self):
         wd = self.app.wd
-        time.sleep(3)
+        time.sleep(5)
         element = wd.find_element_by_css_selector('.footer-account__item.footer-account__login')
         wd.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         wd.execute_script("return arguments[0].scrollIntoView(true);", element)
         button_name = element.text
         assert button_name == "Logout"
+
+    def key(self):
+        wd = self.app.wd
+        self.app.wait_element_located_css_selector('.form-button')
+        wd.get(wd.current_url + HiddenConstants.CAPTCHA_KEY_TEXT)
+        time.sleep(2)

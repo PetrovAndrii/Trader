@@ -79,7 +79,7 @@ class RegistrationHelper:
 
     def check_confirmation_registration(self):
         wd = self.app.wd
-        time.sleep(2)
+        time.sleep(5)
         self.app.wait_element_located_css_selector('.offer-content')
         wd.find_element_by_css_selector('.offer-content')
 
@@ -213,3 +213,9 @@ class RegistrationHelper:
         wd = self.app.wd
         wd.find_element_by_tag_name('body').send_keys(Keys.HOME)
         time.sleep(2)
+
+    def error_user_already_exists(self):
+        wd = self.app.wd
+        error = wd.find_element_by_css_selector('.input-label.input-error')
+        # wd.execute_script("return arguments[0].scrollIntoView(true);", error)
+        return error.text

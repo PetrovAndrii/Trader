@@ -10,15 +10,17 @@ from fixture.market.features import FeaturesHelper
 from fixture.market.marketing_pages import MarketingPagesHelper
 from fixture.old_fixture.plans import PlansHelper
 from fixture.charts.sharing import SharingHelper
-from fixture.charts.workspace_chart import WorkspaceChartHelper
 from fixture.common import CommonHelper
-from fixture.charts.indicators import IndicatorsHelper
 from fixture.charts.login_form import LoginFormHelper
 from selenium.webdriver.common.alert import Alert
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.common.exceptions import TimeoutException
 import selenium.webdriver.support.ui as ui
+from constants.header import HeaderConstants
+from constants.charts import ChartsConstants
+from fixture.charts.indicators import IndicatorsHelper
+from fixture.charts.workspace_chart import WorkspaceChartHelper
 
 
 class Application:
@@ -49,10 +51,10 @@ class Application:
         self.marketing_pages = MarketingPagesHelper(self)
         self.plans = PlansHelper(self)
         self.sharing = SharingHelper(self)
-        self.workspace_chart = WorkspaceChartHelper(self)
         self.common = CommonHelper(self)
-        self.indicators = IndicatorsHelper(self)
         self.login_form = LoginFormHelper(self)
+        self.indicators = IndicatorsHelper(self)
+        self.workspace_chart = WorkspaceChartHelper(self)
         self.base_url = base_url
 
     # check valid session in browser or not
@@ -72,8 +74,8 @@ class Application:
             Alert(wd).accept()
         except:
             pass
-        if wd.find_elements_by_css_selector('button.pushcrew-chrome-style-notification-btn.pushcrew-btn-close'):
-            wd.find_element_by_css_selector('button.pushcrew-chrome-style-notification-btn.pushcrew-btn-close').click()
+        if wd.find_elements_by_css_selector(ChartsConstants.CLOSE_CHROME_MODAL_WINDOW_BUTTON_CSS_SELECTOR):
+            wd.find_element_by_css_selector(ChartsConstants.CLOSE_CHROME_MODAL_WINDOW_BUTTON_CSS_SELECTOR).click()
         else:
             pass
 
@@ -81,9 +83,9 @@ class Application:
         wd = self.wd
         self.open_home_page()
         self.session.log_in_from_homepage(mail_login="test@yopmail.com", pass_login="P@ssw0rd")
-        self.wait_element_located_xpath('//*[@class="landing-header__navigation"]/a[1]')
-        wd.find_element_by_xpath('//*[@class="landing-header__navigation"]/a[1]').click()
-        self.wait_element_located_css_selector('.banner_cookie_agreeBtn')
+        self.wait_element_located_xpath(HeaderConstants.CHARTS_LINK_XPATH)
+        wd.find_element_by_xpath(HeaderConstants.CHARTS_LINK_XPATH).click()
+        self.wait_element_located_css_selector(ChartsConstants.COOKIE_AGREE_BUTTON_CSS_SELECTOR)
         self.registration.cookies_agree()
 
 # wait methods

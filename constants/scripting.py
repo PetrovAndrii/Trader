@@ -1,0 +1,13 @@
+class ScriptingConstants:
+    SCRIPTING_TAB_CLASS_NAME = 'scriptingTab'
+    OPEN_SCRIPT_BUTTON_CLASS_NAME = 'openBtn'
+    MY_SMART_SCRIPTS_TAB_CSS_SELECTOR = 'ul.ModalTabs > li:nth-child(3)'
+    MENU_KABOB_BUTTON_CSS_SELECTOR = '.DropdownActions'
+    SHARE_BUTTON_DROPDOWN_XPATH = '//*[@class="DropdownActions__options"]/li[2]'
+    NO_SEARCH_RESULTS_CLASS_NAME = 'noSearchResults'
+    SCRIPT_VIEW_THUMB_NAIL_XPATH = '//div[@class="scriptViewST thumbnail"]'
+    SCRIPT_LIST_ITEM_CLASS_NAME = 'SSListItem'
+    SCRIPT_LIST_INNER_CONTAINER_XPATH = '//*[@class="SmartScriptModal__list-inner-container"]/div[1]/div/div[1]'
+    SORT_BUTTON_CSS_SELECTOR = 'div.SortButton'
+    SORT_LIST_ITEM_NEWEST_CSS_SELECTOR = 'ul.SortButton__list > li:nth-child(2)'
+    SORT_LIST_ITEM_OLDEST_CSS_SELECTOR = 'ul.SortButton__list > li:nth-child(1)'

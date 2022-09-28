@@ -1,6 +1,7 @@
 from datetime import datetime
 import string
 import random
+from constants.charts import ChartsConstants
 
 
 class CommonHelper:
@@ -18,14 +19,14 @@ class CommonHelper:
 
     def open_trading_panel(self):
         wd = self.app.wd
-        if not wd.find_elements_by_class_name('tradingPanelOpened'):
-            wd.find_element_by_id('tradingPopUp_arrowId').click()
+        if not wd.find_elements_by_class_name(ChartsConstants.TRADING_PANEL_OPEN_CLASS_NAME):
+            wd.find_element_by_id(ChartsConstants.TRADING_PANEL_ARROW_BUTTON_ID).click()
         else:
             pass
 
     def close_trading_panel(self):
         wd = self.app.wd
-        if wd.find_elements_by_class_name('tradingPanelOpened'):
-            wd.find_element_by_id('tradingPopUp_arrowId').click()
+        if wd.find_elements_by_class_name(ChartsConstants.TRADING_PANEL_OPEN_CLASS_NAME):
+            wd.find_element_by_id(ChartsConstants.TRADING_PANEL_ARROW_BUTTON_ID).click()
         else:
             pass

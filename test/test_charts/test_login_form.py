@@ -47,6 +47,7 @@ def test_error_if_only_password_empty(app):
 
 def test_error_if_account_not_registered(app):
     app.login_form.open_login_page()
+    app.session.key()
     app.login_form.fill_email(mail_login="@yopmail.com")
     app.login_form.fill_password(pass_login="P@ssw0rd")
     app.login_form.click_log_in_button()
@@ -82,6 +83,7 @@ def test_error_if_email_field_empty_on_the_reset_password_page(app):
 def test_error_on_the_reset_password_page_account_does_not_exist(app):
     app.login_form.open_login_page()
     app.login_form.click_link_forgot_password()
+    app.session.key()
     app.login_form.fill_email(mail_login="@yopmail.com")
     app.login_form.click_reset_password_button()
     email_error = app.login_form.check_massage_on_reset_page_if_account_not_exist()
@@ -91,6 +93,7 @@ def test_error_on_the_reset_password_page_account_does_not_exist(app):
 def test_link_create_an_account_on_the_reset_password_page(app):
     app.login_form.open_login_page()
     app.login_form.click_link_forgot_password()
+    app.session.key()
     app.login_form.fill_email(mail_login="@yopmail.com")
     app.login_form.click_reset_password_button()
     app.login_form.click_link_create_an_account_on_reset_page()

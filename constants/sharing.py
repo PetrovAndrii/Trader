@@ -13,8 +13,3 @@ class SharingConstants:
     DESCRIPTION_AREA_ID = 'descArea'
     PUBLISH_BUTTON_ID = 'shareBtn'
     BOOTBOX_BODY_CSS_SELECTOR = '.bootbox-body'
-
-
-
-
-

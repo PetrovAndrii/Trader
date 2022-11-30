@@ -17,24 +17,14 @@ class RegisterConstants:
     NUMBER_NO_ERROR_CSS_SELECTOR = 'div.validation-rules > p:nth-child(2) > i.ucpicon-content-menu-checkbox'
     SPECIAL_CHARACTER_NO_ERROR_CSS_SELECTOR = 'div.validation-rules > p:nth-child(3) > i.ucpicon-content-menu-checkbox'
     CAPITAL_LETTER_NO_ERROR_CSS_SELECTOR = 'div.validation-rules > p:nth-child(4) > i.ucpicon-content-menu-checkbox'
-    FIELD_IS_REQUIRED_ERROR_XPATH = '//*[@class="form-inputs"]/div[1]/span/div/p'
+    FIELD_IS_REQUIRED_ERROR_XPATH = '//*[@class="form-inputs"]/div[1]/span/div/div/p'
     FIELD_IS_REQUIRED_ERROR_TEXT = 'This field is required!'
     AGREE_TERMS_ERROR_TEXT = 'You must agree with terms and conditions'
     VALID_EMAIL_ERROR_TEXT = 'Please enter valid email address'
-    VALID_EMAIL_ERROR_XPATH = '//*[@class="form-inputs"]/div[2]/span/div/p'
+    VALID_EMAIL_ERROR_XPATH = '//*[@class="form-inputs"]/div[2]/span/div/div/p'
     TERMS_LINK_XPATH = '//*[@name="terms"]/span/a[1]'
     LICENSE_LINK_XPATH = '//*[@name="terms"]/span/a[2]'
     YOU_MUST_AGREE_ERROR_TEXT_XPATH = '//*[@class="form-block"]/form/p'
     COOKIES_AGREE_BUTTON_CSS_SELECTOR = '.banner_cookie_agreeBtn'
     CONFIRMATION_REGISTRATION_CSS_SELECTOR = '.offer-content'
     ERROR_CONTAINS_XPATH = '//*[contains(@class,"error")]'
-
-
-
-
-
-
-
-
-
-

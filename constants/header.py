@@ -8,4 +8,3 @@ class HeaderConstants:
     LANDING_NAVIGATION_PANEL_CSS_SELECTOR = '.landing-header__navigation'
     MARKETPLACE_LINK_TXT = 'Marketplace'
     LOGOUT_TOOLBAR_BUTTON_XPATH = '//*[@class="landing-header__account-details"]/ul/li[3]/a'
-

@@ -26,7 +26,8 @@ def test_registration_get_started_button(app):
     email = random_symbol("test", 7) + random_symbol("smart", 7) + random_symbol("trader", 7) + "@yopmail.com"
     print('')
     print('Email: ', email)
-    app.registration.registration_fields(full_name='Test Test', email=email, password='P@ssw0rd', phone='+380930000000')
+    app.registration.registration_fields(full_name='Test Test', email=email, password='P@ssw0rd',
+                                         phone_code='+380', phone_number='930000000')
     app.registration.agree_terms_conditions_license()
     app.registration.click_button_create_my_account()
     app.registration.check_confirmation_registration()
@@ -42,7 +43,8 @@ def test_registration_at_login_form(app):
     email = random_symbol("smart", 7) + random_symbol("trader", 7) + "@yopmail.com"
     print('')
     print('Email: ', email)
-    app.registration.registration_fields(full_name='Test Test', email=email, password='P@ssw0rd', phone='+380930000000')
+    app.registration.registration_fields(full_name='Test Test', email=email, password='P@ssw0rd',
+                                         phone_code='+380', phone_number='930000000')
     app.registration.agree_terms_conditions_license()
     app.registration.click_button_create_my_account()
     app.registration.check_confirmation_registration()
@@ -56,7 +58,7 @@ def test_registration_without_phone(app):
     email = random_symbol("smart", 7) + random_symbol("trader", 7) + "@yopmail.com"
     print('')
     print('Email: ', email)
-    app.registration.registration_fields(full_name='Test Test', email=email, password='P@ssw0rd', phone='')
+    app.registration.registration_fields_without_phone(full_name='Test Test', email=email, password='P@ssw0rd')
     app.registration.agree_terms_conditions_license()
     app.registration.click_button_create_my_account()
     app.registration.check_confirmation_registration()
@@ -69,7 +71,8 @@ def test_error_if_full_name_empty(app):
     email = random_symbol("smart", 7) + random_symbol("trader", 7) + "@yopmail.com"
     print('')
     print('Email: ', email)
-    app.registration.registration_fields(full_name='', email=email, password='P@ssw0rd', phone='')
+    app.registration.registration_fields(full_name='', email=email, password='P@ssw0rd',
+                                         phone_code='+380', phone_number='930000000')
     app.registration.agree_terms_conditions_license()
     app.registration.click_button_create_my_account()
     full_name_error = app.registration.name_field_error()
@@ -79,7 +82,8 @@ def test_error_if_full_name_empty(app):
 def test_error_if_email_empty(app):
     app.registration.registration_button()
     app.registration.check_error_in_page()
-    app.registration.registration_fields(full_name='Test Test', email='', password='P@ssw0rd', phone='')
+    app.registration.registration_fields(full_name='Test Test', email='', password='P@ssw0rd',
+                                         phone_code='+380', phone_number='930000000')
     app.registration.agree_terms_conditions_license()
     app.registration.click_button_create_my_account()
     email_error = app.registration.email_field_error()
@@ -92,11 +96,12 @@ def test_error_if_password_empty(app):
     email = random_symbol("smart", 7) + random_symbol("trader", 7) + "@yopmail.com"
     print('')
     print('Email: ', email)
-    app.registration.registration_fields(full_name='Test Test', email=email, password='', phone=' ')
+    app.registration.registration_fields(full_name='Test Test', email=email, password='',
+                                         phone_code='+380', phone_number='930000000')
     app.registration.agree_terms_conditions_license()
     app.registration.click_button_create_my_account()
     color = app.registration.password_field_empty()
-    assert color == '#ff0000'
+    assert color == '#f44336'
 
 
 def test_error_if_agree_checkbox_not_selected(app):
@@ -105,7 +110,8 @@ def test_error_if_agree_checkbox_not_selected(app):
     email = random_symbol("smart", 7) + random_symbol("trader", 7) + "@yopmail.com"
     print('')
     print('Email: ', email)
-    app.registration.registration_fields(full_name='Test Test', email=email, password='P@ssw0rd', phone=' ')
+    app.registration.registration_fields(full_name='Test Test', email=email, password='P@ssw0rd',
+                                         phone_code='+380', phone_number='930000000')
     app.registration.click_button_create_my_account()
     agree_error = app.registration.text_if_agree_checkbox_not_selected()
     assert agree_error == 'You must agree with terms and conditions'

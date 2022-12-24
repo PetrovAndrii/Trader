@@ -5,7 +5,7 @@ class LoginConstants:
     PASSWORD_FIELD_HIDE_TEXT_XPATH = '//input[(@placeholder="Password") and (@type="password")]'
     FORGOT_LINK_CSS_SELECTOR = '.simple-link.forgot-link'
     ERROR_EMAIL_TEXT_XPATH = '//*[@class="input-field-hint"]/p'
-    ERROR_PASSWORD_TEXT_XPATH = '//*[@class="form-inputs"]/div[2]/span/div/p'
+    ERROR_PASSWORD_TEXT_XPATH = '//*[@class="form-inputs"]/div[2]/span/div/div[1]/p'
     ERROR_INVALID_TEXT_XPATH = '//*[@class="form-block"]/form/p'
     FORM_INPUTS_CSS_SELECTOR = '.form-inputs'
     LOG_IN_BUTTON_CSS_SELECTOR = '.form-button'

@@ -44,8 +44,10 @@ def test_change_phone(app):
     app.open_home_page()
     app.session.log_in_from_homepage(mail_login="test@yopmail.com", pass_login="P@ssw0rd")
     app.profile.my_profile()
-    app.profile.new_phone_number()
+    new_phone = app.profile.new_phone_number()
     app.profile.save_new_phone()
+    phone_number = app.profile.check_new_phone()
+    assert '+380' + new_phone == phone_number
 
 
 def test_log_out(app):

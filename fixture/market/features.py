@@ -126,6 +126,7 @@ class FeaturesHelper:
     def marketplace(self):
         wd = self.app.wd
         wd.find_element_by_xpath('//*[@class="cards-container__inner"]/div[3]/div/a').click()
+        time.sleep(1)
 
     def support(self):
         wd = self.app.wd

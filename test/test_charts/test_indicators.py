@@ -5,7 +5,7 @@ def test_add_general_indicators_on_chart(app):
     old_list = app.indicators.get_indicators_list()
     app.indicators.click_add_indicators_button()
     app.indicators.click_general_indicators()
-    app.indicators.add_random_general_indicator()
+    app.indicators.add_random_indicator()
     new_list = app.indicators.get_indicators_list()
     assert old_list + 1 == new_list
 
@@ -15,7 +15,7 @@ def test_add_premium_indicators_on_chart(app):
     old_list = app.indicators.get_indicators_list()
     app.indicators.click_add_indicators_button()
     app.indicators.click_premium_indicators()
-    app.indicators.add_random_general_indicator()
+    app.indicators.add_random_indicator()
     new_list = app.indicators.get_indicators_list()
     assert old_list < new_list
 
@@ -40,7 +40,7 @@ def test_add_my_indicators_on_chart(app):
     old_list = app.indicators.get_indicators_list()
     app.indicators.click_add_indicators_button()
     app.indicators.click_my_indicators()
-    app.indicators.add_random_general_indicator()
+    app.indicators.add_random_indicator()
     new_list = app.indicators.get_indicators_list()
     assert old_list + 1 == new_list
 

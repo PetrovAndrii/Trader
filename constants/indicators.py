@@ -2,6 +2,8 @@ class IndicatorsConstants:
     ADD_INDICATORS_BUTTON_TOOLBAR_CSS_SELECTOR = '.scxToolbar-btn.scxToolbar-btn-indicators.indicatorMove.text-center'
     LIST_INDICATORS_CONTAINER_ID = 'indicators_container'
     ADD_SELECTED_BUTTON_CSS_SELECTOR = '.scxIndicators_button_simple.scxIndicators_button_add'
+    SELECTED_INDICATOR_NAME_CSS_SELECTOR = '.scxIndicators_groupedItemName'
+    INDICATOR_ITEM_CSS_SELECTOR = '.scxIndicators_groupedItemHeader'
     INDICATOR_CAPTURE_PANEL_CSS_SELECTOR = '.indicatorCapturePanel'
     GENERAL_TAB_CSS_SELECTOR = '.scxIndicators_allIndicators'
     PREMIUM_TAB_CSS_SELECTOR = '.scxIndicators_mtiIndicators'

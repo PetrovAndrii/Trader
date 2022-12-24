@@ -31,12 +31,19 @@ class RegistrationHelper:
         else:
             wd.find_element_by_class_name(HeaderConstants.GET_STARTED_BUTTON_CLASS_NAME).click()
 
-    def registration_fields(self, full_name, email, password, phone):
+    def registration_fields(self, full_name, email, password, phone_code, phone_number):
         time.sleep(2)
         self.fill_full_name(full_name)
         self.fill_email(email)
         self.fill_password(password)
-        self.fill_phone(phone)
+        self.fill_phone_code(phone_code)
+        self.fill_phone_number(phone_number)
+
+    def registration_fields_without_phone(self, full_name, email, password):
+        time.sleep(2)
+        self.fill_full_name(full_name)
+        self.fill_email(email)
+        self.fill_password(password)
 
     def fill_full_name(self, full_name):
         wd = self.app.wd
@@ -60,16 +67,26 @@ class RegistrationHelper:
         # wd.find_element_by_xpath(RegisterConstants.PASSWORD_FIELD_XPATH).clear()
         wd.find_element_by_xpath(RegisterConstants.PASSWORD_FIELD_XPATH).send_keys(password)
 
-    def fill_phone(self, phone):
+    def fill_phone_code(self, phone_code):
         wd = self.app.wd
-        wd.find_element_by_xpath(RegisterConstants.PHONE_FIELD_XPATH).click()
-        wd.find_element_by_xpath(RegisterConstants.PHONE_FIELD_XPATH).clear()
-        wd.find_element_by_xpath(RegisterConstants.PHONE_FIELD_XPATH).send_keys(phone)
+        wd.find_element_by_css_selector(RegisterConstants.PHONE_CODE_BUTTON_CSS_SELECTOR).click()
+        time.sleep(1)
+        wd.find_element_by_css_selector(RegisterConstants.PHONE_CODE_SEARCH_FIELD_CSS_SELECTOR).click()
+        wd.find_element_by_css_selector(RegisterConstants.PHONE_CODE_SEARCH_FIELD_CSS_SELECTOR).clear()
+        wd.find_element_by_css_selector(RegisterConstants.PHONE_CODE_SEARCH_FIELD_CSS_SELECTOR).send_keys(phone_code)
+        time.sleep(1)
+        wd.find_element_by_css_selector(RegisterConstants.PHONE_CODE_LIST_ITEM_CSS_SELECTOR).click()
+
+    def fill_phone_number(self, phone_number):
+        wd = self.app.wd
+        wd.find_element_by_xpath(RegisterConstants.PHONE_NUMBER_FIELD_XPATH).click()
+        wd.find_element_by_xpath(RegisterConstants.PHONE_NUMBER_FIELD_XPATH).clear()
+        wd.find_element_by_xpath(RegisterConstants.PHONE_NUMBER_FIELD_XPATH).send_keys(phone_number)
 
     def agree_terms_conditions_license(self):
         wd = self.app.wd
         element = wd.find_element_by_xpath(RegisterConstants.AGREE_TERMS_CHECKBOX_XPATH)
-        wd.execute_script("return arguments[0].scrollIntoView(true);", element)
+        # wd.execute_script("return arguments[0].scrollIntoView(true);", element)
         element.click()
 
     def click_button_create_my_account(self):
@@ -148,6 +165,7 @@ class RegistrationHelper:
 
     def text_if_agree_checkbox_not_selected(self):
         wd = self.app.wd
+        time.sleep(1)
         if wd.find_elements_by_xpath(RegisterConstants.YOU_MUST_AGREE_ERROR_TEXT_XPATH):
             error = wd.find_element_by_xpath(RegisterConstants.YOU_MUST_AGREE_ERROR_TEXT_XPATH)
             return error.text

@@ -1,4 +1,5 @@
 from selenium import webdriver
+
 from fixture.session import SessionHelper
 from fixture.charts.registration import RegistrationHelper
 from fixture.market.profile import ProfileHelper
@@ -19,6 +20,7 @@ from selenium.common.exceptions import TimeoutException
 import selenium.webdriver.support.ui as ui
 from constants.header import HeaderConstants
 from constants.charts import ChartsConstants
+from constants.register import RegisterConstants
 from fixture.charts.indicators import IndicatorsHelper
 from fixture.charts.workspace_chart import WorkspaceChartHelper
 
@@ -85,7 +87,7 @@ class Application:
         self.session.log_in_from_homepage(mail_login="test@yopmail.com", pass_login="P@ssw0rd")
         self.wait_element_located_xpath(HeaderConstants.CHARTS_LINK_XPATH)
         wd.find_element_by_xpath(HeaderConstants.CHARTS_LINK_XPATH).click()
-        self.wait_element_located_css_selector(ChartsConstants.COOKIE_AGREE_BUTTON_CSS_SELECTOR)
+        self.wait_element_located_css_selector(RegisterConstants.COOKIES_AGREE_BUTTON_CSS_SELECTOR)
         self.registration.cookies_agree()
 
 # wait methods

@@ -12,16 +12,20 @@ class IndicatorsHelper:
         wd = self.app.wd
         wd.find_element_by_css_selector(IndicatorsConstants.ADD_INDICATORS_BUTTON_TOOLBAR_CSS_SELECTOR).click()
 
-    def add_random_general_indicator(self):
+    def add_random_indicator(self):
         wd = self.app.wd
         self.app.wait_element_not_located_id(IndicatorsConstants.LIST_INDICATORS_CONTAINER_ID)
-        if wd.find_elements_by_css_selector(IndicatorsConstants.ADD_SELECTED_BUTTON_CSS_SELECTOR):
-            links = wd.find_elements_by_css_selector(IndicatorsConstants.ADD_SELECTED_BUTTON_CSS_SELECTOR)
+        if wd.find_elements_by_css_selector(IndicatorsConstants.INDICATOR_ITEM_CSS_SELECTOR):
+            links = wd.find_elements_by_css_selector(IndicatorsConstants.INDICATOR_ITEM_CSS_SELECTOR)
             link = links[randint(0, len(links) - 1)]
-            wd.execute_script("return arguments[0].scrollIntoView(true);", link)
-            link.click()
+            wd.execute_script("return arguments[0].scrollIntoView(true);", link),
+            indicator_name = link.find_element_by_css_selector(IndicatorsConstants.SELECTED_INDICATOR_NAME_CSS_SELECTOR)
+            add_button = link.find_element_by_css_selector(IndicatorsConstants.ADD_SELECTED_BUTTON_CSS_SELECTOR)
+            add_button.click()
+            time.sleep(1)
+            return print('Indicator was added - ' + indicator_name.text)
         else:
-            print('HAVE NOT INDICATORS ON "MY INDICATORS" TAB')
+            print('HAVE NOT INDICATORS ON TAB')
 
     def get_indicators_list(self):
         wd = self.app.wd
@@ -106,7 +110,7 @@ class IndicatorsHelper:
             wd.execute_script("return arguments[0].scrollIntoView(true);", link)
             link.click()
         else:
-            print('HAVE NOT INDICATORS ON "MY INDICATORS" TAB')
+            print('HAVE NOT INDICATORS ON TAB')
 
     def click_edit_random_indicator_from_my_indicator_tab(self):
         wd = self.app.wd
@@ -117,7 +121,7 @@ class IndicatorsHelper:
             wd.execute_script("return arguments[0].scrollIntoView(true);", link)
             link.click()
         else:
-            print('HAVE NOT INDICATORS ON "MY INDICATORS" TAB')
+            print('HAVE NOT INDICATORS ON TAB')
 
     def change_indicator_name(self, indicator_name):
         wd = self.app.wd
@@ -136,6 +140,7 @@ class IndicatorsHelper:
             links = wd.find_elements_by_css_selector(IndicatorsConstants.REMOVE_BUTTON_PANEL_WSP_CSS_SELECTOR)
             link = links[randint(0, len(links) - 1)]
             link.click()
+            time.sleep(1)
         else:
             return print('NO INDICATOR AT WORKPLACE')
 
@@ -145,6 +150,7 @@ class IndicatorsHelper:
             links = wd.find_elements_by_css_selector(IndicatorsConstants.KABOB_MENU_PANEL_WSP_CSS_SELECTOR)
             link = links[randint(0, len(links) - 1)]
             link.click()
+            time.sleep(1)
         else:
             return print('NO INDICATOR AT WORKPLACE')
 

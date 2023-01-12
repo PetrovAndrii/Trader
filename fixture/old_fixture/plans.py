@@ -1,4 +1,7 @@
 import time
+
+from selenium.webdriver.common.by import By
+
 from model.registration_model import Group
 import string
 import random
@@ -16,29 +19,29 @@ class PlansHelper:
 
     def open_plans_all(self):
         wd = self.app.wd
-        element = wd.find_element_by_css_selector('.landing-header__navigation')
-        element.find_element_by_link_text('Pricing').click()
+        element = wd.find_element(By.CSS_SELECTOR, '.landing-header__navigation')
+        element.find_element(By.LINK_TEXT, 'Pricing').click()
 
     def open_plans_360pro(self):
         wd = self.app.wd
-        wd.find_element_by_xpath('//*[@class="landing-header__navigation"]/div[1]/span').click()
+        wd.find_element(By.XPATH, '//*[@class="landing-header__navigation"]/div[1]/span').click()
         time.sleep(1)
-        wd.find_element_by_xpath('//*[@class="landing-header__navigation"]/div[1]/ul/li[2]').click()
+        wd.find_element(By.XPATH, '//*[@class="landing-header__navigation"]/div[1]/ul/li[2]').click()
 
     def click_access_button(self):
         wd = self.app.wd
-        wd.find_element_by_css_selector('.market-page_top_button').click()
+        wd.find_element(By.CSS_SELECTOR, '.market-page_top_button').click()
 
     def check_cost(self):
         wd = self.app.wd
-        cost = wd.find_element_by_xpath('//*[@id="registration"]/div[1]/div/h3/strong')
+        cost = wd.find_element(By.XPATH, '//*[@id="registration"]/div[1]/div/h3/strong')
 
         return cost.text
 
     def price_top_rigth(self):
         wd = self.app.wd
-        dollar = wd.find_element_by_xpath('//*[@id="elite-info"]/div[1]/h4/span')
-        cent = wd.find_element_by_xpath('//*[@id="elite-info"]/div[1]/h4/sup[2]/span')
+        dollar = wd.find_element(By.XPATH, '//*[@id="elite-info"]/div[1]/h4/span')
+        cent = wd.find_element(By.XPATH, '//*[@id="elite-info"]/div[1]/h4/sup[2]/span')
         together = dollar.text + '.' + cent.text
         return together
 
@@ -54,30 +57,30 @@ class PlansHelper:
 
     def checkout_plan_cost(self):
         wd = self.app.wd
-        element = wd.find_element_by_xpath('//*[@class="your-plan__row"]/div[1]/div/label/div[2]/div/span[1]')
+        element = wd.find_element(By.XPATH, '//*[@class="your-plan__row"]/div[1]/div/label/div[2]/div/span[1]')
         # scroll to element
         wd.execute_script("return arguments[0].scrollIntoView(true);", element)
-        cost = wd.find_element_by_xpath('//*[@class="your-plan__row"]/div[1]/div/label/div[2]/div/span[1]')
+        cost = wd.find_element(By.XPATH, '//*[@class="your-plan__row"]/div[1]/div/label/div[2]/div/span[1]')
         return cost.text
 
     def checkout_total_price(self):
         wd = self.app.wd
-        element = wd.find_element_by_id('totalPrice')
+        element = wd.find_element(By.ID, 'totalPrice')
         # scroll to element
         wd.execute_script("return arguments[0].scrollIntoView(true);", element)
-        cost = wd.find_element_by_id('totalPrice')
+        cost = wd.find_element(By.ID, 'totalPrice')
         return cost.text
 
     def get_row_list(self):
         wd = self.app.wd
         count = []
-        for element in wd.find_elements_by_xpath('//*[@class="table__row-wrap"][contains(@style, "none")]'):
+        for element in wd.find_elements(By.XPATH, '//*[@class="table__row-wrap"][contains(@style, "none")]'):
             count.append(element)
         return len(count)
 
     def put_only_differences(self):
         wd = self.app.wd
-        element = wd.find_element_by_xpath('//*[@class="plans-gap w-5/12"]/div/span[2]/label/span')
+        element = wd.find_element(By.XPATH, '//*[@class="plans-gap w-5/12"]/div/span[2]/label/span')
         # scroll to element
         wd.execute_script("return arguments[0].scrollIntoView(true);", element)
-        wd.find_element_by_xpath('//*[@class="plans-gap w-5/12"]/div/span[2]/label/span').click()
+        wd.find_element(By.XPATH, '//*[@class="plans-gap w-5/12"]/div/span[2]/label/span').click()

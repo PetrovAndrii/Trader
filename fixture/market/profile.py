@@ -3,6 +3,8 @@ import time
 from random import randint
 import os
 
+from selenium.webdriver.common.by import By
+
 
 class ProfileHelper:
 
@@ -12,12 +14,11 @@ class ProfileHelper:
     def my_profile(self):
         wd = self.app.wd
         time.sleep(2)
-        wd.find_element_by_css_selector('.landing-header__account-img').click()
+        wd.find_element(By.CSS_SELECTOR, '.landing-header__account-img').click()
         time.sleep(2)
-        wd.find_element_by_xpath('//*[@class="landing-header__account-details"]'
-                                 '/ul/li[1]/a').click()
+        wd.find_element(By.XPATH, '//*[@class="landing-header__account-details"]/ul/li[1]/a').click()
         try:
-            wd.find_element_by_css_selector('button.upgrade-button')
+            wd.find_element(By.CSS_SELECTOR, 'button.upgrade-button')
             return True
         except NoSuchElementException:
             print('')
@@ -26,70 +27,70 @@ class ProfileHelper:
 
     def button_change_passw0rd(self):
         wd = self.app.wd
-        wd.find_element_by_css_selector('button.upgrade-button').click()
+        wd.find_element(By.CSS_SELECTOR, 'button.upgrade-button').click()
 
     def current_password(self, curr_pass):
         wd = self.app.wd
-        wd.find_element_by_xpath('//input[@placeholder="Current Password"]').click()
-        wd.find_element_by_xpath('//input[@placeholder="Current Password"]').clear()
-        wd.find_element_by_xpath('//input[@placeholder="Current Password"]').send_keys(curr_pass)
+        wd.find_element(By.XPATH, '//input[@placeholder="Current Password"]').click()
+        wd.find_element(By.XPATH, '//input[@placeholder="Current Password"]').clear()
+        wd.find_element(By.XPATH, '//input[@placeholder="Current Password"]').send_keys(curr_pass)
 
     def change_pass(self, new_pass):
         wd = self.app.wd
-        wd.find_element_by_xpath('//input[@placeholder="New Password"]').click()
-        wd.find_element_by_xpath('//input[@placeholder="New Password"]').clear()
-        wd.find_element_by_xpath('//input[@placeholder="New Password"]').send_keys(new_pass)
-        wd.find_element_by_xpath('//input[@placeholder="Confirm Password"]').click()
-        wd.find_element_by_xpath('//input[@placeholder="Confirm Password"]').clear()
-        wd.find_element_by_xpath('//input[@placeholder="Confirm Password"]').send_keys(new_pass)
+        wd.find_element(By.XPATH, '//input[@placeholder="New Password"]').click()
+        wd.find_element(By.XPATH, '//input[@placeholder="New Password"]').clear()
+        wd.find_element(By.XPATH, '//input[@placeholder="New Password"]').send_keys(new_pass)
+        wd.find_element(By.XPATH, '//input[@placeholder="Confirm Password"]').click()
+        wd.find_element(By.XPATH, '//input[@placeholder="Confirm Password"]').clear()
+        wd.find_element(By.XPATH, '//input[@placeholder="Confirm Password"]').send_keys(new_pass)
 
     def save_new_pass(self):
         wd = self.app.wd
-        wd.find_element_by_css_selector('.modal-button-primary').click()
-        self.app.wait_element_located_css_selector('.form-button')
+        wd.find_element(By.CSS_SELECTOR, '.modal-button-primary').click()
+        self.app.wait_element_located(By.CSS_SELECTOR, '.form-button')
 
     def user_image(self):
         wd = self.app.wd
-        wd.find_element_by_css_selector('.button-blue-simple').click()
+        wd.find_element(By.CSS_SELECTOR, '.button-blue-simple').click()
 
     def upload_new_photo(self, path_foto):
         wd = self.app.wd
-        wd.find_element_by_xpath("//input[@type='file']").send_keys(os.getcwd() + path_foto)
+        wd.find_element(By.XPATH, "//input[@type='file']").send_keys(os.getcwd() + path_foto)
 
     def save_photo(self):
         wd = self.app.wd
-        wd.find_element_by_css_selector('.modal-button-primary').click()
+        wd.find_element(By.CSS_SELECTOR, '.modal-button-primary').click()
 
     def new_phone_number(self):
         wd = self.app.wd
-        number = 9
-        phone = ''.join(["%s" % randint(0, 8) for num in range(0, number)])
+        number = 7
+        phone = '93' + ''.join(["%s" % randint(0, 6) for num in range(0, number)])
         # click edit button on the phone field
-        wd.find_element_by_css_selector('.simple-button.simple-button--link.simple-button--slim').click()
+        wd.find_element(By.CSS_SELECTOR, '.simple-button.simple-button--link.simple-button--slim').click()
         # write phone code
-        wd.find_element_by_css_selector('.PhoneInput__button').click()
+        wd.find_element(By.CSS_SELECTOR, '.PhoneInput__button').click()
         time.sleep(1)
-        wd.find_element_by_css_selector('.PhoneInput__search').click()
-        wd.find_element_by_css_selector('.PhoneInput__search').clear()
-        wd.find_element_by_css_selector('.PhoneInput__search').send_keys('380')
+        wd.find_element(By.CSS_SELECTOR, '.PhoneInput__search').click()
+        wd.find_element(By.CSS_SELECTOR, '.PhoneInput__search').clear()
+        wd.find_element(By.CSS_SELECTOR, '.PhoneInput__search').send_keys('380')
         time.sleep(2)
-        wd.find_element_by_css_selector('.PhoneInput__list-item').click()
+        wd.find_element(By.CSS_SELECTOR, '.PhoneInput__list-item').click()
         # write phone number
-        wd.find_element_by_xpath('//input[@placeholder="Phone Number"]').click()
-        wd.find_element_by_xpath('//input[@placeholder="Phone Number"]').clear()
-        wd.find_element_by_xpath('//input[@placeholder="Phone Number"]').send_keys(phone)
+        wd.find_element(By.XPATH, '//input[@placeholder="Phone Number"]').click()
+        wd.find_element(By.XPATH, '//input[@placeholder="Phone Number"]').clear()
+        wd.find_element(By.XPATH, '//input[@placeholder="Phone Number"]').send_keys(phone)
         print('phone number ', phone)
         return phone
 
     def save_new_phone(self):
         wd = self.app.wd
-        wd.find_element_by_css_selector('.simple-button.simple-button--link.simple-button--slim > span').click()
+        wd.find_element(By.CSS_SELECTOR, '.simple-button.simple-button--link.simple-button--slim > span').click()
         time.sleep(1)
 
     def check_new_phone(self):
         wd = self.app.wd
         # get a phone number
-        get_phone_number = wd.find_element_by_css_selector('.ContentCard.mb-8 > span')
+        get_phone_number = wd.find_element(By.CSS_SELECTOR, '.ContentCard.mb-8 > span')
         # convert to text
         text = get_phone_number.text
         # remove all spaces

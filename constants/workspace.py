@@ -2,7 +2,7 @@ class WorkspacesConstants:
     WORKSPACE_OPEN_BUTTON_XPATH = '//*[@class="workspace__open-btn"]/span[2]'
     WORKSPACE_LIST_OPEN_BUTTON_XPATH = '//*[@class="workspace__open-btn"]'
     ACTIVE_WORKSPACE_BUTTON_ID = 'activeWsp'
-    SETTING_ACTIVE_WORKSPACE_BUTTON_XPATH = '//*[@id="activeWsp"]/a/div[2]/span[1]'
+    SETTING_ACTIVE_WORKSPACE_BUTTON_XPATH = '//*[@id="activeWsp"]/a/div[2]/span'
     SHARE_BUTTON_SETTING_WS_XPATH = '//*[@id="activeWsp"]/ul/li[3]'
     ITEM_SHARE_CSS_SELECTOR = '.item--share'
     ADD_WORKSPACE_BUTTON_XPATH = '//*[@class="app-header__top"]/div[3]'
@@ -31,3 +31,4 @@ class WorkspacesConstants:
     CHECKBOX_PREMIUM_MANAGE_WSP_XPATH = '//*[@class="fake-checkbox cbxSelectPrmWsp"]'
     NEW_CHART_MODAL_BAR_STYLE_ID = 'newChartModalBarStyle'
     NEW_CHART_MODAL_BAR_STYLE_LINK_XPATH = '//*[@id="newChartModalBarStyle"]/div[2]//div'
+    TRADING_ACCOUNT_TABLE_CSS_SELECTOR = '.tradingAccountTable__inner'

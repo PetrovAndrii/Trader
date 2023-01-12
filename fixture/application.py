@@ -1,5 +1,6 @@
 from selenium import webdriver
 
+from constants.workspace import WorkspacesConstants
 from fixture.session import SessionHelper
 from fixture.charts.registration import RegistrationHelper
 from fixture.market.profile import ProfileHelper
@@ -76,8 +77,8 @@ class Application:
             Alert(wd).accept()
         except:
             pass
-        if wd.find_elements_by_css_selector(ChartsConstants.CLOSE_CHROME_MODAL_WINDOW_BUTTON_CSS_SELECTOR):
-            wd.find_element_by_css_selector(ChartsConstants.CLOSE_CHROME_MODAL_WINDOW_BUTTON_CSS_SELECTOR).click()
+        if wd.find_elements(By.CSS_SELECTOR, ChartsConstants.CLOSE_CHROME_MODAL_WINDOW_BUTTON_CSS_SELECTOR):
+            wd.find_element(By.CSS_SELECTOR, ChartsConstants.CLOSE_CHROME_MODAL_WINDOW_BUTTON_CSS_SELECTOR).click()
         else:
             pass
 
@@ -85,81 +86,26 @@ class Application:
         wd = self.wd
         self.open_home_page()
         self.session.log_in_from_homepage(mail_login="test@yopmail.com", pass_login="P@ssw0rd")
-        self.wait_element_located_xpath(HeaderConstants.CHARTS_LINK_XPATH)
-        wd.find_element_by_xpath(HeaderConstants.CHARTS_LINK_XPATH).click()
-        self.wait_element_located_css_selector(RegisterConstants.COOKIES_AGREE_BUTTON_CSS_SELECTOR)
+        self.wait_element_located(By.XPATH, HeaderConstants.CHARTS_LINK_XPATH)
+        wd.find_element(By.XPATH, HeaderConstants.CHARTS_LINK_XPATH).click()
+        self.wait_element_located(By.CSS_SELECTOR, RegisterConstants.COOKIES_AGREE_BUTTON_CSS_SELECTOR)
         self.registration.cookies_agree()
+        self.wait_element_located(By.CSS_SELECTOR, WorkspacesConstants.TRADING_ACCOUNT_TABLE_CSS_SELECTOR)
 
 # wait methods
-    def wait_element_located_id(self, locator, timeout=5):
+    def wait_element_located(self, by, locator, timeout=5):
         try:
-            ui.WebDriverWait(self.wd, timeout).until(ec.visibility_of_element_located((By.ID, locator)))
+            ui.WebDriverWait(self.wd, timeout).until(ec.visibility_of_element_located((by, locator)))
             return True
         except TimeoutException:
             return False
 
-    def wait_element_not_located_id(self, locator, timeout=5):
+    def wait_element_not_located(self, by, locator, timeout=5):
         try:
-            ui.WebDriverWait(self.wd, timeout).until_not(ec.visibility_of_element_located((By.ID, locator)))
+            ui.WebDriverWait(self.wd, timeout).until_not(ec.visibility_of_element_located((by, locator)))
             return True
-        except TimeoutException as ex:
-            return print(ex)
-
-    def wait_element_located_xpath(self, locator, timeout=5):
-        try:
-            ui.WebDriverWait(self.wd, timeout).until(ec.visibility_of_element_located((By.XPATH, locator)))
-            return True
-        except TimeoutException as ex:
-            return print(ex)
-
-    def wait_element_located_link_text(self, locator, timeout=5):
-        try:
-            ui.WebDriverWait(self.wd, timeout).until(ec.visibility_of_element_located((By.LINK_TEXT, locator)))
-            return True
-        except TimeoutException as ex:
-            return print(ex)
-
-    def wait_element_located_partial_link_text(self, locator, timeout=5):
-        try:
-            ui.WebDriverWait(self.wd, timeout).until(ec.visibility_of_element_located((By.PARTIAL_LINK_TEXT, locator)))
-            return True
-        except TimeoutException as ex:
-            return print(ex)
-
-    def wait_element_located_name(self, locator, timeout=5):
-        try:
-            ui.WebDriverWait(self.wd, timeout).until(ec.visibility_of_element_located((By.NAME, locator)))
-            return True
-        except TimeoutException as ex:
-            return print(ex)
-
-    def wait_element_located_tag_name(self, locator, timeout=5):
-        try:
-            ui.WebDriverWait(self.wd, timeout).until(ec.visibility_of_element_located((By.TAG_NAME, locator)))
-            return True
-        except TimeoutException as ex:
-            return print(ex)
-
-    def wait_element_located_class_name(self, locator, timeout=5):
-        try:
-            ui.WebDriverWait(self.wd, timeout).until(ec.visibility_of_element_located((By.CLASS_NAME, locator)))
-            return True
-        except TimeoutException as ex:
-            return print(ex)
-
-    def wait_element_not_class_name(self, locator, timeout=5):
-        try:
-            ui.WebDriverWait(self.wd, timeout).until_not(ec.visibility_of_element_located((By.CLASS_NAME, locator)))
-            return True
-        except TimeoutException as ex:
-            return print(ex)
-
-    def wait_element_located_css_selector(self, locator, timeout=5):
-        try:
-            ui.WebDriverWait(self.wd, timeout).until(ec.visibility_of_element_located((By.CSS_SELECTOR, locator)))
-            return True
-        except TimeoutException as ex:
-            return print(ex)
+        except TimeoutException:
+            return False
 
     def wait_alert_is_present(self, timeout=2):
         try:

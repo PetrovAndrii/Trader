@@ -1,21 +1,23 @@
 import time
 
+from selenium.webdriver.common.by import By
+
 
 class MarketingPagesHelper:
 
     def __init__(self, app):
         self.app = app
 
-# partnership pages
+    # partnership pages
     def open_partnership_pages(self):
         wd = self.app.wd
-        wd.execute_script("window.scrollTo(0, document.body.scrollHeight);")    # scroll page down
-        wd.find_element_by_xpath('//*[@class="footer"]/div/div[2]/div/div[1]/ul/li[5]/a').click()
+        wd.execute_script("window.scrollTo(0, document.body.scrollHeight);")  # scroll page down
+        wd.find_element(By.XPATH, '//*[@class="footer"]/div/div[2]/div/div[1]/ul/li[5]/a').click()
 
     def link_view_more_features(self):
         wd = self.app.wd
         current_url = wd.current_url
-        new_window_url = wd.find_element_by_xpath('//*[@class="partnerFeatures"]/div/div[2]/a').get_attribute("href")
+        new_window_url = wd.find_element(By.XPATH, '//*[@class="partnerFeatures"]/div/div[2]/a').get_attribute("href")
         wd.get(new_window_url)
         url = wd.current_url
         wd.get(current_url)
@@ -24,7 +26,7 @@ class MarketingPagesHelper:
     def button_become_an_affiliate(self):
         wd = self.app.wd
         current_url = wd.current_url
-        new_window_url = wd.find_element_by_xpath('//*[@id="Partnership"]/div[2]/a[1]').get_attribute("href")
+        new_window_url = wd.find_element(By.XPATH, '//*[@id="Partnership"]/div[2]/a[1]').get_attribute("href")
         wd.get(new_window_url)
         url = wd.current_url
         wd.get(current_url)
@@ -33,56 +35,56 @@ class MarketingPagesHelper:
     def button_become_a_partner(self):
         wd = self.app.wd
         current_url = wd.current_url
-        new_window_url = wd.find_element_by_xpath('//*[@id="Partnership"]/div[2]/a[2]').get_attribute("href")
+        new_window_url = wd.find_element(By.XPATH, '//*[@id="Partnership"]/div[2]/a[2]').get_attribute("href")
         wd.get(new_window_url)
         url = wd.current_url
         wd.get(current_url)
         return url
 
-# Terms & Condition
+    # Terms & Condition
     def open_terms_pages(self):
         wd = self.app.wd
-        wd.execute_script("window.scrollTo(0, document.body.scrollHeight);")    # scroll page down
-        new_window_url = wd.find_element_by_xpath('//*[@class="footer"]/div/div[5]/ul/li[4]/a').get_attribute("href")
+        wd.execute_script("window.scrollTo(0, document.body.scrollHeight);")  # scroll page down
+        new_window_url = wd.find_element(By.XPATH, '//*[@class="footer"]/div/div[5]/ul/li[4]/a').get_attribute("href")
         wd.get(new_window_url)
 
     def check_subparagraphs_terms_text(self):
         wd = self.app.wd
-        wd.find_element_by_xpath("//*[contains(text(), 'Website Terms of Use')]")
-        wd.find_element_by_xpath("//*[contains(text(), 'Acceptance of the Terms of Use')]")
-        wd.find_element_by_xpath("//*[contains(text(), 'Changes to the Terms of Use')]")
-        wd.find_element_by_xpath("//*[contains(text(), 'Accessing the Website and Account Security')]")
-        wd.find_element_by_xpath("//*[contains(text(), 'Intellectual Property Rights')]")
-        wd.find_element_by_xpath('//*[@id="__layout"]/div/div[2]/div/div/div/div/strong[5]')
-        wd.find_element_by_xpath('//*[@id="__layout"]/div/div[2]/div/div/div/div/strong[6]')
-        wd.find_element_by_xpath("//*[contains(text(), 'Cancellations and Refunds')]")
-        wd.find_element_by_xpath('//*[@id="__layout"]/div/div[2]/div/div/div/div/strong[7]')
-        wd.find_element_by_xpath("//*[contains(text(), 'Trademarks')]")
-        wd.find_element_by_xpath("//*[contains(text(), 'Prohibited Uses')]")
-        wd.find_element_by_xpath('//*[@id="__layout"]/div/div[2]/div/div/div/div/strong[11]')
-        wd.find_element_by_xpath("//*[contains(text(), 'Monitoring and Enforcement; Termination')]")
-        wd.find_element_by_xpath("//*[contains(text(), 'Electronic Delivery of Communications')]")
-        wd.find_element_by_xpath("//*[contains(text(), 'HOW TO WITHDRAW YOUR CONSENT')]")
-        wd.find_element_by_xpath('//*[@id="__layout"]/div/div[2]/div/div/div/div/strong[15]')
-        wd.find_element_by_xpath('//*[@id="__layout"]/div/div[2]/div/div/div/div/strong[16]')
-        wd.find_element_by_xpath("//*[contains(text(), 'Reliance on Information Posted')]")
-        wd.find_element_by_xpath("//*[contains(text(), 'Changes to the Website')]")
-        wd.find_element_by_xpath("//*[contains(text(), 'Information About You and Your Visits to the Website')]")
-        wd.find_element_by_xpath("//*[contains(text(), 'Online Purchases and Other Terms and Conditions')]")
-        wd.find_element_by_xpath("//*[contains(text(), 'Linking to the Website and Social Media Features')]")
-        wd.find_element_by_xpath("//*[contains(text(), 'Links from the Website')]")
-        wd.find_element_by_xpath("//*[contains(text(), 'Geographic Restrictions')]")
-        wd.find_element_by_xpath("//*[contains(text(), 'Disclaimer of Warranties')]")
-        wd.find_element_by_xpath("//*[contains(text(), 'Limitation on Liability')]")
-        wd.find_element_by_xpath("//*[contains(text(), 'Indemnification')]")
-        wd.find_element_by_xpath("//*[contains(text(), 'General Legal Provisions')]")
-        wd.find_element_by_xpath("//*[contains(text(), 'Contact Us!')]")
+        wd.find_element(By.XPATH, "//*[contains(text(), 'Website Terms of Use')]")
+        wd.find_element(By.XPATH, "//*[contains(text(), 'Acceptance of the Terms of Use')]")
+        wd.find_element(By.XPATH, "//*[contains(text(), 'Changes to the Terms of Use')]")
+        wd.find_element(By.XPATH, "//*[contains(text(), 'Accessing the Website and Account Security')]")
+        wd.find_element(By.XPATH, "//*[contains(text(), 'Intellectual Property Rights')]")
+        wd.find_element(By.XPATH, '//*[@id="__layout"]/div/div[2]/div/div/div/div/strong[5]')
+        wd.find_element(By.XPATH, '//*[@id="__layout"]/div/div[2]/div/div/div/div/strong[6]')
+        wd.find_element(By.XPATH, "//*[contains(text(), 'Cancellations and Refunds')]")
+        wd.find_element(By.XPATH, '//*[@id="__layout"]/div/div[2]/div/div/div/div/strong[7]')
+        wd.find_element(By.XPATH, "//*[contains(text(), 'Trademarks')]")
+        wd.find_element(By.XPATH, "//*[contains(text(), 'Prohibited Uses')]")
+        wd.find_element(By.XPATH, '//*[@id="__layout"]/div/div[2]/div/div/div/div/strong[11]')
+        wd.find_element(By.XPATH, "//*[contains(text(), 'Monitoring and Enforcement; Termination')]")
+        wd.find_element(By.XPATH, "//*[contains(text(), 'Electronic Delivery of Communications')]")
+        wd.find_element(By.XPATH, "//*[contains(text(), 'HOW TO WITHDRAW YOUR CONSENT')]")
+        wd.find_element(By.XPATH, '//*[@id="__layout"]/div/div[2]/div/div/div/div/strong[15]')
+        wd.find_element(By.XPATH, '//*[@id="__layout"]/div/div[2]/div/div/div/div/strong[16]')
+        wd.find_element(By.XPATH, "//*[contains(text(), 'Reliance on Information Posted')]")
+        wd.find_element(By.XPATH, "//*[contains(text(), 'Changes to the Website')]")
+        wd.find_element(By.XPATH, "//*[contains(text(), 'Information About You and Your Visits to the Website')]")
+        wd.find_element(By.XPATH, "//*[contains(text(), 'Online Purchases and Other Terms and Conditions')]")
+        wd.find_element(By.XPATH, "//*[contains(text(), 'Linking to the Website and Social Media Features')]")
+        wd.find_element(By.XPATH, "//*[contains(text(), 'Links from the Website')]")
+        wd.find_element(By.XPATH, "//*[contains(text(), 'Geographic Restrictions')]")
+        wd.find_element(By.XPATH, "//*[contains(text(), 'Disclaimer of Warranties')]")
+        wd.find_element(By.XPATH, "//*[contains(text(), 'Limitation on Liability')]")
+        wd.find_element(By.XPATH, "//*[contains(text(), 'Indemnification')]")
+        wd.find_element(By.XPATH, "//*[contains(text(), 'General Legal Provisions')]")
+        wd.find_element(By.XPATH, "//*[contains(text(), 'Contact Us!')]")
 
     def privacy_policy_link(self):
         wd = self.app.wd
         current_url = wd.current_url
-        new_window_url = wd.find_element_by_xpath('//*[@id="__layout"]'
-                                                  '/div/div[2]/div/div/div/div/p[2]/b/a[1]').get_attribute("href")
+        new_window_url = wd.find_element(By.XPATH, '//*[@id="__layout"]'
+                                                   '/div/div[2]/div/div/div/div/p[2]/b/a[1]').get_attribute("href")
         wd.get(new_window_url)
         url = wd.current_url
         wd.get(current_url)
@@ -91,8 +93,8 @@ class MarketingPagesHelper:
     def community_guidelines_link(self):
         wd = self.app.wd
         current_url = wd.current_url
-        new_window_url = wd.find_element_by_xpath('//*[@id="__layout"]'
-                                                  '/div/div[2]/div/div/div/div/p[2]/b/a[2]').get_attribute("href")
+        new_window_url = wd.find_element(By.XPATH, '//*[@id="__layout"]'
+                                                   '/div/div[2]/div/div/div/div/p[2]/b/a[2]').get_attribute("href")
         wd.get(new_window_url)
         url = wd.current_url
         wd.get(current_url)
@@ -101,8 +103,8 @@ class MarketingPagesHelper:
     def risk_disclaime_link(self):
         wd = self.app.wd
         current_url = wd.current_url
-        new_window_url = wd.find_element_by_xpath('//*[@id="__layout"]'
-                                                  '/div/div[2]/div/div/div/div/p[2]/a').get_attribute("href")
+        new_window_url = wd.find_element(By.XPATH, '//*[@id="__layout"]'
+                                                   '/div/div[2]/div/div/div/div/p[2]/a').get_attribute("href")
         wd.get(new_window_url)
         url = wd.current_url
         wd.get(current_url)
@@ -111,8 +113,8 @@ class MarketingPagesHelper:
     def privacy_policy_link2(self):
         wd = self.app.wd
         current_url = wd.current_url
-        new_window_url = wd.find_element_by_xpath('//*[@id="__layout"]'
-                                                  '/div/div[2]/div/div/div/div/p[8]/a').get_attribute("href")
+        new_window_url = wd.find_element(By.XPATH, '//*[@id="__layout"]'
+                                                   '/div/div[2]/div/div/div/div/p[8]/a').get_attribute("href")
         wd.get(new_window_url)
         url = wd.current_url
         wd.get(current_url)
@@ -121,8 +123,8 @@ class MarketingPagesHelper:
     def terms_use_link(self):
         wd = self.app.wd
         current_url = wd.current_url
-        new_window_url = wd.find_element_by_xpath('//*[@id="__layout"]'
-                                                  '/div/div[2]/div/div/div/div/p[26]/a[1]').get_attribute("href")
+        new_window_url = wd.find_element(By.XPATH, '//*[@id="__layout"]'
+                                                   '/div/div[2]/div/div/div/div/p[26]/a[1]').get_attribute("href")
         wd.get(new_window_url)
         url = wd.current_url
         wd.get(current_url)
@@ -131,8 +133,8 @@ class MarketingPagesHelper:
     def community_guidelines_link2(self):
         wd = self.app.wd
         current_url = wd.current_url
-        new_window_url = wd.find_element_by_xpath('//*[@id="__layout"]'
-                                                  '/div/div[2]/div/div/div/div/p[26]/a[2]').get_attribute("href")
+        new_window_url = wd.find_element(By.XPATH, '//*[@id="__layout"]'
+                                                   '/div/div[2]/div/div/div/div/p[26]/a[2]').get_attribute("href")
         wd.get(new_window_url)
         url = wd.current_url
         wd.get(current_url)
@@ -141,8 +143,8 @@ class MarketingPagesHelper:
     def privacy_policy_link3(self):
         wd = self.app.wd
         current_url = wd.current_url
-        new_window_url = wd.find_element_by_xpath('//*[@id="__layout"]'
-                                                  '/div/div[2]/div/div/div/div/p[53]/a[1]').get_attribute("href")
+        new_window_url = wd.find_element(By.XPATH, '//*[@id="__layout"]'
+                                                   '/div/div[2]/div/div/div/div/p[53]/a[1]').get_attribute("href")
         wd.get(new_window_url)
         url = wd.current_url
         wd.get(current_url)
@@ -151,8 +153,8 @@ class MarketingPagesHelper:
     def privacy_policy_link4(self):
         wd = self.app.wd
         current_url = wd.current_url
-        new_window_url = wd.find_element_by_xpath('//*[@id="__layout"]'
-                                                  '/div/div[2]/div/div/div/div/p[53]/a[2]').get_attribute("href")
+        new_window_url = wd.find_element(By.XPATH, '//*[@id="__layout"]'
+                                                   '/div/div[2]/div/div/div/div/p[53]/a[2]').get_attribute("href")
         wd.get(new_window_url)
         url = wd.current_url
         wd.get(current_url)
@@ -161,74 +163,74 @@ class MarketingPagesHelper:
     def community_guidelines_link4(self):
         wd = self.app.wd
         current_url = wd.current_url
-        new_window_url = wd.find_element_by_xpath('//*[@id="__layout"]'
-                                                  '/div/div[2]/div/div/div/div/p[57]/a').get_attribute("href")
+        new_window_url = wd.find_element(By.XPATH, '//*[@id="__layout"]'
+                                                   '/div/div[2]/div/div/div/div/p[57]/a').get_attribute("href")
         wd.get(new_window_url)
         url = wd.current_url
         wd.get(current_url)
         return url
 
-# Risk and General Disclaimer
+    # Risk and General Disclaimer
     def open_risk_disclainer(self):
         wd = self.app.wd
-        wd.execute_script("window.scrollTo(0, document.body.scrollHeight);")    # scroll page down
-        new_window_url = wd.find_element_by_xpath('//*[@class="footer"]/div/div[5]/ul/li[1]/a').get_attribute("href")
+        wd.execute_script("window.scrollTo(0, document.body.scrollHeight);")  # scroll page down
+        new_window_url = wd.find_element(By.XPATH, '//*[@class="footer"]/div/div[5]/ul/li[1]/a').get_attribute("href")
         wd.get(new_window_url)
 
     def check_subparagraphs_risk_text(self):
         wd = self.app.wd
-        wd.find_element_by_xpath("//*[contains(text(), 'GENERAL RISK DISCLAIMER')]")
-        wd.find_element_by_xpath("//*[contains(text(), 'RISKS ASSOCIATED WITH FOREX TRADING')]")
-        wd.find_element_by_xpath("//*[contains(text(), 'Hypothetical Results Disclaimer')]")
-        wd.find_element_by_xpath("//*[contains(text(), 'RISKS ASSOCIATED WITH OPTIONS TRADING')]")
-        wd.find_element_by_xpath("//*[contains(text(), 'Options Disclosure Document')]")
-        wd.find_element_by_xpath("//*[contains(text(), 'Electronic Trading Risks')]")
-        wd.find_element_by_xpath("//*[contains(text(), 'RISKS ASSOCIATED WITH CRYPTOCURRENCY')]")
-        wd.find_element_by_xpath('//*[@id="__layout"]/div/div[2]/div/p[18]/b')
-        wd.find_element_by_xpath("//*[contains(text(), 'RISKS ASSOCIATED WITH TRADING THE STOCK MARKET')]")
-        wd.find_element_by_xpath("//*[contains(text(), 'Education Services')]")
-        wd.find_element_by_xpath("//*[contains(text(), 'Acknowledgement and Agreement')]")
-        wd.find_element_by_xpath("//*[contains(text(), 'Accuracy of Information')]")
-        wd.find_element_by_xpath("//*[contains(text(), 'Telephone Call Monitoring and Recording')]")
-        wd.find_element_by_xpath('//*[@id="__layout"]/div/div[2]/div/p[26]/b')
-        wd.find_element_by_xpath("//*[contains(text(), 'Third Party')]")
-        wd.find_element_by_xpath('//*[@id="__layout"]/div/div[2]/div/p[28]/b')
-        wd.find_element_by_xpath("//*[contains(text(), 'Celebrity Endorsement')]")
-        wd.find_element_by_xpath("//*[contains(text(), 'NO WARRANTIES, LIMITATIONS ON LIABILITY')]")
+        wd.find_element(By.XPATH, "//*[contains(text(), 'GENERAL RISK DISCLAIMER')]")
+        wd.find_element(By.XPATH, "//*[contains(text(), 'RISKS ASSOCIATED WITH FOREX TRADING')]")
+        wd.find_element(By.XPATH, "//*[contains(text(), 'Hypothetical Results Disclaimer')]")
+        wd.find_element(By.XPATH, "//*[contains(text(), 'RISKS ASSOCIATED WITH OPTIONS TRADING')]")
+        wd.find_element(By.XPATH, "//*[contains(text(), 'Options Disclosure Document')]")
+        wd.find_element(By.XPATH, "//*[contains(text(), 'Electronic Trading Risks')]")
+        wd.find_element(By.XPATH, "//*[contains(text(), 'RISKS ASSOCIATED WITH CRYPTOCURRENCY')]")
+        wd.find_element(By.XPATH, '//*[@id="__layout"]/div/div[2]/div/p[18]/b')
+        wd.find_element(By.XPATH, "//*[contains(text(), 'RISKS ASSOCIATED WITH TRADING THE STOCK MARKET')]")
+        wd.find_element(By.XPATH, "//*[contains(text(), 'Education Services')]")
+        wd.find_element(By.XPATH, "//*[contains(text(), 'Acknowledgement and Agreement')]")
+        wd.find_element(By.XPATH, "//*[contains(text(), 'Accuracy of Information')]")
+        wd.find_element(By.XPATH, "//*[contains(text(), 'Telephone Call Monitoring and Recording')]")
+        wd.find_element(By.XPATH, '//*[@id="__layout"]/div/div[2]/div/p[26]/b')
+        wd.find_element(By.XPATH, "//*[contains(text(), 'Third Party')]")
+        wd.find_element(By.XPATH, '//*[@id="__layout"]/div/div[2]/div/p[28]/b')
+        wd.find_element(By.XPATH, "//*[contains(text(), 'Celebrity Endorsement')]")
+        wd.find_element(By.XPATH, "//*[contains(text(), 'NO WARRANTIES, LIMITATIONS ON LIABILITY')]")
 
-# Privacy Policy
+    # Privacy Policy
     def open_privacy_policy(self):
         wd = self.app.wd
-        wd.execute_script("window.scrollTo(0, document.body.scrollHeight);")    # scroll page down
-        new_window_url = wd.find_element_by_xpath('//*[@class="footer"]/div/div[5]/ul/li[2]/a').get_attribute("href")
+        wd.execute_script("window.scrollTo(0, document.body.scrollHeight);")  # scroll page down
+        new_window_url = wd.find_element(By.XPATH, '//*[@class="footer"]/div/div[5]/ul/li[2]/a').get_attribute("href")
         wd.get(new_window_url)
 
     def check_subparagraphs_privacy_policy_text(self):
         wd = self.app.wd
-        wd.find_element_by_xpath("//*[contains(text(), 'SmartTrader Privacy Policy')]")
-        wd.find_element_by_xpath("//*[contains(text(), 'Introduction')]")
-        wd.find_element_by_xpath("//*[contains(text(), 'Please read this policy carefully to understand "
-                                 "how we will treat your information')]")
-        wd.find_element_by_xpath("//*[contains(text(), 'Children Under the Age of 13')]")
-        wd.find_element_by_xpath("//*[contains(text(), 'Information We Collect About You and How We Collect It')]")
-        wd.find_element_by_xpath("//*[contains(text(), 'Information You Provide to Us')]")
-        wd.find_element_by_xpath("//*[contains(text(), 'Information We Collect Through "
-                                 "Automatic Data Collection Technologies')]")
-        wd.find_element_by_xpath("//*[contains(text(), 'Third-Party Use of Cookies and Other Tracking Technologies')]")
-        wd.find_element_by_xpath("//*[contains(text(), 'How We Use Your Information')]")
-        wd.find_element_by_xpath("//*[contains(text(), 'Disclosure of Your Information')]")
-        wd.find_element_by_xpath("//*[contains(text(), 'Choices About How We Use and Disclose Your Information')]")
-        wd.find_element_by_xpath("//*[contains(text(), 'Accessing and Correcting Your Information')]")
-        wd.find_element_by_xpath("//*[contains(text(), 'Your California Privacy Rights')]")
-        wd.find_element_by_xpath("//*[contains(text(), 'Data Security')]")
-        wd.find_element_by_xpath("//*[contains(text(), 'Changes to Our Privacy Policy')]")
-        wd.find_element_by_xpath("//*[contains(text(), 'Contact Information')]")
+        wd.find_element(By.XPATH, "//*[contains(text(), 'SmartTrader Privacy Policy')]")
+        wd.find_element(By.XPATH, "//*[contains(text(), 'Introduction')]")
+        wd.find_element(By.XPATH, "//*[contains(text(), 'Please read this policy carefully to understand "
+                                  "how we will treat your information')]")
+        wd.find_element(By.XPATH, "//*[contains(text(), 'Children Under the Age of 13')]")
+        wd.find_element(By.XPATH, "//*[contains(text(), 'Information We Collect About You and How We Collect It')]")
+        wd.find_element(By.XPATH, "//*[contains(text(), 'Information You Provide to Us')]")
+        wd.find_element(By.XPATH, "//*[contains(text(), 'Information We Collect Through "
+                                  "Automatic Data Collection Technologies')]")
+        wd.find_element(By.XPATH, "//*[contains(text(), 'Third-Party Use of Cookies and Other Tracking Technologies')]")
+        wd.find_element(By.XPATH, "//*[contains(text(), 'How We Use Your Information')]")
+        wd.find_element(By.XPATH, "//*[contains(text(), 'Disclosure of Your Information')]")
+        wd.find_element(By.XPATH, "//*[contains(text(), 'Choices About How We Use and Disclose Your Information')]")
+        wd.find_element(By.XPATH, "//*[contains(text(), 'Accessing and Correcting Your Information')]")
+        wd.find_element(By.XPATH, "//*[contains(text(), 'Your California Privacy Rights')]")
+        wd.find_element(By.XPATH, "//*[contains(text(), 'Data Security')]")
+        wd.find_element(By.XPATH, "//*[contains(text(), 'Changes to Our Privacy Policy')]")
+        wd.find_element(By.XPATH, "//*[contains(text(), 'Contact Information')]")
 
     def nai_link(self):
         wd = self.app.wd
         current_url = wd.current_url
-        new_window_url = wd.find_element_by_xpath('//*[@id="__layout"]'
-                                                  '/div/div[2]/div/div/div/div/p[25]/a').get_attribute("href")
+        new_window_url = wd.find_element(By.XPATH, '//*[@id="__layout"]'
+                                                   '/div/div[2]/div/div/div/div/p[25]/a').get_attribute("href")
         wd.get(new_window_url)
         url = wd.current_url
         wd.get(current_url)
@@ -238,35 +240,35 @@ class MarketingPagesHelper:
     def terms_of_use_link(self):
         wd = self.app.wd
         current_url = wd.current_url
-        new_window_url = wd.find_element_by_xpath('//*[@id="__layout"]'
-                                                  '/div/div[2]/div/div/div/div/p[27]/a').get_attribute("href")
+        new_window_url = wd.find_element(By.XPATH, '//*[@id="__layout"]'
+                                                   '/div/div[2]/div/div/div/div/p[27]/a').get_attribute("href")
         wd.get(new_window_url)
         url = wd.current_url
         wd.get(current_url)
         return url
 
-# Community Guidelines
+    # Community Guidelines
     def open_community_guidelines(self):
         wd = self.app.wd
-        wd.execute_script("window.scrollTo(0, document.body.scrollHeight);")    # scroll page down
-        new_window_url = wd.find_element_by_xpath('//*[@class="footer"]/div/div[5]/ul/li[3]/a').get_attribute("href")
+        wd.execute_script("window.scrollTo(0, document.body.scrollHeight);")  # scroll page down
+        new_window_url = wd.find_element(By.XPATH, '//*[@class="footer"]/div/div[5]/ul/li[3]/a').get_attribute("href")
         wd.get(new_window_url)
 
     def check_subparagraphs_community_guidelines_text(self):
         wd = self.app.wd
-        wd.find_element_by_xpath("//*[contains(text(), 'SmartTrader User Guidelines and Community Rules')]")
-        wd.find_element_by_xpath("//*[contains(text(), 'Overview')]")
-        wd.find_element_by_xpath("//*[contains(text(), 'User Guidelines - Account Names and Avatars')]")
-        wd.find_element_by_xpath("//*[contains(text(), 'User Guidelines - General')]")
-        wd.find_element_by_xpath("//*[contains(text(), 'Community Rules - Posting Comments')]")
-        wd.find_element_by_xpath("//*[contains(text(), 'Account Suspension and Banning')]")
-        wd.find_element_by_xpath("//*[contains(text(), 'Community Rules - Publishing Ideas and Trading Scripts')]")
+        wd.find_element(By.XPATH, "//*[contains(text(), 'SmartTrader User Guidelines and Community Rules')]")
+        wd.find_element(By.XPATH, "//*[contains(text(), 'Overview')]")
+        wd.find_element(By.XPATH, "//*[contains(text(), 'User Guidelines - Account Names and Avatars')]")
+        wd.find_element(By.XPATH, "//*[contains(text(), 'User Guidelines - General')]")
+        wd.find_element(By.XPATH, "//*[contains(text(), 'Community Rules - Posting Comments')]")
+        wd.find_element(By.XPATH, "//*[contains(text(), 'Account Suspension and Banning')]")
+        wd.find_element(By.XPATH, "//*[contains(text(), 'Community Rules - Publishing Ideas and Trading Scripts')]")
 
     def ideas_link(self):
         wd = self.app.wd
         current_url = wd.current_url
-        new_window_url = wd.find_element_by_xpath('//*[@id="__layout"]'
-                                                  '/div/div[2]/div/div/div/div/p[7]/a[1]').get_attribute("href")
+        new_window_url = wd.find_element(By.XPATH, '//*[@id="__layout"]'
+                                                   '/div/div[2]/div/div/div/div/p[7]/a[1]').get_attribute("href")
         wd.get(new_window_url)
         url = wd.current_url
         wd.get(current_url)
@@ -275,63 +277,63 @@ class MarketingPagesHelper:
     def scripting_link(self):
         wd = self.app.wd
         current_url = wd.current_url
-        new_window_url = wd.find_element_by_xpath('//*[@id="__layout"]'
-                                                  '/div/div[2]/div/div/div/div/p[7]/a[2]').get_attribute("href")
+        new_window_url = wd.find_element(By.XPATH, '//*[@id="__layout"]'
+                                                   '/div/div[2]/div/div/div/div/p[7]/a[2]').get_attribute("href")
         wd.get(new_window_url)
         url = wd.current_url
         wd.get(current_url)
         return url
 
-# About
+    # About
     def open_about(self):
         wd = self.app.wd
-        wd.execute_script("window.scrollTo(0, document.body.scrollHeight);")    # scroll page down
-        wd.find_element_by_xpath('//*[@class="footer"]/div/div[2]/div/div[1]/ul/li[4]/a').click()
+        wd.execute_script("window.scrollTo(0, document.body.scrollHeight);")  # scroll page down
+        wd.find_element(By.XPATH, '//*[@class="footer"]/div/div[2]/div/div[1]/ul/li[4]/a').click()
 
     def check_about_page(self):
         wd = self.app.wd
-        wd.find_element_by_xpath("//*[contains(text(), 'About SmartTrader')]")
-        wd.find_element_by_xpath('//*[@id="__layout"]/div/section/section[1]/img')
-        wd.find_element_by_xpath('//*[@id="__layout"]/div/section/section[3]/div/div/div[1]/img')
-        wd.find_element_by_xpath('//*[@id="__layout"]/div/section/section[3]/div/div/div[2]/img')
-        wd.find_element_by_xpath('//*[@id="__layout"]/div/section/section[3]/div/img')
-        wd.find_element_by_xpath('//*[@id="__layout"]/div/section/section[4]/div/div/img')
-        wd.find_element_by_xpath("//*[contains(text(), 'Building a Supportive')]")
+        wd.find_element(By.XPATH, "//*[contains(text(), 'About SmartTrader')]")
+        wd.find_element(By.XPATH, '//*[@id="__layout"]/div/section/section[1]/img')
+        wd.find_element(By.XPATH, '//*[@id="__layout"]/div/section/section[3]/div/div/div[1]/img')
+        wd.find_element(By.XPATH, '//*[@id="__layout"]/div/section/section[3]/div/div/div[2]/img')
+        wd.find_element(By.XPATH, '//*[@id="__layout"]/div/section/section[3]/div/img')
+        wd.find_element(By.XPATH, '//*[@id="__layout"]/div/section/section[4]/div/div/img')
+        wd.find_element(By.XPATH, "//*[contains(text(), 'Building a Supportive')]")
 
     def learn_more_button(self):
         wd = self.app.wd
-        wd.find_element_by_xpath('//*[@id="__layout"]/div/section/section[6]/div/a/button').click()
+        wd.find_element(By.XPATH, '//*[@id="__layout"]/div/section/section[6]/div/a/button').click()
         url = wd.current_url
         return url
 
-# License Agreement
+    # License Agreement
     def open_license_agreement(self):
         wd = self.app.wd
-        wd.execute_script("window.scrollTo(0, document.body.scrollHeight);")    # scroll page down
-        new_window_url = wd.find_element_by_xpath('//*[@class="footer"]/div/div[5]/ul/li[5]/a').get_attribute("href")
+        wd.execute_script("window.scrollTo(0, document.body.scrollHeight);")  # scroll page down
+        new_window_url = wd.find_element(By.XPATH, '//*[@class="footer"]/div/div[5]/ul/li[5]/a').get_attribute("href")
         wd.get(new_window_url)
 
     def check_license_agreement_page(self):
         wd = self.app.wd
-        wd.find_element_by_xpath("//*[contains(text(), 'End-User License Agreement')]")
-        wd.find_element_by_xpath("//*[contains(text(), 'DEFINITIONS:')]")
-        wd.find_element_by_xpath("//*[contains(text(), 'SOFTWARE:')]")
-        wd.find_element_by_xpath("//*[contains(text(), 'SERVICE:')]")
-        wd.find_element_by_xpath("//*[contains(text(), 'TERM:')]")
-        wd.find_element_by_xpath("//*[contains(text(), 'OWNERSHIP:')]")
-        wd.find_element_by_xpath("//*[contains(text(), 'NON-ST SERVICES:')]")
-        wd.find_element_by_xpath("//*[contains(text(), 'GENERAL:')]")
-        wd.find_element_by_xpath("//*[contains(text(), 'INFORMATION WE COLLECT, TERMS OF USE, AND PRIVACY POLICY:')]")
-        wd.find_element_by_xpath("//*[contains(text(), 'NO WARRANTIES, LIMITATIONS ON LIABILITY:')]")
-        wd.find_element_by_xpath("//*[contains(text(), 'TERMINATION:')]")
-        wd.find_element_by_xpath("//*[contains(text(), 'EQUITABLE REMEDIES:')]")
-        wd.find_element_by_xpath("//*[contains(text(), 'GENERAL LEGAL TERMS:')]")
+        wd.find_element(By.XPATH, "//*[contains(text(), 'End-User License Agreement')]")
+        wd.find_element(By.XPATH, "//*[contains(text(), 'DEFINITIONS:')]")
+        wd.find_element(By.XPATH, "//*[contains(text(), 'SOFTWARE:')]")
+        wd.find_element(By.XPATH, "//*[contains(text(), 'SERVICE:')]")
+        wd.find_element(By.XPATH, "//*[contains(text(), 'TERM:')]")
+        wd.find_element(By.XPATH, "//*[contains(text(), 'OWNERSHIP:')]")
+        wd.find_element(By.XPATH, "//*[contains(text(), 'NON-ST SERVICES:')]")
+        wd.find_element(By.XPATH, "//*[contains(text(), 'GENERAL:')]")
+        wd.find_element(By.XPATH, "//*[contains(text(), 'INFORMATION WE COLLECT, TERMS OF USE, AND PRIVACY POLICY:')]")
+        wd.find_element(By.XPATH, "//*[contains(text(), 'NO WARRANTIES, LIMITATIONS ON LIABILITY:')]")
+        wd.find_element(By.XPATH, "//*[contains(text(), 'TERMINATION:')]")
+        wd.find_element(By.XPATH, "//*[contains(text(), 'EQUITABLE REMEDIES:')]")
+        wd.find_element(By.XPATH, "//*[contains(text(), 'GENERAL LEGAL TERMS:')]")
 
     def eula_terms_of_use_link(self):
         wd = self.app.wd
         current_url = wd.current_url
-        new_window_url = wd.find_element_by_xpath('//*[@id="__layout"]'
-                                                  '/div/div[2]/div/div/div/div/p[2]/a[1]').get_attribute("href")
+        new_window_url = wd.find_element(By.XPATH, '//*[@id="__layout"]'
+                                                   '/div/div[2]/div/div/div/div/p[2]/a[1]').get_attribute("href")
         wd.get(new_window_url)
         url = wd.current_url
         wd.get(current_url)
@@ -340,8 +342,8 @@ class MarketingPagesHelper:
     def eula_privacy_policy_link(self):
         wd = self.app.wd
         current_url = wd.current_url
-        new_window_url = wd.find_element_by_xpath('//*[@id="__layout"]'
-                                                  '/div/div[2]/div/div/div/div/p[2]/a[2]').get_attribute("href")
+        new_window_url = wd.find_element(By.XPATH, '//*[@id="__layout"]'
+                                                   '/div/div[2]/div/div/div/div/p[2]/a[2]').get_attribute("href")
         wd.get(new_window_url)
         url = wd.current_url
         wd.get(current_url)
@@ -350,8 +352,8 @@ class MarketingPagesHelper:
     def eula_privacy_policy_link2(self):
         wd = self.app.wd
         current_url = wd.current_url
-        new_window_url = wd.find_element_by_xpath('//*[@id="__layout"]'
-                                                  '/div/div[2]/div/div/div/div/p[19]/a').get_attribute("href")
+        new_window_url = wd.find_element(By.XPATH, '//*[@id="__layout"]'
+                                                   '/div/div[2]/div/div/div/div/p[19]/a').get_attribute("href")
         wd.get(new_window_url)
         url = wd.current_url
         wd.get(current_url)

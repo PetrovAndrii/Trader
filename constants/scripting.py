@@ -1,5 +1,6 @@
 class ScriptingConstants:
     SCRIPTING_TAB_CLASS_NAME = 'scriptingTab'
+    SCRIPTING_TAB2_XPATH = '//*[@data-text="Scripting"]'
     OPEN_SCRIPT_BUTTON_CLASS_NAME = 'openBtn'
     MY_SMART_SCRIPTS_TAB_CSS_SELECTOR = 'ul.ModalTabs > li:nth-child(3)'
     MENU_KABOB_BUTTON_CSS_SELECTOR = '.DropdownActions'
@@ -11,3 +12,5 @@ class ScriptingConstants:
     SORT_BUTTON_CSS_SELECTOR = 'div.SortButton'
     SORT_LIST_ITEM_NEWEST_CSS_SELECTOR = 'ul.SortButton__list > li:nth-child(2)'
     SORT_LIST_ITEM_OLDEST_CSS_SELECTOR = 'ul.SortButton__list > li:nth-child(1)'
+    FIRST_LINE_IN_SCRIPT_CODE_CSS_SELECTOR = '.CodeMirror-activeline-background.CodeMirror-linebackground'
+    SCRIPTING_EDITOR_TAB_ID = 'editorTab_content'

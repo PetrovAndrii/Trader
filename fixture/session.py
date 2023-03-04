@@ -139,6 +139,7 @@ class SessionHelper:
 
     def check_authorization_on_chart(self):
         wd = self.app.wd
+        self.app.wait_element_located(By.ID, ChartsConstants.PROFILE_BUTTON_ID)
         wd.find_element(By.ID, ChartsConstants.PROFILE_BUTTON_ID).click()
         wd.find_element(By.XPATH, ChartsConstants.SIGN_OUT_ACC_CONTENT_LINK_XPATH)
 
@@ -163,6 +164,7 @@ class SessionHelper:
         element = wd.find_element(By.CSS_SELECTOR, FooterConstants.LOG_IN_LINK_CSS_SELECTOR)
         wd.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         wd.execute_script("return arguments[0].scrollIntoView(true);", element)
+        self.app.wait_element_located(By.CSS_SELECTOR, FooterConstants.LOG_IN_LINK_CSS_SELECTOR)
         button_name = element.text
         assert button_name == "Logout"
 

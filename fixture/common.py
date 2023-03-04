@@ -33,3 +33,10 @@ class CommonHelper:
             wd.find_element(By.ID, ChartsConstants.TRADING_PANEL_ARROW_BUTTON_ID).click()
         else:
             pass
+
+    def click_random_element(self, by, value):
+        wd = self.app.wd
+        elements = wd.find_elements(by, value)
+        random_element = elements[random.randint(0, len(elements) - 1)]
+        wd.execute_script("return arguments[0].scrollIntoView(true);", random_element)
+        random_element.click()

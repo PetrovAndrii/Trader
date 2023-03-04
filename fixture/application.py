@@ -24,6 +24,7 @@ from constants.charts import ChartsConstants
 from constants.register import RegisterConstants
 from fixture.charts.indicators import IndicatorsHelper
 from fixture.charts.workspace_chart import WorkspaceChartHelper
+from fixture.charts.global_settings import GlobalSettingsHelper
 
 
 class Application:
@@ -58,6 +59,7 @@ class Application:
         self.login_form = LoginFormHelper(self)
         self.indicators = IndicatorsHelper(self)
         self.workspace_chart = WorkspaceChartHelper(self)
+        self.global_settings = GlobalSettingsHelper(self)
         self.base_url = base_url
 
     # check valid session in browser or not
@@ -103,6 +105,13 @@ class Application:
     def wait_element_not_located(self, by, locator, timeout=5):
         try:
             ui.WebDriverWait(self.wd, timeout).until_not(ec.visibility_of_element_located((by, locator)))
+            return True
+        except TimeoutException:
+            return False
+
+    def wait_element_not_clickable(self, by, locator, timeout=5):
+        try:
+            ui.WebDriverWait(self.wd, timeout).until_not(ec.element_to_be_clickable((by, locator)))
             return True
         except TimeoutException:
             return False

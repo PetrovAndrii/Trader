@@ -112,3 +112,4 @@ report.html
 report.json
 style.css
 /constants/hidden.py
+/allure-report/

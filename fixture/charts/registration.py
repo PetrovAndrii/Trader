@@ -20,7 +20,7 @@ class RegistrationHelper:
         else:
             pass
 
-    def registration_button(self):
+    def open_registration_form(self):
         wd = self.app.wd
         self.app.open_home_page()
         if wd.find_elements(By.CSS_SELECTOR, HeaderConstants.ACCOUNT_IMAGE_CSS_SELECTOR):
@@ -29,8 +29,15 @@ class RegistrationHelper:
 #           time.sleep(2)
             wd.find_element(By.XPATH, HeaderConstants.LOGOUT_TOOLBAR_BUTTON_XPATH).click()
             wd.find_element(By.CLASS_NAME, HeaderConstants.GET_STARTED_BUTTON_CLASS_NAME).click()
+            # try it free button on plans page
+            element = wd.find_element(By.CSS_SELECTOR, '.button.button-blue.button-border.button-sm')
+            wd.execute_script("return arguments[0].scrollIntoView(true);", element)
+            element.click()
         else:
             wd.find_element(By.CLASS_NAME, HeaderConstants.GET_STARTED_BUTTON_CLASS_NAME).click()
+            element = wd.find_element(By.CSS_SELECTOR, '.button.button-blue.button-border.button-sm')
+            wd.execute_script("return arguments[0].scrollIntoView(true);", element)
+            element.click()
 
     def registration_fields(self, full_name, email, password, phone_code, phone_number):
         time.sleep(2)

@@ -13,9 +13,9 @@ class WorkspaceChartHelper:
     def __init__(self, app):
         self.app = app
 
-    def button_add_workspace_chart(self):
+    def button_manage_charts_layouts(self):
         wd = self.app.wd
-        wd.find_element(By.XPATH, WorkspacesConstants.ADD_WORKSPACE_BUTTON_XPATH).click()
+        wd.find_element(By.XPATH, WorkspacesConstants.MANAGE_CHARTS_LAYOUTS_BUTTON_XPATH).click()
 
     def manage_workspaces(self):
         wd = self.app.wd
@@ -28,7 +28,7 @@ class WorkspaceChartHelper:
 
     def share_private_workspace(self):
         wd = self.app.wd
-        wd.find_element(By.CLASS_NAME, WorkspacesConstants.SHARE_PRIVAT_BUTTON_KEBAB_MENU_CLASS_NAME).click()
+        wd.find_element(By.CSS_SELECTOR, WorkspacesConstants.SHARE_PRIVAT_BUTTON_KEBAB_MENU_CSS_SELECTOR).click()
         time.sleep(2)
 
     def add_new_workspace(self):

@@ -1,5 +1,5 @@
 class GlobalSettingsConstants:
-    GLOBAL_SETTINGS_BUTTON_CSS_SELECTOR = '.app-header__account-content-link.globalSettings'
+    GLOBAL_SETTINGS_BUTTON_CSS_SELECTOR = 'div.v-dropdown.ProfileMenu__dropdown > ul:nth-child(5) > li:nth-child(3) > a'
     SAVE_BUTTON_ID = 'scxThemeDialog_btn_save'
     CLOSE_BUTTON_ID = 'scxThemeDialog_btn_close'
     APP_FONT_SIZE_XPATH = '//*[@data-id="scxThemeDialog_input_appFontSize"]'

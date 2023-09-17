@@ -13,7 +13,10 @@ class IndicatorsHelper:
 
     def click_add_indicators_button(self):
         wd = self.app.wd
-        wd.find_element(By.CSS_SELECTOR, IndicatorsConstants.ADD_INDICATORS_BUTTON_TOOLBAR_CSS_SELECTOR).click()
+        # we have two identical css selectors and in order not to write a very large selector,
+        # we click on the second such selector in the list
+        elements = wd.find_elements(By.CSS_SELECTOR, IndicatorsConstants.ADD_INDICATORS_BUTTON_TOOLBAR_CSS_SELECTOR)
+        elements[1].click()
 
     def add_random_indicator(self):
         wd = self.app.wd

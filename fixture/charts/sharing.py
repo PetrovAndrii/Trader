@@ -19,8 +19,10 @@ class SharingHelper:
 
     def share_ideas_button(self):
         wd = self.app.wd
-        wd.find_element(By.CSS_SELECTOR, SharingConstants.SHARE_IDEAS_BUTTON_CSS_SELECTOR).click()
-        time.sleep(1)
+        # we have two identical css selectors and in order not to write a very large selector,
+        # we click on the second such selector in the list
+        elements = wd.find_elements(By.CSS_SELECTOR, SharingConstants.SHARE_IDEAS_BUTTON_CSS_SELECTOR)
+        elements[1].click()
 
     def share_charts_button(self):
         wd = self.app.wd
@@ -131,9 +133,12 @@ class SharingHelper:
         wd.execute_script("return arguments[0].scrollIntoView(true);", link)
         link.click()
         name = link.find_element(By.XPATH, IdeasConstants.IDEAS_TITLE_XPATH)
-        name1 = str(name.text)
+        name1 = name.text
         self.import_button_from_opened_ideas()
-        return re.sub('[/]', '', name1.upper())
+        return name1
+        # name1 = str(name.text)
+        # self.import_button_from_opened_ideas()
+        # return re.sub('[/]', '', name1.upper())
 
     def import_button_from_opened_ideas(self):
         wd = self.app.wd
@@ -149,20 +154,24 @@ class SharingHelper:
         link = links[randint(0, len(links) - 1)]
         link.click()
         name = link.find_element(By.XPATH, IdeasConstants.IDEAS_TITLE_XPATH)
-        name1 = str(name.text)
+        name1 = name.text
         self.import_button_from_opened_ideas()
-        return re.sub('[/]', '', name1.upper())
+        return name1
+        # name1 = str(name.text)
+        # self.import_button_from_opened_ideas()
+        # return re.sub('[/]', '', name1.upper())
 
     def return_imported_name(self):
         wd = self.app.wd
         time.sleep(15)
-        name = wd.find_element(By.XPATH, WorkspacesConstants.WORKSPACE_OPEN_BUTTON_XPATH)
+        wd.find_element(By.XPATH, WorkspacesConstants.WORKSPACE_LIST_OPEN_BUTTON_XPATH).click()
+        name = wd.find_element(By.XPATH, WorkspacesConstants.NAME_ACTIVE_WORKSPACE_XPATH)
         return name.text
 
     def open_scripting_tab(self):
         wd = self.app.wd
         self.app.wait_element_located(By.CSS_SELECTOR, WorkspacesConstants.TRADING_ACCOUNT_TABLE_CSS_SELECTOR)
-        if not wd.find_elements(By.CLASS_NAME, ChartsConstants.TRADING_PANEL_OPEN_CLASS_NAME):
+        if not wd.find_elements(By.CLASS_NAME, ChartsConstants.TRADING_PANEL_OPEN_CSS_SELECTOR):
             self.app.common.open_trading_panel()
             wd.find_element(By.CLASS_NAME, ScriptingConstants.SCRIPTING_TAB_CLASS_NAME).click()
         else:
@@ -277,8 +286,9 @@ class SharingHelper:
 
     def open_setting_active_workspaces(self):
         wd = self.app.wd
-        wd.find_element(By.ID, WorkspacesConstants.ACTIVE_WORKSPACE_BUTTON_ID).click()
-        wd.find_element(By.XPATH, WorkspacesConstants.SETTING_ACTIVE_WORKSPACE_BUTTON_XPATH).click()
+        element = wd.find_element(By.XPATH, WorkspacesConstants.SETTING_ACTIVE_WORKSPACE_BUTTON_XPATH)
+        wd.execute_script("arguments[0].scrollIntoView(true);", element)
+        element.click()
 
     def click_share_button_on_ws_settings(self):
         wd = self.app.wd

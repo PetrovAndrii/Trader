@@ -8,19 +8,19 @@ def random_symbol(prefix, maxlen):
 
 
 def test_no_active_errors_on_the_login_page(app):
-    app.registration.registration_button()
+    app.registration.open_registration_form()
     app.registration.show_password_is_inactive()
     app.registration.checkbox_not_selected()
 
 
 def test_show_password_do_inactive(app):
-    app.registration.registration_button()
+    app.registration.open_registration_form()
     app.registration.click_do_active_show_password()
     app.registration.click_do_inactive_show_password()
 
 
 def test_registration_get_started_button(app):
-    app.registration.registration_button()
+    app.registration.open_registration_form()
     app.registration.check_error_in_page()
     app.session.key()
     email = random_symbol("test", 7) + random_symbol("smart", 7) + random_symbol("trader", 7) + "@yopmail.com"
@@ -35,7 +35,7 @@ def test_registration_get_started_button(app):
 
 
 def test_registration_at_login_form(app):
-    app.registration.registration_button()
+    app.registration.open_registration_form()
     app.registration.login_button()
     app.registration.check_error_in_page()
     app.registration.link_create_an_account_at_login_form()
@@ -52,7 +52,7 @@ def test_registration_at_login_form(app):
 
 
 def test_registration_without_phone(app):
-    app.registration.registration_button()
+    app.registration.open_registration_form()
     app.registration.check_error_in_page()
     app.session.key()
     email = random_symbol("smart", 7) + random_symbol("trader", 7) + "@yopmail.com"
@@ -66,7 +66,7 @@ def test_registration_without_phone(app):
 
 
 def test_error_if_full_name_empty(app):
-    app.registration.registration_button()
+    app.registration.open_registration_form()
     app.registration.check_error_in_page()
     email = random_symbol("smart", 7) + random_symbol("trader", 7) + "@yopmail.com"
     print('')
@@ -80,7 +80,7 @@ def test_error_if_full_name_empty(app):
 
 
 def test_error_if_email_empty(app):
-    app.registration.registration_button()
+    app.registration.open_registration_form()
     app.registration.check_error_in_page()
     app.registration.registration_fields(full_name='Test Test', email='', password='P@ssw0rd',
                                          phone_code='+380', phone_number='930000000')
@@ -91,7 +91,7 @@ def test_error_if_email_empty(app):
 
 
 def test_error_if_password_empty(app):
-    app.registration.registration_button()
+    app.registration.open_registration_form()
     app.registration.check_error_in_page()
     email = random_symbol("smart", 7) + random_symbol("trader", 7) + "@yopmail.com"
     print('')
@@ -105,7 +105,7 @@ def test_error_if_password_empty(app):
 
 
 def test_error_if_agree_checkbox_not_selected(app):
-    app.registration.registration_button()
+    app.registration.open_registration_form()
     app.registration.check_error_in_page()
     email = random_symbol("smart", 7) + random_symbol("trader", 7) + "@yopmail.com"
     print('')
@@ -118,21 +118,21 @@ def test_error_if_agree_checkbox_not_selected(app):
 
 
 def test_check_terms_link(app):
-    app.registration.registration_button()
+    app.registration.open_registration_form()
     url = app.base_url
     new_url = app.registration.terms_link()
     assert url + 'terms/' == new_url
 
 
 def test_check_license_link(app):
-    app.registration.registration_button()
+    app.registration.open_registration_form()
     url = app.base_url
     new_url = app.registration.license_link()
     assert url + 'eula/' == new_url
 
 
 def test_error_if_incorrect_email(app):
-    app.registration.registration_button()
+    app.registration.open_registration_form()
     app.registration.check_error_in_page()
     app.registration.click_button_create_my_account()
     app.registration.scroll_up()
@@ -166,13 +166,13 @@ def test_error_if_incorrect_email(app):
 
 
 def test_check_login_button(app):
-    app.registration.registration_button()
+    app.registration.open_registration_form()
     app.registration.check_error_in_page()
     app.registration.link_login_at_registration_form()
 
 
 def test_check_character_count_in_the_password_field(app):
-    app.registration.registration_button()
+    app.registration.open_registration_form()
     app.registration.check_error_in_page()
     # positive cases: 8 and 30
     app.registration.fill_password(password='12345678')
@@ -188,7 +188,7 @@ def test_check_character_count_in_the_password_field(app):
 
 
 def test_check_special_character_in_the_password_field(app):
-    app.registration.registration_button()
+    app.registration.open_registration_form()
     app.registration.check_error_in_page()
     # positive cases
     app.registration.fill_password(password='@#$-:\№')
@@ -245,7 +245,7 @@ def test_check_special_character_in_the_password_field(app):
 
 
 def test_check_number_in_the_password_field(app):
-    app.registration.registration_button()
+    app.registration.open_registration_form()
     app.registration.check_error_in_page()
     # positive cases
     app.registration.fill_password(password='test')
@@ -256,7 +256,7 @@ def test_check_number_in_the_password_field(app):
 
 
 def test_check_capital_letter_in_the_password_field(app):
-    app.registration.registration_button()
+    app.registration.open_registration_form()
     app.registration.check_error_in_page()
     # positive cases
     app.registration.fill_password(password='a')

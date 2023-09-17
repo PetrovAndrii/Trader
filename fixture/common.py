@@ -22,14 +22,14 @@ class CommonHelper:
 
     def open_trading_panel(self):
         wd = self.app.wd
-        if not wd.find_elements(By.CLASS_NAME, ChartsConstants.TRADING_PANEL_OPEN_CLASS_NAME):
+        if not wd.find_elements(By.CLASS_NAME, ChartsConstants.TRADING_PANEL_OPEN_CSS_SELECTOR):
             wd.find_element(By.ID, ChartsConstants.TRADING_PANEL_ARROW_BUTTON_ID).click()
         else:
             pass
 
     def close_trading_panel(self):
         wd = self.app.wd
-        if wd.find_elements(By.CLASS_NAME, ChartsConstants.TRADING_PANEL_OPEN_CLASS_NAME):
+        if wd.find_elements(By.CLASS_NAME, ChartsConstants.TRADING_PANEL_OPEN_CSS_SELECTOR):
             wd.find_element(By.ID, ChartsConstants.TRADING_PANEL_ARROW_BUTTON_ID).click()
         else:
             pass

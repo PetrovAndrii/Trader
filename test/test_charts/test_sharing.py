@@ -22,7 +22,7 @@ def test_share_workspace(app):
     app.sharing.make_snapshot_workspace()
     current_datetime = app.common.get_current_date_time()
     app.sharing.write_idea_name(idea_name=current_datetime)
-    app.sharing.write_description(description_text='test for sharing charts as idea')
+    app.sharing.write_description(description_text='test for sharing workspace as idea')
     app.sharing.publish_idea()
     shared_check = app.sharing.check_shared_ideas(name_shared_ideas=current_datetime)
     assert current_datetime == shared_check
@@ -36,7 +36,7 @@ def test_share_active_workspace(app):
     app.sharing.make_snapshot_workspace()
     current_datetime = app.common.get_current_date_time()
     app.sharing.write_idea_name(idea_name=current_datetime)
-    app.sharing.write_description(description_text='test for sharing charts as idea')
+    app.sharing.write_description(description_text='test for sharing active workspace as idea')
     app.sharing.publish_idea()
     shared_check = app.sharing.check_shared_ideas(name_shared_ideas=current_datetime)
     assert current_datetime == shared_check
@@ -44,14 +44,14 @@ def test_share_active_workspace(app):
 
 def test_share_private_workspace(app):
     app.open_charts_page()
-    app.workspace_chart.button_add_workspace_chart()
+    app.workspace_chart.button_manage_charts_layouts()
     app.workspace_chart.manage_workspaces()
     app.workspace_chart.manage_workspaces_option()
     app.workspace_chart.share_private_workspace()
     app.sharing.make_snapshot_workspace()
     current_datetime = app.common.get_current_date_time()
     app.sharing.write_idea_name(idea_name=current_datetime)
-    app.sharing.write_description(description_text='test for sharing charts as idea')
+    app.sharing.write_description(description_text='test for sharing private workspace as idea')
     app.sharing.publish_idea()
     shared_check = app.sharing.check_shared_ideas(name_shared_ideas=current_datetime)
     assert current_datetime == shared_check
@@ -68,7 +68,7 @@ def test_share_scripts(app):
     app.sharing.make_snapshot_scripts()
     current_datetime = app.common.get_current_date_time()
     app.sharing.write_idea_name(idea_name=current_datetime)
-    app.sharing.write_description(description_text='test for sharing charts as idea')
+    app.sharing.write_description(description_text='test for sharing scripts as idea')
     app.sharing.publish_idea()
     shared_check = app.sharing.check_shared_ideas(name_shared_ideas=current_datetime)
     assert current_datetime == shared_check
